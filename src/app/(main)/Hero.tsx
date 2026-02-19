@@ -83,15 +83,24 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroBg }) => {
         <div className="mt-8 relative">
           <Input
             type="text"
-            placeholder="Search AI models, prompts, datasets..."
+            placeholder="Search by tool name, tags, use case, or category..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && searchTerm.trim()) {
+                window.location.href = `/explore?search=${encodeURIComponent(searchTerm.trim())}`;
+              }
+            }}
             className="w-full py-6 pr-12 text-lg focus:shadow-none  rounded-lg border border-gray-700 placeholder-gray-300 focus:border-orange-500 focus:ring-0 dark:bg-gray-700/50"
           />
-
-
-          <Icons.Search className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-
+          <Icons.Search 
+            className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 cursor-pointer"
+            onClick={() => {
+              if (searchTerm.trim()) {
+                window.location.href = `/explore?search=${encodeURIComponent(searchTerm.trim())}`;
+              }
+            }}
+          />
         </div>
 
 

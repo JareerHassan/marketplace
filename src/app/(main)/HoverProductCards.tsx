@@ -1,109 +1,70 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import api from '@/lib/api';
 
 interface Product {
-    id: string;
-    downloads: string;
+    _id?: string;
+    id?: string;
     name: string;
-    image: string;
-    hoverImage: string;
+    image?: string;
+    imageUrl?: string;
+    slug?: string;
+    shortDescription?: string;
+    description?: string;
+    rating?: number;
+    reviewCount?: number;
+    downloads?: string;
+    hoverImage?: string;
 }
 
 export default function HoverProductCards() {
-    const products: Product[] = [
-        {
-            id: "1",
-            downloads: "12M",
-            name: "Neural Chatbot",
-            image:
-                "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-            hoverImage:
-                "https://images.unsplash.com/photo-1508612761958-e931d843bdd3?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-            id: "2",
-            downloads: "12M",
-            name: "AI Image Generator",
-            image:
-                "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
-            hoverImage:
-                "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-            id: "3",
-            downloads: "12M",
-            name: "Speech-to-Text Pro",
-            image:
-                "https://images.unsplash.com/photo-1581091870627-3ca5d04779d8?auto=format&fit=crop&w=800&q=80",
-            hoverImage:
-                "https://images.unsplash.com/photo-1580894732444-8ecdedecbfff?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-            id: "4",
-            downloads: "12M",
-            name: "AI Code Assistant",
-            image:
-                "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
-            hoverImage:
-                "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-            id: "5",
-            downloads: "12M",
-            name: "Document Analyzer",
-            image:
-                "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=800&q=80",
-            hoverImage:
-                "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-            id: "6",
-            downloads: "12M",
-            name: "AI Video Maker",
-            image:
-                "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-            hoverImage:
-                "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-            id: "7",
-            downloads: "12M",
-            name: "Data Visualizer",
-            image:
-                "https://images.unsplash.com/photo-1555949963-aa79dcee30d0?auto=format&fit=crop&w=800&q=80",
-            hoverImage:
-                "https://images.unsplash.com/photo-1517142089942-ba376ce32a0a?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-            id: "8",
-            downloads: "12M",
-            name: "SEO Content AI",
-            image:
-                "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
-            hoverImage:
-                "https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-            id: "9",
-            downloads: "12M",
-            name: "AI Resume Builder",
-            image:
-                "https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?auto=format&fit=crop&w=800&q=80",
-            hoverImage:
-                "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-            id: "10",
-            downloads: "12M",
-            name: "AI Music Generator",
-            image:
-                "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80",
-            hoverImage:
-                "https://images.unsplash.com/photo-1521038199265-0847df5120b5?auto=format&fit=crop&w=800&q=80",
-        },
-    ];
+    const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetchTrendingProducts();
+    }, []);
+
+    const fetchTrendingProducts = async () => {
+        try {
+            setLoading(true);
+            const response = await api.get('/products', {
+                params: { sort: 'latest' }
+            });
+            // Get first 8 products for trending section
+            const fetchedProducts = (response.data || []).slice(0, 8);
+            setProducts(fetchedProducts);
+        } catch (error) {
+            console.error('Error fetching trending products:', error);
+            setProducts([]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Construct image URL helper
+    const getImageUrl = (product: Product) => {
+        const rawImage = product.image || product.imageUrl;
+        if (!rawImage) return '/placeholder.png';
+        
+        if (typeof rawImage === 'string' && (rawImage.startsWith('http://') || rawImage.startsWith('https://'))) {
+            return rawImage;
+        }
+        
+        if (typeof rawImage === 'string' && rawImage.startsWith('/')) {
+            return rawImage;
+        }
+        
+        if (typeof rawImage === 'string' && rawImage.trim() !== '') {
+            const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005';
+            const cleanPath = rawImage.startsWith('/') ? rawImage.slice(1) : rawImage;
+            return `${API_BASE_URL}/${cleanPath}`;
+        }
+        
+        return '/placeholder.png';
+    };
 
     return (
         <section className="py-16 container mx-auto">
@@ -112,22 +73,44 @@ export default function HoverProductCards() {
                     Trending AI Tools
                 </h2>
 
-
                 <p className="mt-2 text-muted-foreground">
                     Explore powerful tools crafted for creators & developers.
                 </p>
 
-                <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6">
-                    {products.map((product, i) => (
-                        <HoverCard key={product.id} product={product} index={i} />
-                    ))}
-                </div>
+                {loading ? (
+                    <div className="mt-12 flex items-center justify-center py-12">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                    </div>
+                ) : products.length === 0 ? (
+                    <div className="mt-12 text-center py-12 text-muted-foreground">
+                        <p>No trending products available at the moment.</p>
+                    </div>
+                ) : (
+                    <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6">
+                        {products.map((product, i) => (
+                            <HoverCard 
+                                key={product._id || product.id || i} 
+                                product={product} 
+                                index={i}
+                                getImageUrl={getImageUrl}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         </section>
     );
 }
 
-function HoverCard({ product, index }: { product: Product; index: number }) {
+function HoverCard({ 
+    product, 
+    index, 
+    getImageUrl 
+}: { 
+    product: Product; 
+    index: number;
+    getImageUrl: (product: Product) => string;
+}) {
     const [hover, setHover] = useState(false);
     const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
     const router = useRouter();
@@ -143,9 +126,14 @@ function HoverCard({ product, index }: { product: Product; index: number }) {
         });
     };
 
+    const productSlug = product.slug || product._id || product.id;
+    const productImage = getImageUrl(product);
+    const downloads = product.downloads || `${(product.reviewCount || 0)}+`;
+    const productName = product.name || 'Unnamed Product';
+
     return (
         <div
-            onClick={() => router.push(`/product/${product.id}`)}
+            onClick={() => router.push(`/product/${productSlug}`)}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             onMouseMove={handleMouseMove}
@@ -159,21 +147,26 @@ function HoverCard({ product, index }: { product: Product; index: number }) {
                         top: cursorPos.y,
                         transform: "translate(-50%, -50%)",
                     }}
-                    className="absolute w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center pointer-events-none"
+                    className="absolute w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center pointer-events-none z-10"
                 >
                     <span className="text-lg font-semibold">&rarr;</span>
                 </div>
             )}
 
             {/* NAME ABOVE IMAGE */}
-            <h3 className="text-2xl font-semibold">{product.name}</h3>
-            <h6 className="text-xl">{product.downloads + "+"}</h6>
+            <h3 className="text-2xl font-semibold">{productName}</h3>
+            <h6 className="text-xl">{downloads}</h6>
 
             {/* IMAGE */}
             <div className="h-64 mt-4 w-full overflow-hidden">
                 <img
-                    src={hover ? product.hoverImage : product.image}
+                    src={productImage}
+                    alt={productName}
                     className="h-full w-full object-cover rounded-xl transition-all duration-300"
+                    onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = '/placeholder.png';
+                    }}
                 />
             </div>
         </div>

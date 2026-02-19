@@ -1,9 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
@@ -18,7 +20,6 @@ const navLinks = [
   { href: '/explore', label: 'Explore' },
   { href: '/categories', label: 'Categories' },
   { href: '/chatbot', label: 'AI Assistant' },
-  { href: '/seller/dashboard', label: 'Seller Hub' },
   { href: '/blogs', label: 'Blogs' },
   { href: '/faq', label: 'FAQ' },
 ];
@@ -52,6 +53,22 @@ function ThemeToggle() {
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('userToken') : null;
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleSubmitTool = () => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('userToken') : null;
+    if (token) {
+      router.push('/seller/dashboard/submit-tool');
+    } else {
+      router.push('/auth/login');
+    }
+  };
 
   const renderNavLinks = (isMobile = false) => (
     <nav
@@ -105,30 +122,68 @@ export default function Header() {
               <Icons.Logo className="h-6 w-6 text-primary" />
               <span className="font-bold font-headline">Neural Nexus</span>
             </Link>
+            <div className="my-4 px-6">
+              <div className="relative mb-4">
+                <Input
+                  type="search"
+                  placeholder="Search tools..."
+                  className="w-full pr-10"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      const value = (e.target as HTMLInputElement).value;
+                      if (value.trim()) {
+                        router.push(`/explore?search=${encodeURIComponent(value.trim())}`);
+                      }
+                    }
+                  }}
+                />
+                <Icons.Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              </div>
+            </div>
             <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
               <div className="flex flex-col space-y-3">
                 {renderNavLinks(true)}
+                <Button 
+                  onClick={handleSubmitTool}
+                  variant="default"
+                  className="w-full mt-4 bg-primary hover:bg-primary/90"
+                >
+                  Submit Tool
+                </Button>
               </div>
             </div>
           </SheetContent>
         </Sheet>
         
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-            {/* Can add search here later */}
+          <div className="w-full flex-1 md:w-auto md:flex-none max-w-md hidden md:block">
+            <div className="relative">
+              <Input
+                type="search"
+                placeholder="Search tools, tags, use cases..."
+                className="w-full pr-10"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    const value = (e.target as HTMLInputElement).value;
+                    if (value.trim()) {
+                      router.push(`/explore?search=${encodeURIComponent(value.trim())}`);
+                    }
+                  }
+                }}
+              />
+              <Icons.Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            </div>
           </div>
           <nav className="flex items-center gap-2">
             <ThemeToggle />
-            <Link href="/auth/login">
-              <Button variant="ghost" className="text-foreground/70">
-                Login
-              </Button>
-            </Link>
-            <Link href="/auth/signup">
-              <Button variant="ghost" size="sm">
-                Sign Up
-              </Button>
-            </Link>
+            <Button 
+              onClick={handleSubmitTool}
+              variant="default"
+              size="sm"
+              className="bg-primary hover:bg-primary/90"
+            >
+              Submit Tool
+            </Button>
           </nav>
         </div>
       </div>

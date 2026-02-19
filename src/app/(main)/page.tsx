@@ -1,9 +1,10 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { categories, products, testimonials } from '@/lib/dummy-data';
+import { testimonials } from '@/lib/dummy-data';
 import { ProductCard } from '@/components/product-card';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -11,7 +12,112 @@ import HeroSection from './Hero';
 import HoverProductCards from './HoverProductCards';
 import AIBanner from './AIBannerPage';
 import AgentControlSection from "./AIAgentsComponent"
+import api from '@/lib/api';
+import axios from 'axios';
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005/api';
+
+// Default icon mapping for categories
+const categoryIconMap: Record<string, keyof typeof Icons> = {
+  'chatbots': 'Bot',
+  'prompts': 'Terminal',
+  'automations': 'Zap',
+  'templates': 'ClipboardCopy',
+  'apis': 'Code',
+  'datasets': 'Database',
+  'widgets': 'Component',
+  'tools': 'Wrench',
+  'default': 'Component',
+};
+
 export default function HomePage() {
+  const [categories, setCategories] = useState<any[]>([]);
+  const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+
+  useEffect(() => {
+    fetchCategories();
+    fetchFeaturedProducts();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      setLoadingCategories(true);
+      const response = await axios.get(`${API_BASE_URL}/categories/active`);
+      setCategories(response.data || []);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      setCategories([]);
+    } finally {
+      setLoadingCategories(false);
+    }
+  };
+
+  const fetchFeaturedProducts = async () => {
+    try {
+      setLoadingProducts(true);
+      const response = await api.get('/products', {
+        params: { sort: 'latest' }
+      });
+      // Get latest 3 products as featured
+      const products = response.data || [];
+      setFeaturedProducts(products.slice(0, 3));
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      setFeaturedProducts([]);
+    } finally {
+      setLoadingProducts(false);
+    }
+  };
+
+  const getCategoryIcon = (category: any) => {
+    // If category has an icon image, return null to use image instead
+    if (category.icon) {
+      return null;
+    }
+    // Otherwise use icon mapping
+    const slug = category.slug?.toLowerCase() || category.name?.toLowerCase() || '';
+    const iconName = categoryIconMap[slug] || categoryIconMap['default'];
+    return Icons[iconName] || Icons.Component;
+  };
+
+  const getCategoryIconUrl = (category: any) => {
+    if (!category.icon) return null;
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005';
+    if (category.icon.startsWith('http')) return category.icon;
+    return `${API_BASE_URL}/${category.icon}`;
+  };
+
+  // Category Card Component
+  function CategoryCard({ category, iconUrl, IconComponent, categorySlug }: any) {
+    const [showImage, setShowImage] = useState(!!iconUrl);
+    
+    return (
+      <Link href={`/explore?category=${categorySlug}`} className="group">
+        <Card className="p-6 flex flex-wrap items-center justify-start gap-3 text-center
+         bg-gray-300 dark:bg-gray-900 border-2 border-transparent hover:border-primary/50 transition-all duration-300">
+          {showImage && iconUrl ? (
+            <div className="w-20 h-20 mx-auto rounded-xl overflow-hidden border-2 border-gray-500 shadow-lg">
+              <img 
+                src={iconUrl} 
+                alt={category.name}
+                className="w-full h-full object-cover"
+                onError={() => setShowImage(false)}
+              />
+            </div>
+          ) : IconComponent ? (
+            <IconComponent className="h-20 w-20 text-white bg-gray-500 border shadow rounded-xl
+             p-4 transition-transform" />
+          ) : (
+            <Icons.Component className="h-20 w-20 text-white bg-gray-500 border shadow rounded-xl
+             p-4 transition-transform" />
+          )}
+          <h3 className="mt-4 text-lg font-semibold">{category.name}</h3>
+        </Card>
+      </Link>
+    );
+  }
 
   return (
     <div className="flex flex-col min-h-screen   ">
@@ -26,40 +132,70 @@ export default function HomePage() {
             <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-orange-500 via-pink-500 to-purple-200 bg-clip-text text-transparent">
               Trending Categories
             </h2>
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-              {categories.slice(0, 4).map((category) => {
-                const IconComponent = Icons[category.icon as keyof typeof Icons];
-                return (
-                  <Link key={category.id} href={`/categories?category=${category.slug}`} className="group">
-                    <Card className="p-6 flex flex-wrap  items-center justify-start gap-3 text-center
-                     bg-gray-300 dark:bg-gray-900 border-2 border-transparent hover:border-primary/50 transition-all duration-300">
-                      <IconComponent className="h-20 w-20 text-white bg-gray-500 border shadow rounded-xl
-                       p-4  transition-transform" />
-                      <h3 className="mt-4 text-lg font-semibold">{category.name}</h3>
-                    </Card>
-                  </Link>
-                );
-              })}
-            </div>
+            {loadingCategories ? (
+              <div className="mt-12 flex items-center justify-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+              </div>
+            ) : categories.length === 0 ? (
+              <div className="mt-12 text-center py-12 text-muted-foreground">
+                <p>No categories available at the moment.</p>
+              </div>
+            ) : (
+              <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                {categories.slice(0, 4).map((category) => {
+                  const IconComponent = getCategoryIcon(category);
+                  const iconUrl = getCategoryIconUrl(category);
+                  const categorySlug = category.slug || category._id || category.id;
+                  
+                  return (
+                    <CategoryCard 
+                      key={category._id || category.id} 
+                      category={category}
+                      iconUrl={iconUrl}
+                      IconComponent={IconComponent}
+                      categorySlug={categorySlug}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
         </section>
+
         {/* Featured Products */}
         <section className="py-16 mx-auto container">
-          <div className=" px-4 md:px-6">
+          <div className="px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-orange-500 via-pink-500 to-purple-200 bg-clip-text text-transparent">Featured AI Tools</h2>
             <p className="mt-2 text-muted-foreground">Hand-picked assets from the Neural Nexus ecosystem.</p>
-            <div className="mt-12 container  grid justify-center grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-10">
-              {products.slice(0, 3).map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-            <div className="mt-12 text-center">
-              <Link href="/explore">
-                <Button className='bg-gradient-to-r from-orange-500 via-pink-500 to-purple-200' variant="outline" size="lg">
-                  Explore All Products <Icons.ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
+            {loadingProducts ? (
+              <div className="mt-12 flex items-center justify-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+              </div>
+            ) : featuredProducts.length === 0 ? (
+              <div className="mt-12 text-center py-12 text-muted-foreground">
+                <p>No featured products available at the moment.</p>
+                <Link href="/explore" className="mt-4 inline-block">
+                  <Button variant="outline" size="lg">
+                    Explore All Products <Icons.ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              <>
+                <div className="mt-12 container grid justify-center grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-10">
+                  {featuredProducts.map((product) => (
+                    <ProductCard key={product._id || product.id} product={product} />
+                  ))}
+                </div>
+                <div className="mt-12 text-center">
+                  <Link href="/explore">
+                    <Button className='bg-gradient-to-r from-orange-500 via-pink-500 to-purple-200' variant="outline" size="lg">
+                      Explore All Products <Icons.ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </section>
 

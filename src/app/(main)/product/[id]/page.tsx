@@ -210,7 +210,7 @@ export default function ProductPage() {
     
     // If it's a relative path (like uploads/image.jpg), construct full URL
     if (typeof rawImage === 'string' && rawImage.trim() !== '') {
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005';
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com';
       // Remove leading slash if present to avoid double slashes
       const cleanPath = rawImage.startsWith('/') ? rawImage.slice(1) : rawImage;
       return `${API_BASE_URL}/${cleanPath}`;

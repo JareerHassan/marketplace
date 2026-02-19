@@ -19,7 +19,7 @@ import { Badge } from '@/components/ui/badge';
 import api from '@/lib/api';
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com/api';
 
 const dynamicWords = ["Templates", "AI Bots", "Datasets", "Models", "Prompts"];
 

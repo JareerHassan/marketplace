@@ -15,7 +15,7 @@ import AgentControlSection from "./AIAgentsComponent"
 import api from '@/lib/api';
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com/api';
 
 // Default icon mapping for categories
 const categoryIconMap: Record<string, keyof typeof Icons> = {
@@ -84,7 +84,7 @@ export default function HomePage() {
 
   const getCategoryIconUrl = (category: any) => {
     if (!category.icon) return null;
-    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005';
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com';
     if (category.icon.startsWith('http')) return category.icon;
     return `${API_BASE_URL}/${category.icon}`;
   };

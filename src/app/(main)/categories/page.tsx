@@ -51,7 +51,7 @@ export default function CategoriesPage() {
 
   const getCategoryIconUrl = (category: any) => {
     if (!category.icon) return null;
-    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005';
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com';
     if (category.icon.startsWith('http')) return category.icon;
     return `${API_BASE_URL}/${category.icon}`;
   };

@@ -6,7 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com/api';
 
 // Default icon mapping for categories
 const categoryIconMap: Record<string, keyof typeof Icons> = {

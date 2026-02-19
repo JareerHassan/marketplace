@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams, useRouter } from 'next/navigation';
 import { ProductCard } from '@/components/product-card';
 import { Input } from '@/components/ui/input';
@@ -23,7 +23,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5005/a
 
 const dynamicWords = ["Templates", "AI Bots", "Datasets", "Models", "Prompts"];
 
-export default function ExplorePage() {
+function ExplorePageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
@@ -578,5 +578,19 @@ export default function ExplorePage() {
         </main>
       </div>
     </div>
+  );
+}
+
+export default function ExplorePage() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 py-6 md:py-8">
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        </div>
+      </div>
+    }>
+      <ExplorePageContent />
+    </Suspense>
   );
 }

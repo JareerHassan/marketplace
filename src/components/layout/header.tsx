@@ -19,7 +19,6 @@ import {
 const navLinks = [
   { href: '/explore', label: 'Explore' },
   { href: '/categories', label: 'Categories' },
-  { href: '/chatbot', label: 'AI Assistant' },
   { href: '/blogs', label: 'Blogs' },
   { href: '/faq', label: 'FAQ' },
 ];

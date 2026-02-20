@@ -1,5 +1,6 @@
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
+import FloatingChatbot from '@/components/floating-chatbot';
 
 export default function MainLayout({
   children,
@@ -11,6 +12,7 @@ export default function MainLayout({
       <Header />
       <main className="flex-grow">{children}</main>
       <Footer />
+      <FloatingChatbot />
     </div>
   );
 }

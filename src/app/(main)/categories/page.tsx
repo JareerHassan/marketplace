@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
 import axios from 'axios';
+import HeroSection from "@/components/HeroSection";
+
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com/api';
 
@@ -63,7 +65,7 @@ export default function CategoriesPage() {
     const categorySlug = category.slug || category._id || category.id;
 
     return (
-      <Link href={`/explore?category=${categorySlug}`} className="group">
+      <Link href={`/products?category=${categorySlug}`} className="group">
         <Card className="p-6 flex flex-wrap items-center justify-start gap-3 text-center
          bg-gray-300 dark:bg-gray-900 border-2 border-transparent hover:border-primary/50 transition-all duration-300">
           {showImage && iconUrl ? (
@@ -89,9 +91,12 @@ export default function CategoriesPage() {
   };
 
   return (
+    <>
+          <HeroSection />
+    
     <div className="container mx-auto px-4 py-8 md:py-12">
       <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-500 via-pink-500 to-purple-200 bg-clip-text text-transparent tracking-tight">Product Categories</h1>
+        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#b3ec25] via-[#b3ec25] to-[#b3ec25] bg-clip-text text-transparent tracking-tight">Product Categories</h1>
         <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
           Browse assets by category to find the perfect tool for your needs.
         </p>
@@ -113,5 +118,6 @@ export default function CategoriesPage() {
         </div>
       )}
     </div>
+    </>
   );
 }

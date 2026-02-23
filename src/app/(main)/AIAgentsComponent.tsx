@@ -15,7 +15,7 @@ const AgentControlSection: React.FC = () => {
         {/* -------------------- 1. HEADER SECTION -------------------- */}
         <header className="text-center mb-20 md:mb-32">
           {/* Accent Question */}
-          <h2 className="text-lg font-semibold text-orange-400 mb-4">
+          <h2 className="text-lg font-semibold text-primary mb-4">
             Why build AI Agents with n8n?
           </h2>
 

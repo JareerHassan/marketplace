@@ -17,10 +17,12 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 const navLinks = [
-  { href: '/explore', label: 'Explore' },
+  { href: '/about', label: 'About' },
+  { href: '/products', label: 'Products' },
   { href: '/categories', label: 'Categories' },
   { href: '/blogs', label: 'Blogs' },
   { href: '/faq', label: 'FAQ' },
+   { href: '/contact', label: 'Contact Us' },
 ];
 
 function ThemeToggle() {
@@ -53,15 +55,24 @@ function ThemeToggle() {
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    const token = typeof window !== 'undefined' ? localStorage.getItem('userToken') : null;
+    const token =
+      typeof window !== 'undefined'
+        ? localStorage.getItem('userToken')
+        : null;
     setIsLoggedIn(!!token);
   }, []);
 
   const handleSubmitTool = () => {
-    const token = typeof window !== 'undefined' ? localStorage.getItem('userToken') : null;
+    const token =
+      typeof window !== 'undefined'
+        ? localStorage.getItem('userToken')
+        : null;
+
     if (token) {
       router.push('/seller/dashboard/submit-tool');
     } else {
@@ -69,11 +80,20 @@ export default function Header() {
     }
   };
 
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push(
+        `/products?search=${encodeURIComponent(searchQuery.trim())}`
+      );
+      setSearchQuery('');
+    }
+  };
+
   const renderNavLinks = (isMobile = false) => (
     <nav
       className={cn(
         'flex items-center gap-4 lg:gap-6',
-        isMobile ? 'flex-col items-start' : 'hidden md:flex'
+        isMobile ? 'flex-col items-start' : 'hidden lg:flex'
       )}
     >
       {navLinks.map((link) => (
@@ -81,8 +101,10 @@ export default function Header() {
           key={link.href}
           href={link.href}
           className={cn(
-            'text-sm font-medium transition-colors hover:text-accent',
-            pathname.startsWith(link.href) ? 'text-accent' : 'text-foreground/70',
+            'text-sm font-medium transition-colors hover:text-primary',
+            pathname.startsWith(link.href)
+              ? 'text-primary'
+              : 'text-foreground/70',
             isMobile && 'text-lg'
           )}
         >
@@ -94,8 +116,10 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
-      <div className="container flex h-16 items-center">
-        <div className="mr-4 hidden md:flex">
+      <div className="container flex h-16 items-center px-3">
+
+        {/* Desktop Logo + Nav */}
+        <div className="mr-4 hidden lg:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <Icons.Logo className="h-6 w-6 text-primary" />
             <span className="hidden font-bold sm:inline-block font-headline">
@@ -105,47 +129,58 @@ export default function Header() {
           {renderNavLinks()}
         </div>
 
+        {/* Mobile + Tablet Toggle */}
         <Sheet>
           <SheetTrigger asChild>
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="lg:hidden"
               aria-label="Open menu"
             >
               <Icons.Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
+
           <SheetContent side="left" className="pr-0">
             <Link href="/" className="mr-6 flex items-center space-x-2">
               <Icons.Logo className="h-6 w-6 text-primary" />
-              <span className="font-bold font-headline">Neural Nexus</span>
+              <span className="font-bold font-headline">
+                Neural Nexus
+              </span>
             </Link>
+
             <div className="my-4 px-6">
-              <div className="relative mb-4">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSearch();
+                }}
+                className="relative mb-4"
+              >
                 <Input
                   type="search"
                   placeholder="Search tools..."
                   className="w-full pr-10"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      const value = (e.target as HTMLInputElement).value;
-                      if (value.trim()) {
-                        router.push(`/explore?search=${encodeURIComponent(value.trim())}`);
-                      }
-                    }
-                  }}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <Icons.Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              </div>
+                <button
+                  type="submit"
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                >
+                  <Icons.Search className="h-4 w-4 text-muted-foreground" />
+                </button>
+              </form>
             </div>
+
             <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
               <div className="flex flex-col space-y-3">
                 {renderNavLinks(true)}
-                <Button 
+                <Button
                   onClick={handleSubmitTool}
                   variant="default"
-                  className="w-full mt-4 bg-primary hover:bg-primary/90"
+                  className="w-40 mt-4 bg-primary hover:bg-primary/90"
                 >
                   Submit Tool
                 </Button>
@@ -153,37 +188,48 @@ export default function Header() {
             </div>
           </SheetContent>
         </Sheet>
-        
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none max-w-md hidden md:block">
-            <div className="relative">
+
+        {/* Right Section */}
+        <div className="flex flex-1 items-center justify-between space-x-2 lg:justify-end">
+
+          {/* Desktop Search */}
+          <div className="w-full flex-1 lg:w-auto lg:flex-none max-w-md hidden lg:block">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSearch();
+              }}
+              className="relative"
+            >
               <Input
                 type="search"
                 placeholder="Search tools, tags, use cases..."
                 className="w-full pr-10"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    const value = (e.target as HTMLInputElement).value;
-                    if (value.trim()) {
-                      router.push(`/explore?search=${encodeURIComponent(value.trim())}`);
-                    }
-                  }
-                }}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <Icons.Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            </div>
+              <button
+                type="submit"
+                className="absolute right-3 top-1/2 -translate-y-1/2"
+              >
+                <Icons.Search className="h-4 w-4 text-muted-foreground" />
+              </button>
+            </form>
           </div>
+
+          {/* Theme + Submit */}
           <nav className="flex items-center gap-2">
             <ThemeToggle />
-            <Button 
+            <Button
               onClick={handleSubmitTool}
               variant="default"
               size="sm"
-              className="bg-primary hover:bg-primary/90"
+              className="bg-primary hover:bg-primary/90 hidden lg:inline-flex"
             >
               Submit Tool
             </Button>
           </nav>
+
         </div>
       </div>
     </header>

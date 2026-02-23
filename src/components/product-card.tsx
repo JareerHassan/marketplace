@@ -62,7 +62,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                   <img
                     src={productImage}
                     alt={productName || 'Product image'}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-cover "
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = '/placeholder.png';
@@ -73,7 +73,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                     src={productImage}
                     alt={productName || 'Product image'}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover "
                     data-ai-hint="AI product"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;

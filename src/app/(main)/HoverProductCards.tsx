@@ -69,7 +69,7 @@ export default function HoverProductCards() {
     return (
         <section className="py-16 container mx-auto">
             <div className="px-4 md:px-6 mx-auto">
-                <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-orange-500 via-pink-500 to-purple-200 bg-clip-text text-transparent">
+                <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#b3ec25] via-[#b3ec25]to-purple-200 bg-clip-text text-transparent">
                     Trending AI Tools
                 </h2>
 
@@ -147,7 +147,7 @@ function HoverCard({
                         top: cursorPos.y,
                         transform: "translate(-50%, -50%)",
                     }}
-                    className="absolute w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center pointer-events-none z-10"
+                    className="absolute w-16 h-16 rounded-full bg-[#b3ec25] flex items-center justify-center pointer-events-none z-10"
                 >
                     <span className="text-lg font-semibold">&rarr;</span>
                 </div>

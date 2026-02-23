@@ -3,7 +3,7 @@ import { Icons } from '@/components/icons';
 
 const footerLinks = {
   platform: [
-    { href: '/explore', label: 'Explore' },
+    { href: '/products', label: 'Products' },
     { href: '/categories', label: 'Categories' },
     { href: '/seller/register', label: 'Become a Seller' },
     { href: '/chatbot', label: 'AI Assistant' },

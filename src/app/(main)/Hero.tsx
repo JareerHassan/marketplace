@@ -79,7 +79,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroBg }) => {
       >
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg">
           Explore the World <br />
-          of <span className="text-orange-500">{typedWord}</span>
+          of <span className="text-primary">{typedWord}</span>
           <span className="animate-blink">|</span>
         </h1>
 
@@ -96,7 +96,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroBg }) => {
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && searchTerm.trim()) {
-                  router.push(`/explore?search=${encodeURIComponent(searchTerm.trim())}`);
+                  router.push(`/products?search=${encodeURIComponent(searchTerm.trim())}`);
                 }
               }}
               className="flex-1 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-lg py-6 pr-4 bg-transparent placeholder-gray-300 focus:border-0"
@@ -136,7 +136,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroBg }) => {
                 size="sm"
                 onClick={() => {
                   if (searchTerm.trim()) {
-                    router.push(`/explore?search=${encodeURIComponent(searchTerm.trim())}`);
+                    router.push(`/products?search=${encodeURIComponent(searchTerm.trim())}`);
                   }
                 }}
                 className="h-9 px-4 rounded-full"
@@ -153,8 +153,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroBg }) => {
           {quickCategories.map((cat) => (
             <button
               key={cat}
-              onClick={() => window.location.href = `/explore?search=${encodeURIComponent(cat)}`}
-              className="px-3 py-1 text-sm border border-1 border-gray-700 rounded-lg dark:bg-transparent dark:hover:bg-[#3c1511] hover:border-orange-500 transition-all duration-300"
+              onClick={() => window.location.href = `/products?search=${encodeURIComponent(cat)}`}
+              className="px-3 py-1 text-sm border border-1 border-gray-700 rounded-lg dark:bg-transparent dark:hover:bg-[#1c153e] hover:border-primary transition-all duration-300"
             >
               {cat}
             </button>

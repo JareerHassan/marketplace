@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Plus, MessageCircle, ShoppingCart, Truck, CreditCard } from 'lucide-react';
+import HeroSection from "@/components/HeroSection";
 
 // Define the type for the FAQ item
 interface FAQItem {
@@ -91,7 +92,7 @@ const FAQItemComponent: React.FC<{ item: FAQItem, index: number, open: boolean, 
         </span>
         {/* Reverted to Plus icon with rotate-45 animation, using orange color for consistency */}
         <Plus
-          className={`w-6 h-6 text-orange-600 dark:text-orange-400 transform transition-transform duration-300 ${
+          className={`w-6 h-6 text-primary  transform transition-transform duration-300 ${
             open ? 'rotate-45' : ''
           }`}
         />
@@ -126,6 +127,9 @@ const App = () => {
     : faqData.filter(item => item.category === activeCategory);
 
   return (
+    <>
+    <HeroSection />
+
     <div className="min-h-screen font-sans p-4 sm:p-8">
       <header className="text-center py-12">
         <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight sm:text-6xl">
@@ -148,8 +152,8 @@ const App = () => {
               }}
               className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 shadow-sm
                 ${activeCategory === category
-                  ? 'bg-orange-600 text-white shadow-orange-500/50'
-                  : ' text-gray-700 hover:bg-orange-100 hover:text-orange-600 dark:text-gray-200 dark:hover:bg-orange-900/50'
+                  ? 'bg-primary text-white shadow-primary-500/50'
+                  : ' text-gray-700 hover:bg-[#1b1541] hover:text-orange-600 dark:text-gray-200 dark:hover:bg-[#1b1541]'
                 }
               `}
             >
@@ -159,7 +163,7 @@ const App = () => {
         </div>
 
         {/* FAQ Accordion List */}
-        <div className=" rounded-xl overflow-hidden">
+        <div className="rounded-xl overflow-hidden">
           {filteredFaqData.length > 0 ? (
             filteredFaqData.map((item, index) => (
               <FAQItemComponent 
@@ -178,20 +182,21 @@ const App = () => {
         </div>
         
         {/* Contact CTA */}
-        <div className="mt-12 p-8 text-center bg-orange-50 dark:bg-orange-900/30 rounded-xl border border-orange-200 dark:border-orange-700 shadow-inner">
-            <h3 className="text-2xl font-bold text-orange-900 dark:text-orange-200 mb-3">Still have questions?</h3>
-            <p className="text-orange-700 dark:text-orange-300 mb-4">
+        <div className="mt-12 p-8 text-center bg-[#1b1541] dark:bg-[#1b1541]/20 rounded-xl border border-gray/10 shadow-inner">
+            <h3 className="text-2xl font-bold text-white  mb-3">Still have questions?</h3>
+            <p className="text-white mb-4">
                 If you cannot find the answer to your question in our FAQ, please reach out to our customer support team for assistance.
             </p>
             <a 
-                href="mailto:support@example.com"
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-orange-600 hover:bg-orange-700 transition duration-150 ease-in-out transform hover:scale-105"
+                href="oxmite@gmail.com"
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-primary hover:bg-primary/80 transition duration-150 ease-in-out transform hover:scale-105"
             >
                 Contact Support
             </a>
         </div>
       </main>
     </div>
+    </>
   );
 };
 

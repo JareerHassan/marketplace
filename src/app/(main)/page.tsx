@@ -14,6 +14,7 @@ import AIBanner from './AIBannerPage';
 import AgentControlSection from "./AIAgentsComponent"
 import api from '@/lib/api';
 import axios from 'axios';
+import { useSearchParams } from "next/navigation";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com/api';
 
@@ -35,6 +36,12 @@ export default function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
   const [loadingProducts, setLoadingProducts] = useState(true);
+  const searchParams = useSearchParams();
+  const category = searchParams.get("category");
+  const [categoryProducts, setCategoryProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<any[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
 
   useEffect(() => {
     fetchCategories();
@@ -54,6 +61,20 @@ export default function HomePage() {
     }
   };
 
+ useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      const params: any = {};
+      if (category) params.category = category; // category filter
+      const response = await api.get('/products', { params });
+      setProducts(response.data || []);
+    } catch (error) {
+      setProducts([]);
+    }
+  };
+  fetchProducts();
+}, [category]);
+
   const fetchFeaturedProducts = async () => {
     try {
       setLoadingProducts(true);
@@ -70,6 +91,7 @@ export default function HomePage() {
       setLoadingProducts(false);
     }
   };
+
 
   const getCategoryIcon = (category: any) => {
     // If category has an icon image, return null to use image instead
@@ -92,15 +114,15 @@ export default function HomePage() {
   // Category Card Component
   function CategoryCard({ category, iconUrl, IconComponent, categorySlug }: any) {
     const [showImage, setShowImage] = useState(!!iconUrl);
-    
+
     return (
-      <Link href={`/explore?category=${categorySlug}`} className="group">
+      <Link href={`/products?category=${categorySlug}`} className="group">
         <Card className="p-6 flex flex-wrap items-center justify-start gap-3 text-center
          bg-gray-300 dark:bg-gray-900 border-2 border-transparent hover:border-primary/50 transition-all duration-300">
           {showImage && iconUrl ? (
             <div className="w-20 h-20 mx-auto rounded-xl overflow-hidden border-2 border-gray-500 shadow-lg">
-              <img 
-                src={iconUrl} 
+              <img
+                src={iconUrl}
                 alt={category.name}
                 className="w-full h-full object-cover"
                 onError={() => setShowImage(false)}
@@ -129,7 +151,7 @@ export default function HomePage() {
         {/* Trending Categories */}
         <section className="py-16 mx-auto container">
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-orange-500 via-pink-500 to-purple-200 bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#b3ec25] via-from-[#b3ec25] to-purple-200 bg-clip-text text-transparent">
               Trending Categories
             </h2>
             {loadingCategories ? (
@@ -146,10 +168,10 @@ export default function HomePage() {
                   const IconComponent = getCategoryIcon(category);
                   const iconUrl = getCategoryIconUrl(category);
                   const categorySlug = category.slug || category._id || category.id;
-                  
+
                   return (
-                    <CategoryCard 
-                      key={category._id || category.id} 
+                    <CategoryCard
+                      key={category._id || category.id}
                       category={category}
                       iconUrl={iconUrl}
                       IconComponent={IconComponent}
@@ -165,7 +187,7 @@ export default function HomePage() {
         {/* Featured Products */}
         <section className="py-16 mx-auto container">
           <div className="px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-orange-500 via-pink-500 to-purple-200 bg-clip-text text-transparent">Featured AI Tools</h2>
+            <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#b3ec25] via-[#b3ec25] to-purple-200 bg-clip-text text-transparent">Featured AI Tools</h2>
             <p className="mt-2 text-muted-foreground">Hand-picked assets from the Neural Nexus ecosystem.</p>
             {loadingProducts ? (
               <div className="mt-12 flex items-center justify-center py-12">
@@ -174,7 +196,7 @@ export default function HomePage() {
             ) : featuredProducts.length === 0 ? (
               <div className="mt-12 text-center py-12 text-muted-foreground">
                 <p>No featured products available at the moment.</p>
-                <Link href="/explore" className="mt-4 inline-block">
+                <Link href="/products" className="mt-4 inline-block">
                   <Button variant="outline" size="lg">
                     Explore All Products <Icons.ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -188,8 +210,8 @@ export default function HomePage() {
                   ))}
                 </div>
                 <div className="mt-12 text-center">
-                  <Link href="/explore">
-                    <Button className='bg-gradient-to-r from-orange-500 via-pink-500 to-purple-200' variant="outline" size="lg">
+                  <Link href="/products">
+                    <Button className='bg-gradient-to-r from-[#b3ec25] via-[#b3ec25] to-[#b3ec25]' variant="outline" size="lg">
                       Explore All Products <Icons.ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>

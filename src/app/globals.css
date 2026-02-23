@@ -27,7 +27,7 @@
     --popover-foreground: 0 0% 10%;
 
     /* n8n primary colors */
-    --primary: 11 100% 68%;
+    --primary: 79 84% 54%;
     /* #FF6D5A */
     --primary-foreground: 0 0% 100%;
 
@@ -38,7 +38,7 @@
     --muted: 0 0% 90%;
     --muted-foreground: 0 0% 25%;
 
-    --accent: 11 100% 68%;
+    --accent: 79 84% 54%;
     /* #FF6D5A */
     --accent-foreground: 0 0% 100%;
 
@@ -48,7 +48,7 @@
 
     --border: 0 0% 85%;
     --input: 0 0% 85%;
-    --ring: 11 100% 68%;
+    --ring:  79 84% 54%;
     /* orange */
 
     /* Chart Colors (Light) */
@@ -71,9 +71,9 @@
     --bg-gradient: radial-gradient(circle at center,
         #0e0918 0%,
         #0e0918 40%,
-        #3c1511 70%,
+        #1b163f 70%,
         #0e0918 100%);
-    --background: 240 3% 4%;
+    --background: 248 37% 17%;
     /* #0C0C0D */
     --foreground: 0 0% 100%;
     /* white */
@@ -85,7 +85,7 @@
     --popover: 240 3% 4%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 11 100% 68%;
+    --primary: 79 84% 54%;
     /* n8n orange */
     --primary-foreground: 0 0% 100%;
 
@@ -96,7 +96,7 @@
     --muted: 240 3% 18%;
     --muted-foreground: 0 0% 75%;
 
-    --accent: 11 100% 68%;
+    --accent: 79 84% 54%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 2 100% 61%;
@@ -104,7 +104,7 @@
 
     --border: 240 3% 25%;
     --input: 240 3% 20%;
-    --ring: 11 100% 68%;
+    --ring:  79 84% 54%;
 
     /* Chart Colors (Dark) */
     --chart-1: 11 100% 68%;
@@ -149,7 +149,6 @@
 }
 
 
-html
-{
+html {
   scroll-behavior: smooth !important;
 }

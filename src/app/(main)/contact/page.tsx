@@ -3,9 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import HeroSection from "@/components/HeroSection";
 
 export default function ContactPage() {
   return (
+    <>
+    <HeroSection />
     <div className="container mx-auto px-4 py-12 md:py-20">
       <div className="max-w-2xl mx-auto">
         <header className="text-center mb-12">
@@ -48,5 +51,6 @@ export default function ContactPage() {
         </Card>
       </div>
     </div>
+    </>
   );
 }

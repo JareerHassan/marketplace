@@ -187,7 +187,7 @@ export default function ProductPage() {
         <div className="text-center py-24">
           <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
           <p className="text-muted-foreground mb-6">{error || 'The product you are looking for does not exist.'}</p>
-          <Button onClick={() => router.push('/explore')}>Browse Products</Button>
+          <Button onClick={() => router.push('/products')}>Browse Products</Button>
         </div>
       </div>
     );
@@ -244,11 +244,11 @@ export default function ProductPage() {
             <nav className="text-sm text-muted-foreground">
               <Link href="/" className="hover:text-primary">Home</Link>
               {' / '}
-              <Link href="/explore" className="hover:text-primary">Explore</Link>
+              <Link href="/products" className="hover:text-primary">Explore</Link>
               {' / '}
               {categorySlug && (
                 <>
-                  <Link href={`/explore?category=${categorySlug}`} className="hover:text-primary">{categoryName}</Link>
+                  <Link href={`/products?category=${categorySlug}`} className="hover:text-primary">{categoryName}</Link>
                   {' / '}
                 </>
               )}
@@ -264,7 +264,7 @@ export default function ProductPage() {
               </h1>
               <div className="flex items-center gap-4 mt-4">
                 {categoryName && (
-                  <Link href={`/explore?category=${categorySlug || categoryName}`}>
+                  <Link href={`/products?category=${categorySlug || categoryName}`}>
                     <Badge variant="outline" className="text-lg px-3 py-1">{categoryName}</Badge>
                   </Link>
                 )}
@@ -324,7 +324,7 @@ export default function ProductPage() {
           {tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {tags.map((tag: string, index: number) => (
-                <Link key={index} href={`/explore?search=${encodeURIComponent(tag)}`}>
+                <Link key={index} href={`/products?search=${encodeURIComponent(tag)}`}>
                   <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
                     {tag}
                   </Badge>

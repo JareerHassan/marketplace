@@ -1,4 +1,4 @@
-import type {NextConfig} from 'next';
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
-       {
+      {
         protocol: 'https',
         hostname: 'plus.unsplash.com',
         port: '',
@@ -49,6 +49,12 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'marketplacebackend.oxmite.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blogbackend.lhtl-nadi.com',
         port: '',
         pathname: '/**',
       },

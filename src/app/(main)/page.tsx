@@ -120,7 +120,7 @@ export default function HomePage() {
         <Card className="p-6 flex flex-wrap items-center justify-start gap-3 text-center
          bg-gray-300 dark:bg-gray-900 border-2 border-transparent hover:border-primary/50 transition-all duration-300">
           {showImage && iconUrl ? (
-            <div className="w-20 h-20 mx-auto rounded-xl overflow-hidden border-2 border-gray-500 shadow-lg">
+            <div className="w-20 h-20  rounded-xl overflow-hidden border-2 border-gray-500 shadow-lg">
               <img
                 src={iconUrl}
                 alt={category.name}

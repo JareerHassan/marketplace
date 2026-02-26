@@ -76,7 +76,7 @@ const categoryIcons: Record<FAQItem['category'], React.ElementType> = {
 
 // 2. FAQ Accordion Component
 const FAQItemComponent: React.FC<{ item: FAQItem, index: number, open: boolean, toggle: (index: number) => void }> = ({ item, index, open, toggle }) => {
-  
+
   return (
     <div className="border-b border-gray-200 dark:border-gray-700">
       <button
@@ -88,20 +88,18 @@ const FAQItemComponent: React.FC<{ item: FAQItem, index: number, open: boolean, 
       >
         {/* Simplified content: just the question span */}
         <span className="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {item.question}
+          {item.question}
         </span>
         {/* Reverted to Plus icon with rotate-45 animation, using orange color for consistency */}
         <Plus
-          className={`w-6 h-6 text-primary  transform transition-transform duration-300 ${
-            open ? 'rotate-45' : ''
-          }`}
+          className={`w-6 h-6 text-primary  transform transition-transform duration-300 ${open ? 'rotate-45' : ''
+            }`}
         />
       </button>
       <div
         id={`faq-answer-${index}`}
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${
-          open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
+        className={`overflow-hidden transition-all duration-500 ease-in-out ${open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
         <p className="p-5 pt-0 text-gray-600 dark:text-gray-300 leading-relaxed">
           {item.answer}
@@ -119,7 +117,7 @@ const App = () => {
   const toggleIndex = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
-  
+
   const categories = ['All', ...Array.from(new Set(faqData.map(item => item.category)))] as ('All' | FAQItem['category'])[];
 
   const filteredFaqData = activeCategory === 'All'
@@ -128,74 +126,74 @@ const App = () => {
 
   return (
     <>
-    <HeroSection />
+      <HeroSection />
 
-    <div className="min-h-screen font-sans p-4 sm:p-8">
-      <header className="text-center py-12">
-        <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight sm:text-6xl">
-          Frequently Asked Questions
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Everything you need to know about our products, orders, shipping, and payments. If you can't find an answer here, feel free to contact us.
-        </p>
-      </header>
+      <div className="min-h-screen font-sans p-4 sm:p-8">
+        <header className="text-center py-12">
+          <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight sm:text-6xl">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Everything you need to know about our products, orders, shipping, and payments. If you can't find an answer here, feel free to contact us.
+          </p>
+        </header>
 
-      <main className="max-w-5xl mx-auto">
-        {/* Category Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8 p-3">
-          {categories.map(category => (
-            <button
-              key={category}
-              onClick={() => {
-                setActiveCategory(category);
-                setOpenIndex(null); // Close any open accordion when changing category
-              }}
-              className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 shadow-sm
+        <main className="max-w-5xl mx-auto">
+          {/* Category Filter Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mb-8 p-3">
+            {categories.map(category => (
+              <button
+                key={category}
+                onClick={() => {
+                  setActiveCategory(category);
+                  setOpenIndex(null); // Close any open accordion when changing category
+                }}
+                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 shadow-sm
                 ${activeCategory === category
-                  ? 'bg-primary text-white shadow-primary-500/50'
-                  : ' text-gray-700 hover:bg-[#1b1541] hover:text-orange-600 dark:text-gray-200 dark:hover:bg-[#1b1541]'
-                }
+                    ? 'bg-primary text-white shadow-primary-500/50'
+                    : ' text-gray-700 hover:bg-[#1b1541] hover:text-orange-600 dark:text-gray-200 dark:hover:bg-[#1b1541]'
+                  }
               `}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+              >
+                {category}
+              </button>
+            ))}
+          </div>
 
-        {/* FAQ Accordion List */}
-        <div className="rounded-xl overflow-hidden">
-          {filteredFaqData.length > 0 ? (
-            filteredFaqData.map((item, index) => (
-              <FAQItemComponent 
-                key={index} 
-                item={item} 
-                index={index} 
-                open={openIndex === index} 
-                toggle={toggleIndex} 
-              />
-            ))
-          ) : (
-            <div className="p-10 text-center text-gray-500 dark:text-gray-400">
-              No FAQs found in the "{activeCategory}" category.
-            </div>
-          )}
-        </div>
-        
-        {/* Contact CTA */}
-        <div className="mt-12 p-8 text-center bg-[#1b1541] dark:bg-[#1b1541]/20 rounded-xl border border-gray/10 shadow-inner">
+          {/* FAQ Accordion List */}
+          <div className="rounded-xl overflow-hidden">
+            {filteredFaqData.length > 0 ? (
+              filteredFaqData.map((item, index) => (
+                <FAQItemComponent
+                  key={index}
+                  item={item}
+                  index={index}
+                  open={openIndex === index}
+                  toggle={toggleIndex}
+                />
+              ))
+            ) : (
+              <div className="p-10 text-center text-gray-500 dark:text-gray-400">
+                No FAQs found in the "{activeCategory}" category.
+              </div>
+            )}
+          </div>
+
+          {/* Contact CTA */}
+          <div className="mt-12 p-8 text-center bg-[#1b1541] dark:bg-[#1b1541]/20 rounded-xl border border-gray/10 shadow-inner">
             <h3 className="text-2xl font-bold text-white  mb-3">Still have questions?</h3>
             <p className="text-white mb-4">
-                If you cannot find the answer to your question in our FAQ, please reach out to our customer support team for assistance.
+              If you cannot find the answer to your question in our FAQ, please reach out to our customer support team for assistance.
             </p>
-            <a 
-                href="oxmite@gmail.com"
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-primary hover:bg-primary/80 transition duration-150 ease-in-out transform hover:scale-105"
+            <a
+              href="/contact"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-primary hover:bg-primary/80 transition duration-150 ease-in-out transform hover:scale-105"
             >
-                Contact Support
+              Contact Support
             </a>
-        </div>
-      </main>
-    </div>
+          </div>
+        </main>
+      </div>
     </>
   );
 };

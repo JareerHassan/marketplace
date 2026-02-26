@@ -1,6 +1,6 @@
 'use client';
 // Placeholder URL for the visual workflow screenshot on the right
-const WORKFLOW_IMAGE_URL = "https://placehold.co/1000x800/281A3A/FFFFFF/png?text=Visual+Workflow+Canvas+Placeholder";
+const WORKFLOW_IMAGE_URL = "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaG5vbG9neSUyMHByb2R1Y3RzfGVufDB8fDB8fHww";
 
 /**
  * Renders the Agent Control Feature Section based on the provided design.
@@ -20,7 +20,7 @@ const AgentControlSection: React.FC = () => {
           </h2>
 
           {/* Main Statement */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-8 max-w-4xl mx-auto">
+          <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 max-w-5xl mx-auto">
             Because the ability to control your agents is more than a 'nice to have'
           </h1>
 
@@ -36,7 +36,7 @@ const AgentControlSection: React.FC = () => {
           
           {/* Left Column: Text Content */}
           <div className="lg:w-1/2 text-left space-y-6">
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">
+            <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
               Anchor AI in predictable logic
             </h2>
             <p className="text-gray-300 text-lg leading-relaxed">
@@ -53,7 +53,7 @@ const AgentControlSection: React.FC = () => {
             {/* Container mimicking the dark, slightly glowing box around the image.
               It uses a deep background with rounded corners and a slight shadow effect.
             */}
-            <div className="rounded-2xl p-4  shadow-2xl shadow-orange-900/50 transform transition duration-500 hover:scale-[1.01]">
+            <div className="rounded-2xl p-4  shadow-2xl transform transition duration-500 hover:scale-[1.01]">
               <img
                 src={WORKFLOW_IMAGE_URL}
                 alt="Visual workflow editor showing nodes for OpenAI GPT-4o, Conversation Memory, and routing logic"
@@ -62,7 +62,7 @@ const AgentControlSection: React.FC = () => {
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.onerror = null; // Prevents infinite loop
-                  target.src = "https://placehold.co/1000x800/1F172B/AAAAAA?text=Workflow+Visual+Unavailable";
+                  target.src = "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaG5vbG9neSUyMHByb2R1Y3RzfGVufDB8fDB8fHww";
                 }}
               />
             </div>

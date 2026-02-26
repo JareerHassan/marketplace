@@ -31,7 +31,6 @@ function ExplorePageContent() {
   const [typedWord, setTypedWord] = useState("");
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [forward, setForward] = useState(true);
-  const [isFocused, setIsFocused] = useState(false);
 
   const [products, setProducts] = useState<any[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
@@ -44,7 +43,7 @@ function ExplorePageContent() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<'latest' | 'alphabetical' | 'free-first'>('latest');
 
-  // Filter UI state
+  // UI states
   const [showFilters, setShowFilters] = useState(false);
   const [expandedSections, setExpandedSections] = useState({
     categories: true,
@@ -55,9 +54,12 @@ function ExplorePageContent() {
   const [useCaseSearch, setUseCaseSearch] = useState('');
   const [tagSearch, setTagSearch] = useState('');
 
+  // Help sync URL → filters only once at mount
+  const [isInitialSyncDone, setIsInitialSyncDone] = useState(false);
+
   const typingRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Typing + wait + untyping effect
+  // ─── Typing animation ────────────────────────────────────────────────
   useEffect(() => {
     const currentWord = dynamicWords[currentWordIndex];
     let charIndex = forward ? 0 : currentWord.length;
@@ -93,92 +95,90 @@ function ExplorePageContent() {
     };
   }, [currentWordIndex, forward]);
 
-  // Helper function to convert category slug to ID
+  // ─── Helpers ─────────────────────────────────────────────────────────
   const getCategoryIdFromSlug = (slugOrId: string): string | null => {
     if (!slugOrId) return null;
-    // Check if it's already a valid MongoDB ObjectId (24 hex characters)
-    if (/^[0-9a-fA-F]{24}$/.test(slugOrId)) {
-      return slugOrId;
-    }
-    // Otherwise, find by slug
-    const category = categories.find(cat =>
-      cat.slug === slugOrId || cat.slug?.toLowerCase() === slugOrId.toLowerCase()
+    if (/^[0-9a-fA-F]{24}$/.test(slugOrId)) return slugOrId;
+
+    const category = categories.find(
+      (cat) => cat.slug === slugOrId || cat.slug?.toLowerCase() === slugOrId.toLowerCase()
     );
     return category ? (category._id || category.id) : null;
   };
 
-  // Fetch categories
+  // ─── Fetch categories once ───────────────────────────────────────────
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/categories/active`);
+        setCategories(response.data || []);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
     fetchCategories();
   }, []);
 
-  // Initialize selectedCategories from URL params after categories are loaded
-  const prevCategoryParamRef = useRef<string | null>(null);
+  // ─── Read category from URL params once categories are loaded ────────
   useEffect(() => {
-    if (categories.length === 0) return;
+    if (categories.length === 0 || isInitialSyncDone) return;
 
     const categoryParam = searchParams.get('category');
-    // Only update if category param actually changed
-    if (categoryParam !== prevCategoryParamRef.current) {
-      prevCategoryParamRef.current = categoryParam;
-
-      if (categoryParam) {
-        const categoryId = getCategoryIdFromSlug(categoryParam);
-        if (categoryId) {
-          setSelectedCategories([categoryId]);
-        } else {
-          // Category slug not found, clear selection
-          setSelectedCategories([]);
-        }
-      } else {
-        // No category param in URL, clear selection
-        setSelectedCategories([]);
+    if (categoryParam) {
+      const categoryId = getCategoryIdFromSlug(categoryParam);
+      if (categoryId && !selectedCategories.includes(categoryId)) {
+        setSelectedCategories([categoryId]);
       }
     }
-  }, [categories, searchParams]);
 
-  // Fetch products when filters change
+    setIsInitialSyncDone(true);
+  }, [categories, searchParams, isInitialSyncDone]);
+
+  // ─── Fetch products when filters or sync status changes ──────────────
   useEffect(() => {
-    fetchProducts();
-  }, [searchQuery, selectedCategories, selectedUseCases, selectedTags, sortBy, categories]);
+    // Wait until initial URL → filter sync is complete
+    if (!isInitialSyncDone) return;
 
-  const fetchCategories = async () => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}/categories/active`);
-      setCategories(response.data);
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  };
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const params: any = {};
 
-  const fetchProducts = async () => {
-    try {
-      setLoading(true);
-      const params: any = {};
+        if (searchQuery) params.search = searchQuery;
+        if (selectedCategories.length > 0) {
+          // Currently supporting only one category — adjust if you want multiple
+          const catId = selectedCategories[0];
+          params.category = catId; // backend expects ObjectId or slug (your choice)
+        }
+        if (selectedUseCases.length > 0) params.useCase = selectedUseCases[0];
+        if (selectedTags.length > 0) params.tag = selectedTags[0];
+        if (sortBy) params.sort = sortBy;
 
-      if (searchQuery) params.search = searchQuery;
-      if (selectedCategories.length > 0) {
-        // selectedCategories contains IDs, but handle case where it might be a slug (fallback)
-        const categoryId = getCategoryIdFromSlug(selectedCategories[0]) || selectedCategories[0];
-        params.category = categoryId; // Backend expects ObjectId
+        console.log("Fetching with params:", params); // ← debug tip
+
+        const response = await api.get('/products', { params });
+        setProducts(response.data || []);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        setProducts([]);
+      } finally {
+        setLoading(false);
       }
-      if (selectedUseCases.length > 0) params.useCase = selectedUseCases[0];
-      if (selectedTags.length > 0) params.tag = selectedTags[0];
-      if (sortBy) params.sort = sortBy;
+    };
 
-      const response = await api.get('/products', { params });
-      setProducts(response.data || []);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      setProducts([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchProducts();
+  }, [
+    isInitialSyncDone,
+    searchQuery,
+    selectedCategories,
+    selectedUseCases,
+    selectedTags,
+    sortBy,
+  ]);
 
+  // ─── Handlers ────────────────────────────────────────────────────────
   const handleSearch = (value: string) => {
     setSearchQuery(value);
-    // Update URL
     const params = new URLSearchParams(searchParams.toString());
     if (value) {
       params.set('search', value);
@@ -189,39 +189,34 @@ function ExplorePageContent() {
   };
 
   const handleCategoryToggle = (categoryId: string) => {
-    setSelectedCategories(prev => {
+    setSelectedCategories((prev) => {
       const newCategories = prev.includes(categoryId)
-        ? prev.filter(id => id !== categoryId)
+        ? prev.filter((id) => id !== categoryId)
         : [...prev, categoryId];
 
-      // Update URL with slug for better SEO
-      const params = new URLSearchParams(searchParams.toString());
+      const urlParams = new URLSearchParams(searchParams.toString());
       if (newCategories.length > 0) {
-        const category = categories.find(c => (c._id || c.id) === newCategories[0]);
-        const categorySlug = category?.slug || newCategories[0]; // Use slug if available, fallback to ID
-        params.set('category', categorySlug);
+        const category = categories.find((c) => (c._id || c.id) === newCategories[0]);
+        const slug = category?.slug || newCategories[0];
+        urlParams.set('category', slug);
       } else {
-        params.delete('category');
+        urlParams.delete('category');
       }
-      router.push(`/products?${params.toString()}`);
+      router.push(`/products?${urlParams.toString()}`);
 
       return newCategories;
     });
   };
 
   const handleUseCaseToggle = (useCase: string) => {
-    setSelectedUseCases(prev =>
-      prev.includes(useCase)
-        ? prev.filter(uc => uc !== useCase)
-        : [...prev, useCase]
+    setSelectedUseCases((prev) =>
+      prev.includes(useCase) ? prev.filter((uc) => uc !== useCase) : [...prev, useCase]
     );
   };
 
   const handleTagToggle = (tag: string) => {
-    setSelectedTags(prev =>
-      prev.includes(tag)
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
 
@@ -234,36 +229,39 @@ function ExplorePageContent() {
     router.push('/products');
   };
 
-  // Get unique use cases and tags from products
-  const allUseCases = Array.from(new Set(products.flatMap(p => p.useCase ? [p.useCase] : [])));
-  const allTags = Array.from(new Set(products.flatMap(p => p.tags || [])));
+  // ─── Derived data ────────────────────────────────────────────────────
+  const allUseCases = Array.from(new Set(products.flatMap((p) => (p.useCase ? [p.useCase] : []))));
+  const allTags = Array.from(new Set(products.flatMap((p) => p.tags || [])));
 
-  // Filter categories, use cases, and tags by search
-  const filteredCategories = categories.filter(cat =>
+  const filteredCategories = categories.filter((cat) =>
     cat.name?.toLowerCase().includes(categorySearch.toLowerCase())
   );
-  const filteredUseCases = allUseCases.filter(uc =>
+  const filteredUseCases = allUseCases.filter((uc) =>
     uc.toLowerCase().includes(useCaseSearch.toLowerCase())
   );
-  const filteredTags = allTags.filter(tag =>
+  const filteredTags = allTags.filter((tag) =>
     tag.toLowerCase().includes(tagSearch.toLowerCase())
   );
 
   const toggleSection = (section: keyof typeof expandedSections) => {
-    setExpandedSections(prev => ({
+    setExpandedSections((prev) => ({
       ...prev,
-      [section]: !prev[section]
+      [section]: !prev[section],
     }));
   };
 
-  const hasActiveFilters = selectedCategories.length > 0 || selectedUseCases.length > 0 || selectedTags.length > 0 || searchQuery;
+  const hasActiveFilters =
+    selectedCategories.length > 0 ||
+    selectedUseCases.length > 0 ||
+    selectedTags.length > 0 ||
+    !!searchQuery;
 
   return (
     <>
-      {/* <HeroSection /> */}
+      <HeroSection />
 
       <div className="container mx-auto px-4 py-6 md:py-8">
-        {/* Header with Search */}
+        {/* Header */}
         <header className="mb-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
@@ -284,7 +282,7 @@ function ExplorePageContent() {
                   </Badge>
                 )}
               </Button>
-              <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
+              <Select value={sortBy} onValueChange={(v: any) => setSortBy(v)}>
                 <SelectTrigger className="w-[160px] md:w-[180px]">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
@@ -297,7 +295,7 @@ function ExplorePageContent() {
             </div>
           </div>
 
-          {/* Search Bar */}
+          {/* Search */}
           <div className="relative max-w-2xl">
             <Input
               type="search"
@@ -319,12 +317,12 @@ function ExplorePageContent() {
             )}
           </div>
 
-          {/* Active Filters Bar */}
+          {/* Active filters */}
           {hasActiveFilters && (
             <div className="mt-4 flex flex-wrap items-center gap-2">
               <span className="text-sm text-muted-foreground">Active filters:</span>
-              {selectedCategories.map(catId => {
-                const cat = categories.find(c => (c._id || c.id) === catId);
+              {selectedCategories.map((catId) => {
+                const cat = categories.find((c) => (c._id || c.id) === catId);
                 return cat ? (
                   <Badge key={catId} variant="secondary" className="gap-1">
                     {cat.name}
@@ -359,30 +357,25 @@ function ExplorePageContent() {
                   </button>
                 </Badge>
               ))}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={clearFilters}
-                className="h-7 text-xs"
-              >
+              <Button variant="ghost" size="sm" onClick={clearFilters} className="h-7 text-xs">
                 Clear all
               </Button>
             </div>
           )}
 
-          {/* Horizontal Category Chips */}
+          {/* Category chips */}
           {categories.length > 0 && (
             <div className="mt-6">
               <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                {categories.map(category => {
-                  const categoryId = category._id || category.id;
-                  const isSelected = selectedCategories.includes(categoryId);
+                {categories.map((category) => {
+                  const catId = category._id || category.id;
+                  const isSelected = selectedCategories.includes(catId);
                   return (
                     <Button
-                      key={categoryId}
+                      key={catId}
                       variant={isSelected ? "default" : "outline"}
                       size="sm"
-                      onClick={() => handleCategoryToggle(categoryId)}
+                      onClick={() => handleCategoryToggle(catId)}
                       className="whitespace-nowrap shrink-0"
                     >
                       {category.name}
@@ -395,7 +388,7 @@ function ExplorePageContent() {
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Filters Sidebar */}
+          {/* Filters sidebar */}
           <aside className={`lg:col-span-1 ${showFilters ? 'block' : 'hidden lg:block'}`}>
             <div className="lg:sticky lg:top-24 bg-card border rounded-lg p-4 space-y-4 max-h-[calc(100vh-8rem)] overflow-y-auto">
               <div className="flex items-center justify-between pb-2 border-b">
@@ -407,7 +400,7 @@ function ExplorePageContent() {
                 )}
               </div>
 
-              {/* Category Filter */}
+              {/* Categories */}
               <div className="space-y-2">
                 <button
                   onClick={() => toggleSection('categories')}
@@ -430,37 +423,28 @@ function ExplorePageContent() {
                       className="h-8 text-sm"
                     />
                     <div className="max-h-60 overflow-y-auto space-y-1.5">
-                      {loading ? (
-                        <div className="text-xs text-muted-foreground py-2">Loading...</div>
-                      ) : filteredCategories.length === 0 ? (
-                        <div className="text-xs text-muted-foreground py-2">No categories found</div>
-                      ) : (
-                        filteredCategories.map(category => {
-                          const categoryId = category._id || category.id;
-                          const isSelected = selectedCategories.includes(categoryId);
-                          return (
-                            <div key={categoryId} className="flex items-center space-x-2">
-                              <Checkbox
-                                id={`cat-${categoryId}`}
-                                checked={isSelected}
-                                onCheckedChange={() => handleCategoryToggle(categoryId)}
-                              />
-                              <Label
-                                htmlFor={`cat-${categoryId}`}
-                                className="text-xs cursor-pointer flex-1"
-                              >
-                                {category.name}
-                              </Label>
-                            </div>
-                          );
-                        })
-                      )}
+                      {filteredCategories.map((category) => {
+                        const catId = category._id || category.id;
+                        const isSelected = selectedCategories.includes(catId);
+                        return (
+                          <div key={catId} className="flex items-center space-x-2">
+                            <Checkbox
+                              id={`cat-${catId}`}
+                              checked={isSelected}
+                              onCheckedChange={() => handleCategoryToggle(catId)}
+                            />
+                            <Label htmlFor={`cat-${catId}`} className="text-xs cursor-pointer flex-1">
+                              {category.name}
+                            </Label>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Use Case Filter */}
+              {/* Use Cases */}
               {allUseCases.length > 0 && (
                 <div className="space-y-2">
                   <button
@@ -484,17 +468,14 @@ function ExplorePageContent() {
                         className="h-8 text-sm"
                       />
                       <div className="max-h-60 overflow-y-auto space-y-1.5">
-                        {filteredUseCases.map((useCase, index) => (
-                          <div key={index} className="flex items-center space-x-2">
+                        {filteredUseCases.map((useCase, i) => (
+                          <div key={i} className="flex items-center space-x-2">
                             <Checkbox
-                              id={`usecase-${index}`}
+                              id={`uc-${i}`}
                               checked={selectedUseCases.includes(useCase)}
                               onCheckedChange={() => handleUseCaseToggle(useCase)}
                             />
-                            <Label
-                              htmlFor={`usecase-${index}`}
-                              className="text-xs cursor-pointer flex-1"
-                            >
+                            <Label htmlFor={`uc-${i}`} className="text-xs cursor-pointer flex-1">
                               {useCase}
                             </Label>
                           </div>
@@ -505,7 +486,7 @@ function ExplorePageContent() {
                 </div>
               )}
 
-              {/* Tags Filter */}
+              {/* Tags */}
               {allTags.length > 0 && (
                 <div className="space-y-2">
                   <button
@@ -528,19 +509,17 @@ function ExplorePageContent() {
                         onChange={(e) => setTagSearch(e.target.value)}
                         className="h-8 text-sm"
                       />
-                      <div className="max-h-60 overflow-y-auto">
-                        <div className="flex flex-wrap gap-1.5">
-                          {filteredTags.map((tag, index) => (
-                            <Badge
-                              key={index}
-                              variant={selectedTags.includes(tag) ? "default" : "outline"}
-                              className="cursor-pointer text-xs"
-                              onClick={() => handleTagToggle(tag)}
-                            >
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
+                      <div className="max-h-60 overflow-y-auto flex flex-wrap gap-1.5">
+                        {filteredTags.map((tag, i) => (
+                          <Badge
+                            key={i}
+                            variant={selectedTags.includes(tag) ? "default" : "outline"}
+                            className="cursor-pointer text-xs"
+                            onClick={() => handleTagToggle(tag)}
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
                       </div>
                     </div>
                   )}
@@ -549,7 +528,7 @@ function ExplorePageContent() {
             </div>
           </aside>
 
-          {/* Products Grid */}
+          {/* Products */}
           <main className="lg:col-span-3">
             <div className="flex items-center justify-between mb-4">
               <p className="text-sm text-muted-foreground">
@@ -588,13 +567,15 @@ function ExplorePageContent() {
 
 export default function ExplorePage() {
   return (
-    <Suspense fallback={
-      <div className="container mx-auto px-4 py-6 md:py-8">
-        <div className="flex items-center justify-center min-h-[400px]">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+    <Suspense
+      fallback={
+        <div className="container mx-auto px-4 py-6 md:py-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <ExplorePageContent />
     </Suspense>
   );

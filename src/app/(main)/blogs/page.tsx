@@ -2,11 +2,22 @@ import Link from "next/link";
 import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
 
+export const dynamic = "force-dynamic";
+
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ||
   "https://marketplacebackend.oxmite.com/api";
 
-async function getBlogs() {
+type Blog = {
+  _id: string;
+  title?: string;
+  coverImage?: string;
+  category?: string;
+  createdAt?: string;
+  tags?: string[];
+};
+
+async function getBlogs(): Promise<Blog[]> {
   try {
     const res = await fetch(`${API_BASE_URL}/blogs`, {
       cache: "no-store",
@@ -18,8 +29,6 @@ async function getBlogs() {
     }
 
     const data = await res.json();
-
-    // handle different backend response formats
     return data.blogs || data.data || data || [];
   } catch (error) {
     console.error("Error fetching blogs:", error);
@@ -28,7 +37,7 @@ async function getBlogs() {
 }
 
 export default async function BlogsPage() {
-  const blogs = await getBlogs();
+  const blogs: Blog[] = await getBlogs();
 
   return (
     <>
@@ -49,12 +58,11 @@ export default async function BlogsPage() {
             </div>
           ) : (
             <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {blogs.map((blog) => (
+              {blogs.map((blog: Blog) => (
                 <article
                   key={blog._id}
                   className="bg-white rounded-xl shadow hover:shadow-lg transition p-5 sm:p-6 flex flex-col overflow-hidden"
                 >
-                  {/* Cover Image */}
                   {blog.coverImage && (
                     <div className="relative w-full h-44 sm:h-48 mb-4 rounded-lg overflow-hidden">
                       <Image
@@ -66,14 +74,12 @@ export default async function BlogsPage() {
                     </div>
                   )}
 
-                  {/* Category */}
                   {blog.category && (
                     <p className="text-xs text-indigo-600 font-semibold uppercase mb-2">
                       {blog.category}
                     </p>
                   )}
 
-                  {/* Date */}
                   <p className="text-sm text-gray-500 mb-2">
                     {blog.createdAt
                       ? new Date(blog.createdAt).toLocaleDateString("en-US", {
@@ -84,17 +90,15 @@ export default async function BlogsPage() {
                       : "No date"}
                   </p>
 
-                  {/* Title */}
                   <Link href={`/blogs/${blog._id}`}>
                     <h2 className="text-lg sm:text-xl font-bold text-gray-900 hover:text-blue-600 mb-4 line-clamp-2">
                       {blog.title}
                     </h2>
                   </Link>
 
-                  {/* Tags */}
                   {blog.tags && blog.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {blog.tags.slice(0, 3).map((tag, idx) => (
+                      {blog.tags.slice(0, 3).map((tag: string, idx: number) => (
                         <span
                           key={idx}
                           className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
@@ -110,7 +114,6 @@ export default async function BlogsPage() {
                     </div>
                   )}
 
-                  {/* Read More */}
                   <Link
                     href={`/blogs/${blog._id}`}
                     className="mt-auto text-blue-600 font-semibold hover:underline"

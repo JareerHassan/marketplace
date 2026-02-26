@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import Link from 'next/link';
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
@@ -14,7 +14,7 @@ import AIBanner from './AIBannerPage';
 import AgentControlSection from "./AIAgentsComponent"
 import api from '@/lib/api';
 import axios from 'axios';
-import { useSearchParams } from "next/navigation";
+import { SearchParamsWrapper } from './SearchParamsWrapper';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com/api';
 
@@ -36,12 +36,11 @@ export default function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
   const [loadingProducts, setLoadingProducts] = useState(true);
-  const searchParams = useSearchParams();
-  const category = searchParams.get("category");
-  const [categoryProducts, setCategoryProducts] = useState<any[]>([]);
   const [products, setProducts] = useState<any[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  const handleCategoryChange = useCallback((category: string | null, categoryProducts: any[]) => {
+    setProducts(categoryProducts);
+  }, []);
 
   useEffect(() => {
     fetchCategories();
@@ -60,20 +59,6 @@ export default function HomePage() {
       setLoadingCategories(false);
     }
   };
-
- useEffect(() => {
-  const fetchProducts = async () => {
-    try {
-      const params: any = {};
-      if (category) params.category = category; // category filter
-      const response = await api.get('/products', { params });
-      setProducts(response.data || []);
-    } catch (error) {
-      setProducts([]);
-    }
-  };
-  fetchProducts();
-}, [category]);
 
   const fetchFeaturedProducts = async () => {
     try {
@@ -142,7 +127,9 @@ export default function HomePage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen   ">
+    <Suspense fallback={<div />}>
+      <SearchParamsWrapper onCategoryChange={handleCategoryChange} />
+      <div className="flex flex-col min-h-screen   ">
       <main className="flex-1">
         {/* Hero Section */}
         <HeroSection />
@@ -275,5 +262,6 @@ export default function HomePage() {
 
       </main>
     </div>
+    </Suspense>
   );
 }

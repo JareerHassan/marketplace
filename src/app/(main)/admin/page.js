@@ -16,7 +16,7 @@ export default function AdminDashboard() {
     }
 
     try {
-      await axios.post("http://localhost:9003/upload-product", formData, {
+      await axios.post("marketplacebackend.oxmite.com/api/upload-product", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("Product uploaded successfully!");

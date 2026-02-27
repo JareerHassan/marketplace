@@ -1,5 +1,29 @@
 import React from 'react';
 
+// compute base URL for uploads (strip /api from public API URL)
+export const UPLOADS_BASE =
+  (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/api\/?$/, '') ||
+  'https://marketplacebackend.oxmite.com';
+
+// normalize any stored path/URL to a full src that will resolve correctly
+export function resolveImageUrl(raw?: string): string | null {
+  if (!raw) return null;
+
+  // handle legacy host rewrite first
+  const legacyHost = /https?:\/\/blogbackend\.lhtl-nadi\.com/i;
+  if (legacyHost.test(raw)) {
+    return raw.replace(legacyHost, UPLOADS_BASE);
+  }
+
+  if (raw.startsWith('http')) {
+    return raw;
+  }
+  if (raw.startsWith('/')) {
+    return `${UPLOADS_BASE}${raw}`;
+  }
+  return `${UPLOADS_BASE}/uploads/${raw}`;
+}
+
 // Helper function to render EditorJS blocks
 export function renderEditorJSBlocks(blocks: any[] = []) {
   if (!Array.isArray(blocks)) return null;
@@ -40,12 +64,13 @@ export function renderEditorJSBlocks(blocks: any[] = []) {
         );
 
       case 'image':
+        let imageUrl = resolveImageUrl(block.data?.file?.url);
         return (
           <div key={key} className="my-6">
-            {block.data?.file?.url && (
+            {imageUrl && (
               <div className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden shadow-md">
                 <img
-                  src={block.data.file.url}
+                  src={imageUrl}
                   alt={block.data.caption || 'Blog image'}
                   className="w-full h-full object-cover"
                 />

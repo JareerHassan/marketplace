@@ -46,17 +46,17 @@ const nextConfig: NextConfig = {
         port: '5005',
         pathname: '/**',
       },
+      // allow whatever host our uploads base resolves to (may include marketplacebackend)
       {
         protocol: 'https',
-        hostname: 'marketplacebackend.oxmite.com',
+        hostname: process.env.NEXT_PUBLIC_UPLOADS_HOST || 'marketplacebackend.oxmite.com',
         port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'blogbackend.lhtl-nadi.com',
-        port: '',
-        pathname: '/**',
+        hostname: 'templates.studioniskala.com',
+        pathname: '**',
       },
     ],
     // Allow unoptimized images as fallback

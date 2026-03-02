@@ -58,6 +58,14 @@ const nextConfig: NextConfig = {
         hostname: 'templates.studioniskala.com',
         pathname: '**',
       },
+            {
+        protocol: 'http',
+        hostname: 'googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      }
     ],
     // Allow unoptimized images as fallback
     unoptimized: false,

@@ -23,10 +23,11 @@ export default function AIProductsBanner() {
                      bg-gray-300 dark:bg-gray-900 border-2 border-transparent hover:border-primary/50 transition-all duration-300 rounded-lg"
         >
           <h2 className="text-2xl md:text-3xl font-semibold group-hover:text-primary transition">
-            Unlock the Power of AI
+           Unlock the Power of AI
           </h2>
           <p className="text-muted-foreground">
-            Explore our AI products that help you automate tasks, generate content, and enhance creativity.
+          Explore AI products that help automate repetitive tasks, generate high-quality content, enhance productivity, improve analytics, and build scalable digital systems. AI is no longer experimental — it is foundational infrastructure for modern businesses.
+
           </p>
           <span className="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-[#b3ec25] via-[#b3ec25] to-[#b3ec25] text-white font-medium rounded-lg shadow-md group-hover:bg-primary/90 transition">
             Explore AI Products

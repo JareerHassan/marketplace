@@ -20,7 +20,7 @@ interface HeroSectionProps {
   heroBg?: HeroBg;
 }
 
-const dynamicWords = ["Templates", "AI Bots", "Datasets", "Models", "Prompts"];
+const dynamicWords = ["AI Tools", "Apps", "Digital Products"];
 const quickCategories = ["ChatGPT Bot", "AI Writer", "AI Templates", "Data Models", "Prompt Library"];
 
 const HeroSection: React.FC<HeroSectionProps> = ({ heroBg }) => {
@@ -91,7 +91,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroBg }) => {
             </div>
             <Input
               type="text"
-              placeholder="Search by tool name, tags, use case, or category..."
+              placeholder="Search by tool name, tags, use case, or category to find exactly what you need."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={(e) => {

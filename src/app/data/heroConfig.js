@@ -1,7 +1,7 @@
 export const HERO_CONFIG = {
   "/about": {
-    title: "About AI Digital Market Place",
-    subtitle: "Learn how we empower businesses with AI-driven solutions.",
+    title: "About Our AI Digital Market Place",
+    subtitle: "how we empower businesses, developers, and digital teams with scalable AI-driven solutions.",
     breadcrumb: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
@@ -10,7 +10,7 @@ export const HERO_CONFIG = {
 
   "/products": {
     title: "Our Products",
-    subtitle: "Discover AI solutions built for performance and scalability.",
+    subtitle: "Discover AI solutions built for performance, scalability, and real-world deployment.",
     breadcrumb: [
       { label: "Home", href: "/" },
       { label: "Products", href: "/products" },

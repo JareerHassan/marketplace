@@ -16,18 +16,18 @@ const AgentControlSection: React.FC = () => {
         <header className="text-center mb-20 md:mb-32">
           {/* Accent Question */}
           <h2 className="text-lg font-semibold text-primary mb-4">
-            Why build AI Agents with n8n?
+          Because control matters
           </h2>
 
           {/* Main Statement */}
           <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 max-w-5xl mx-auto">
-            Because the ability to control your agents is more than a 'nice to have'
+            Why Build AI Agents with Modern Automation?
+
           </h1>
 
           {/* Sub-description */}
           <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-            n8n's predefined logic, guardrails, monitoring, and hundreds of integrations let you build AI agents that work
-            in production as you'd expect.
+     AI automation should not be unpredictable. Our marketplace promotes tools that combine structured logic with intelligent automation to create stable, production-ready environments. Modern AI systems require guardrails, monitoring capabilities, workflow integration, and human oversight when necessary.
           </p>
         </header>
 
@@ -40,12 +40,10 @@ const AgentControlSection: React.FC = () => {
               Anchor AI in predictable logic
             </h2>
             <p className="text-gray-300 text-lg leading-relaxed">
-              Mix deterministic automation steps with AI to increase reliability. Add human-in-the-loop approval steps when your
-              agent's decisions need oversight. Implement error handling and fallback logic in case AI actions don't go as planned.
+ Reliable AI solutions include deterministic automation steps blended with intelligent decision-making, ensuring predictable outcomes even in complex workflows. With fallback logic and structured error handling, digital businesses can implement AI confidently without compromising operational stability.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed">
-              Because you'll sleep better knowing your AI will stay within its bounds, and you have a plan B for every unexpected output.
-            </p>
+When AI supports critical business processes, oversight and structured control become essential. Our ecosystem encourages tools designed for responsible deployment and scalable automation.            </p>
           </div>
 
           {/* Right Column: Visual Screenshot/Image */}

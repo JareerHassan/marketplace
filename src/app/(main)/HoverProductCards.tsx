@@ -48,21 +48,21 @@ export default function HoverProductCards() {
     const getImageUrl = (product: Product) => {
         const rawImage = product.image || product.imageUrl;
         if (!rawImage) return '/placeholder.png';
-        
+
         if (typeof rawImage === 'string' && (rawImage.startsWith('http://') || rawImage.startsWith('https://'))) {
             return rawImage;
         }
-        
+
         if (typeof rawImage === 'string' && rawImage.startsWith('/')) {
             return rawImage;
         }
-        
+
         if (typeof rawImage === 'string' && rawImage.trim() !== '') {
             const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com';
             const cleanPath = rawImage.startsWith('/') ? rawImage.slice(1) : rawImage;
             return `${API_BASE_URL}/${cleanPath}`;
         }
-        
+
         return '/placeholder.png';
     };
 
@@ -72,10 +72,12 @@ export default function HoverProductCards() {
                 <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#b3ec25] via-[#b3ec25]to-purple-200 bg-clip-text text-transparent">
                     Trending AI Tools
                 </h2>
-
-                <p className="mt-2 text-muted-foreground">
-                    Explore powerful tools crafted for creators & developers.
+               <div className="flex gap-6 ">
+                <p className="mt-2 max-w-6xl text-muted-foreground">
+                    Explore powerful tools crafted for creators, developers, startups, and digital entrepreneurs. Our marketplace highlights innovative AI-driven solutions designed to automate workflows, enhance productivity, and accelerate product development. Every tool featured here reflects quality, performance, and real-world usability for modern digital professionals.
                 </p>
+       
+                </div>
 
                 {loading ? (
                     <div className="mt-12 flex items-center justify-center py-12">
@@ -88,9 +90,9 @@ export default function HoverProductCards() {
                 ) : (
                     <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6">
                         {products.map((product, i) => (
-                            <HoverCard 
-                                key={product._id || product.id || i} 
-                                product={product} 
+                            <HoverCard
+                                key={product._id || product.id || i}
+                                product={product}
                                 index={i}
                                 getImageUrl={getImageUrl}
                             />
@@ -102,12 +104,12 @@ export default function HoverProductCards() {
     );
 }
 
-function HoverCard({ 
-    product, 
-    index, 
-    getImageUrl 
-}: { 
-    product: Product; 
+function HoverCard({
+    product,
+    index,
+    getImageUrl
+}: {
+    product: Product;
     index: number;
     getImageUrl: (product: Product) => string;
 }) {

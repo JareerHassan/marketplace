@@ -23,36 +23,48 @@ export default function AboutContent() {
     ];
 
     const values = [
-        { title: "Innovation", desc: "We empower a community that pushes boundaries and ships practical AI that actually helps." },
-        { title: "Accessibility", desc: "From power users to curious beginners—clear pricing, simple docs, and fast discovery." },
-        { title: "Security & Trust", desc: "Quality checks, safer transactions, and transparent seller reputation signals." },
-        { title: "Craft", desc: "We obsess over UI polish, performance, and a marketplace experience that feels premium." },
+        { title: "Innovation", desc: "We support creators who push boundaries and build practical AI solutions that create real impact. Innovation is encouraged, but usability and clarity are always prioritized." },
+        { title: "Accessibility", desc: "From advanced developers to first-time founders, our platform is built with clear pricing, structured documentation, and intuitive discovery tools that simplify the buying process." },
+        { title: "Security & Trust", desc: "Trust is foundational. We implement structured quality guidelines, secure transactions, and transparent reputation systems to ensure both buyers and sellers feel confident at every step." },
+        { title: "Craft & Quality", desc: "We care deeply about user experience. From marketplace navigation to checkout flow and product presentation, every detail is designed to feel professional, reliable, and premium." },
     ];
 
     const steps = [
-        { title: "Discover", desc: "Browse curated AI assets, compare capabilities, and preview before you buy." },
-        { title: "Integrate", desc: "Clear docs, versioning, and updates—so your product stays stable as you scale." },
-        { title: "Ship", desc: "Launch faster with proven building blocks: agents, prompts, models, tools, and templates." },
+        { title: "Discover", desc: "Users can browse curated AI tools and digital products, compare capabilities, review use cases, and evaluate solutions before making decisions. Intelligent categorization and search functionality ensure fast discovery." },
+        { title: "Integrate", desc: "Clear documentation, version updates, and structured product information help teams integrate solutions smoothly. Stability and scalability are essential for real-world deployment." },
+        { title: "Ship", desc: "By leveraging proven AI tools, automation workflows, digital templates, and scalable software components, teams can accelerate product launches and reduce development time." },
     ];
 
     const trust = [
-        { title: "Vetted listings", desc: "Guidelines for quality, clarity, and safe usage—so buyers can decide confidently." },
-        { title: "Secure checkout", desc: "A frictionless purchase flow designed for reliability and peace of mind." },
-        { title: "Reputation & reviews", desc: "Signals that reward consistency—helping top creators stand out naturally." },
-        { title: "Support-ready", desc: "Clear seller contact + buyer expectations to keep communication professional." },
+        {
+            title: "Vetted Listings",
+            desc: "A marketplace is only as strong as its standards. Our platform ensures clarity, confidence, and reliability so buyers and sellers benefit equally."
+        },
+        {
+            title: "Secure Checkout",
+            desc: "Listings follow structured quality guidelines and secure checkout systems protect transactions while maintaining data integrity."
+        },
+        {
+            title: "Reputation & Reviews",
+            desc: "Reputation signals and reviews highlight consistent creators and reward trustworthiness in the marketplace."
+        },
+        {
+            title: "Professional Support",
+            desc: "Communication channels are clearly defined to maintain professionalism and facilitate smooth interaction between buyers and sellers."
+        },
     ];
 
     const faqs = [
         {
-            q: "What kind of products can creators sell?",
-            a: "Anything that helps people build with AI—agents, prompt packs, templates, workflows, datasets, components, and tools (as long as it meets quality and safety guidelines).",
+            q: "What makes your AI marketplace unique?",
+            a: "Our platform focuses on high-quality, scalable AI tools, apps, SaaS products, and digital solutions built for real-world implementation. We combine industry-based and functional AI categories to make discovery easier, while maintaining strict quality standards and secure transactions.",
         },
         {
-            q: "How do you ensure marketplace quality?",
-            a: "We combine clear publishing requirements with ongoing improvements to listing standards, reviews, and reputation signals.",
+            q: "Who is this marketplace built for?",
+            a: "Our platform is designed for developers, startups, founders, freelancers, agencies, and digital entrepreneurs who want reliable AI tools and digital products to build and scale their businesses.",
         },
         {
-            q: "Is Neural Nexus for businesses or individuals?",
+            q: "Do you review products before listing them?",
             a: "Both. Individuals find high-quality AI assets, and teams use Neural Nexus to speed up delivery and reduce experimentation time.",
         },
     ];
@@ -109,9 +121,9 @@ export default function AboutContent() {
                             </h1>
 
                             <p className="mt-4 text-md md:text-md text-foreground/75 leading-relaxed">
-                                Neural Nexus was founded on a simple principle: democratize access to AI. We’re building a secure,
-                                high-signal marketplace where creators can ship and earn—and where teams can discover the right tools
-                                to solve real problems.
+                                Our AI Digital Marketplace was founded on a simple principle: democratize access to powerful AI tools and digital products.
+                                We are building a secure, high-quality ecosystem where creators can launch, monetize, and scale their digital solutions, and where startups, enterprises, and developers can confidently discover tools that solve real business problems.
+
                             </p>
 
                             <div className="mt-7 flex flex-col sm:flex-row gap-3">
@@ -193,9 +205,7 @@ export default function AboutContent() {
                     <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] items-start">
                         <div>
                             <h2 className="text-3xl md:text-4xl font-bold">Our Core Values</h2>
-                            <p className="mt-2 text-foreground/70 max-w-2xl">
-                                The principles that shape how we build, curate, and serve creators and customers.
-                            </p>
+
 
                             <div className="mt-7 grid gap-4 md:grid-cols-2">
                                 {values.map((v) => (
@@ -216,10 +226,6 @@ export default function AboutContent() {
                                         />
                                         <div className="relative flex items-start gap-4">
                                             <div
-                                                className="flex h-[42px] w-[42px] items-center justify-center rounded-[14px]
-                          border border-[hsl(var(--border)/0.55)] bg-[hsl(var(--background)/0.35)]
-                          transition-transform duration-200 group-hover:-rotate-2 group-hover:scale-[1.03]
-                          group-hover:border-[hsl(var(--primary)/0.35)]"
                                             >
                                                 <Icons.CheckCircle className="h-6 w-6 text-primary" />
                                             </div>
@@ -257,9 +263,9 @@ export default function AboutContent() {
 
                 {/* How it works */}
                 <motion.section className="mt-14 md:mt-20" {...fadeUp(0.36)}>
-                    <h2 className="text-3xl md:text-4xl font-bold">How Neural Nexus Works</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold">How Our AI Digital Marketplace Works</h2>
                     <p className="mt-2 text-foreground/70 max-w-2xl">
-                        A streamlined flow that helps you discover, integrate, and ship faster—without chaos.
+                        A streamlined process allows both buyers and sellers to operate efficiently without complexity.
                     </p>
 
                     <div className="mt-7 grid gap-4 lg:grid-cols-3">
@@ -285,7 +291,6 @@ export default function AboutContent() {
                                 <div className="relative mt-3 text-xl font-semibold">{step.title}</div>
                                 <div className="relative mt-2 text-foreground/70 leading-relaxed">{step.desc}</div>
                                 <div className="relative mt-6 h-px w-full bg-[linear-gradient(90deg,transparent,hsl(var(--border)/0.65),transparent)]" />
-                                <div className="relative mt-4 text-sm text-foreground/60">Built for teams • creators • startups</div>
                             </div>
                         ))}
                     </div>
@@ -348,9 +353,9 @@ export default function AboutContent() {
 
                 {/* FAQ */}
                 <motion.section className="mt-14 md:mt-20" {...fadeUp(0.6)}>
-                    <h2 className="text-3xl md:text-4xl font-bold">FAQs</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold">Frequently Asked Questions</h2>
                     <p className="mt-2 text-foreground/70 max-w-2xl">
-                        Quick answers to common questions about the platform and marketplace.
+We provide clear answers to common questions about purchasing, selling, licensing, payments, and product access. Our goal is to remove uncertainty and make the marketplace experience straightforward for everyone.
                     </p>
 
                     <div className="mt-7 grid gap-3">

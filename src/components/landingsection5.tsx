@@ -8,9 +8,9 @@ const Landingsectio5 = () => {
     return (
         /* Added bg-[#0B1222] because the shape image needs a dark base to show properly */
         <section className="relative min-h-[650px]  overflow-hidden rounded-[40px] mx-4 md:mx-10 my-20">
-            
+
             {/* Background Shape Image */}
-       <div className="absolute inset-0 -z-10 bg-[url('/assets/bg-img2.png')] bg-cover bg-center bg-no-repeat" />
+            <div className="absolute inset-0 -z-10 bg-[url('/assets/bg-img2.png')] bg-cover bg-center bg-no-repeat" />
 
             <div className="max-w-7xl mx-auto px-8 md:px-20 py-24 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -73,7 +73,7 @@ const Landingsectio5 = () => {
                             className="relative z-20 w-[90%] md:w-[550px]"
                         >
                             <img
-                                src="https://templates.studioniskala.com/invemon/wp-content/uploads/sites/22/2025/08/Phone-Mockup-B2GNQEM.png"
+                                src="/assets/mobile2.png"
                                 alt="Mobile App Mockup"
                                 className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
                             />

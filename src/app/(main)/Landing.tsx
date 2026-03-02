@@ -85,7 +85,7 @@ export default function LandingPage() {
               >
                 <div className="absolute h-[300px] w-[300px] rounded-full opacity-10 blur-[100px] bg-[#ADFF2F]" />
                 <div className="relative w-full max-w-[320px] lg:max-w-[450px]">
-                  <img src="https://templates.studioniskala.com/invemon/wp-content/uploads/sites/22/2025/08/Phone-Mockup-2-B2GNQEM.png" alt="App" className="w-full h-auto drop-shadow-2xl" />
+                  <img src="/assets/mobile.png" alt="App" className="w-full h-auto drop-shadow-2xl" />
                 </div>
               </div>
 
@@ -138,7 +138,6 @@ export default function LandingPage() {
 
               {/* Right Side: The Box with Volatilit Image */}
               <div
-                variants={fadeInUp}
                 className="w-full lg:w-2/3 h-48 lg:h-40 rounded-[40px] overflow-hidden border border-white/10 relative group shadow-2xl"
               >
                 {/* Background Volatility Image */}
@@ -169,30 +168,27 @@ export default function LandingPage() {
 
             {/* Header Area */}
             <div
-              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
               className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8"
             >
               <div className="space-y-4 max-w-2xl text-left">
-                <div variants={fadeInUp}>
+                <div>
                   <Badge className="bg-[#ADFF2F]/10 text-[#ADFF2F] border border-[#ADFF2F]/20 px-4 py-1.5 rounded-full uppercase text-[11px] font-bold tracking-widest ">Core Features</Badge>
                 </div>
-                <h2 variants={fadeInUp} className="text-4xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1] uppercase ">
+                <h2 className="text-4xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1] uppercase ">
                   All-in-One Platform for Smarter Investing
                 </h2>
               </div>
-              <div variants={fadeInUp}>
+              <div>
                 <Button className="rounded-full bg-[#ADFF2F] text-black px-8 h-12 font-black">SEE MORE</Button>
               </div>
             </div>
 
             {/* Grid Layout */}
             <div
-              initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={staggerContainer}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6"
             >
               {/* 1. Large AI Insights Card */}
               <div
-                variants={fadeInUp}
                 className="lg:col-span-7 bg-[#0F1115] border border-white/5 rounded-[40px] p-8 lg:p-12 relative overflow-hidden group"
               >
                 <div className="flex gap-4 mb-10">
@@ -216,7 +212,6 @@ export default function LandingPage() {
 
                 {/* Card 1: Real-Time Market Data (With Currency Image) */}
                 <div
-                  variants={fadeInUp}
                   className="flex-1 bg-[#0F1115] border border-white/5 rounded-[40px] p-8 relative overflow-hidden group min-h-[220px]"
                 >
                   <div className="relative z-20 text-left">
@@ -237,7 +232,6 @@ export default function LandingPage() {
 
                 {/* Card 2: Multi-Asset Support (With Mockup overlap) */}
                 <div
-                  variants={fadeInUp}
                   className="flex-1 bg-[#0F1115] border border-white/5 rounded-[40px] p-8 relative overflow-hidden group min-h-[220px]"
                 >
                   <div className="relative z-20 text-left">

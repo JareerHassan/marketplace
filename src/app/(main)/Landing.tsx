@@ -8,7 +8,7 @@ import bgimg from '../../../public/assets/bg-img.jpeg';
 import Landingsection from '@/components/Landingsection2';
 import Landingsec3 from '@/components/Landingsection3';
 import Landingsect4 from '@/components/Landingsection4';
-import Landingsectio5 from '@/components/Landingsection5';
+import Landingsectio5 from '@/components/landingsection5';
 import GrowSection from '@/components/growsection';
 import TestimonialsSection from '@/components/testimonials';
 import PricingSection from '@/components/pricingsection';
@@ -65,7 +65,6 @@ export default function LandingPage() {
 
               {/* Stats - Left */}
               <div
-                variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
                 className="order-3 lg:order-1 lg:col-span-2 flex flex-row lg:flex-col justify-between items-center lg:items-start gap-6 lg:border-l border-white/10 lg:pl-8"
               >
                 {[
@@ -73,7 +72,7 @@ export default function LandingPage() {
                   { label: "Assets", value: "$250B" },
                   { label: "Rating", value: "4.9" }
                 ].map((stat, i) => (
-                  <div key={i} variants={fadeInUp} className="text-center lg:text-left">
+                  <div key={i}  className="text-center lg:text-left">
                     <p className="text-[10px] uppercase tracking-widest mb-1 font-bold text-[#94A3B8]">{stat.label}</p>
                     <h3 className="text-xl lg:text-3xl font-black text-[#ADFF2F]">{stat.value}</h3>
                   </div>
@@ -92,7 +91,6 @@ export default function LandingPage() {
 
               {/* Content - Right */}
               <div
-                whileInView="visible" viewport={{ once: true }}
                 className="order-2 lg:order-3 lg:col-span-5 text-center lg:text-left space-y-6"
               >
                 <div  className="flex flex-wrap justify-center lg:justify-start gap-2">
@@ -116,17 +114,13 @@ export default function LandingPage() {
 
         {/* --- TRUSTED LOGOS SECTION --- */}
         <section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={staggerContainer}
           className="py-20 border-y border-white/5 relative z-10 bg-[#05070A]"
         >
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
 
               {/* Left Side: Real Logos */}
-              <div variants={fadeInUp} className="w-full lg:w-1/3 text-center lg:text-left">
+              <div className="w-full lg:w-1/3 text-center lg:text-left">
                 <p className="text-white text-lg font-bold mb-8 uppercase tracking-tight ">
                   Trusted by thousands of companies.
                 </p>

@@ -101,34 +101,37 @@ export default function HomePage() {
     const [showImage, setShowImage] = useState(!!iconUrl);
 
     return (
-      <Link href={`/products?category=${categorySlug}`} className="group">
-        <Card className="p-6 flex  items-center justify-start gap-3  text-center
-         bg-gray-300 dark:bg-gray-900 border-2 border-transparent hover:border-primary/50 transition-all duration-300">
-          {showImage && iconUrl ? (
-            <div className="w-20 h-20  rounded-xl overflow-hidden border-2 border-gray-500 shadow-lg">
-              <img
-                src={iconUrl}
-                alt={category.name}
-                className="w-full h-full object-cover"
-                onError={() => setShowImage(false)}
-              />
-            </div>
-          ) : IconComponent ? (
-            <IconComponent className="h-20 w-20 text-white bg-gray-500 border shadow rounded-xl
+      <>
+        <Link href={`/products?category=${categorySlug}`} className="group">
+          <Card className="p-6  items-center justify-start gap-2  text-start
+         bg-gray-300 dark:bg-gray-900 border-2 border-transparent hover:border-primary/50 transition-all duration-300 min-h-[200px]">
+            {showImage && iconUrl ? (
+              <div className="w-24 h-20  rounded-xl overflow-hidden border-2 border-gray-500 shadow-lg">
+                <img
+                  src={iconUrl}
+                  alt={category.name}
+                  className="w-full h-full object-cover"
+                  onError={() => setShowImage(false)}
+                />
+              </div>
+            ) : IconComponent ? (
+              <IconComponent className="h-20 w-20 text-white bg-gray-500 border shadow rounded-xl
              p-4 transition-transform" />
-          ) : (
-            <Icons.Component className="h-20 w-20 text-white bg-gray-500 border shadow rounded-xl
+            ) : (
+              <Icons.Component className="h-20 w-20 text-white bg-gray-500 border shadow rounded-xl
              p-4 transition-transform" />
-          )}
-          <h3 className="mt-4 text-md font-semibold">{category.name}</h3>
-        </Card>
-      </Link>
+            )}
+            <h3 className="mt-4 text-md font-semibold">{category.name}</h3>
+          </Card>
+        </Link>
+
+      </>
     );
   }
 
   return (
-   
-    
+
+
 
     <Suspense fallback={<div />}>
       <SearchParamsWrapper onCategoryChange={handleCategoryChange} />
@@ -162,6 +165,7 @@ export default function HomePage() {
                     const categorySlug = category.slug || category._id || category.id;
 
                     return (
+
                       <CategoryCard
                         key={category._id || category.id}
                         category={category}
@@ -169,11 +173,21 @@ export default function HomePage() {
                         IconComponent={IconComponent}
                         categorySlug={categorySlug}
                       />
+
+
                     );
                   })}
                 </div>
               )}
+              <div className="mt-12 text-center">
+                <Link href="/categories">
+                  <Button className='bg-gradient-to-r from-[#b3ec25] via-[#b3ec25] to-[#b3ec25]' variant="outline" size="lg">
+                    Explore All Categories <Icons.ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
             </div>
+
           </section>
 
           {/* Featured Products */}

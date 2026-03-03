@@ -28,7 +28,7 @@ export const HERO_CONFIG = {
 
   "/faq": {
     title: "Frequently Asked Questions",
-    subtitle: "Get answers to the most common questions about our AI platform.",
+    subtitle: "Get answers to the most common questions about our AI digital marketplace, products, licensing, and seller platform.",
     breadcrumb: [
       { label: "Home", href: "/" },
       { label: "FAQ", href: "/faq" },
@@ -37,7 +37,7 @@ export const HERO_CONFIG = {
 
   "/categories": {
     title: "Explore Categories",
-    subtitle: "Browse AI solutions by categories for easy discovery.",
+    subtitle: "Browse AI solutions by industry and function for intelligent, structured discovery.",
     breadcrumb: [
       { label: "Home", href: "/" },
       { label: "Categories", href: "/categories" },

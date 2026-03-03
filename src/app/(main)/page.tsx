@@ -1,10 +1,15 @@
 // src/app/(main)/page.tsx
 import HomePageClient from './HomePageClient';
+import Head from 'next/head';
 
 export const metadata = {
   title: 'Digital Marketplace for AI Tools & Apps',
   description: 'Discover premium AI tools, SaaS products, apps, and digital solutions. Buy or sell high-quality digital products built for developers and startups.',
-  canonical: 'https://yourwebsite.com/ai-digital-marketplace', // Add this
+  canonical: 'https://yourwebsite.com/ai-digital-marketplace',
+  robots: {
+    index: true,
+    follow: true,
+  },
   keywords: [
     'Digital Marketplace for AI Tools',
     'AI tools marketplace',
@@ -22,5 +27,14 @@ export const metadata = {
 };
 
 export default function HomePage() {
-  return <HomePageClient />;
+  return (
+    <>
+      <Head>
+        <link rel="canonical" href="https://yourwebsite.com/ai-digital-marketplace" />
+        <meta name="robots" content="index, follow" />
+        <meta name="description" content="Discover premium AI tools, SaaS products, apps, and digital solutions. Buy or sell high-quality digital products built for developers and startups." />
+      </Head>
+      <HomePageClient />
+    </>
+  );
 }

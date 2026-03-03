@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import api from '@/lib/api';
+import Link from 'next/link';
+import { Icons } from '@/components/icons';
+import { Button } from '@/components/ui/button';
 
 interface Product {
     _id?: string;
@@ -100,6 +103,13 @@ export default function HoverProductCards() {
                     </div>
                 )}
             </div>
+                     <div className="mt-12 text-center">
+          <Link href="/products">
+            <Button className='bg-gradient-to-r from-[#b3ec25] via-[#b3ec25] to-[#b3ec25]' variant="outline" size="lg">
+              Explore All Products <Icons.ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
         </section>
     );
 }

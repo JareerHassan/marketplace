@@ -17,8 +17,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/landing', label: 'Landing' },
   { href: '/about', label: 'About' },
   { href: '/products', label: 'Products' },
   { href: '/categories', label: 'Categories' },

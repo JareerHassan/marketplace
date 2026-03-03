@@ -1,6 +1,6 @@
 'use client';
 // Placeholder URL for the visual workflow screenshot on the right
-const WORKFLOW_IMAGE_URL = "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaG5vbG9neSUyMHByb2R1Y3RzfGVufDB8fDB8fHww";
+const WORKFLOW_IMAGE_URL = "https://asset.uinjkt.ac.id/uploads/nrVDCWWX/2024/03/ai-pattern.png";
 
 /**
  * Renders the Agent Control Feature Section based on the provided design.
@@ -60,7 +60,7 @@ When AI supports critical business processes, oversight and structured control b
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.onerror = null; // Prevents infinite loop
-                  target.src = "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaG5vbG9neSUyMHByb2R1Y3RzfGVufDB8fDB8fHww";
+                  target.src = "https://asset.uinjkt.ac.id/uploads/nrVDCWWX/2024/03/ai-pattern.png";
                 }}
               />
             </div>

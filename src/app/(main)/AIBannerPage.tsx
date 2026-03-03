@@ -37,7 +37,7 @@ export default function AIProductsBanner() {
         {/* Right Image */}
         <div className="flex-1 relative w-full h-64 md:h-96">
           <Image
-            src="https://plus.unsplash.com/premium_photo-1675793714962-a2413250c490?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // replace with your AI product banner image
+            src="https://plus.unsplash.com/premium_photo-1683121710572-7723bd2e235d?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXJ0aWZpY2lhbCUyMGludGVsbGlnZW5jZXxlbnwwfHwwfHx8MA%3D%3D" // replace with your AI product banner image
             alt="AI Products Banner"
             fill
             className="object-contain rounded-lg shadow-md"

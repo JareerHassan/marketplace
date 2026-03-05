@@ -39,7 +39,7 @@ export default function LoginPage() {
       <CardHeader className="text-center">
         <Link href="/" className="flex justify-center items-center space-x-2 mb-4">
             <Icons.Logo className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold font-headline">Neural Nexus</span>
+            <span className="text-xl font-bold font-headline">AiAppSpace</span>
         </Link>
         <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>Enter your credentials to access your account.</CardDescription>

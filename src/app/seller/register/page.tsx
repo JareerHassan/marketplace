@@ -13,7 +13,7 @@ export default function SellerRegisterPage() {
         <CardHeader className="text-center">
           <Icons.UserPlus className="mx-auto h-12 w-12 text-primary" />
           <CardTitle className="text-3xl mt-4">Become a Seller</CardTitle>
-          <CardDescription>Join our creators and start selling your AI products on Neural Nexus.</CardDescription>
+          <CardDescription>Join our creators and start selling your AI products on AiAppSpace.</CardDescription>
         </CardHeader>
         <CardContent>
           <form className="space-y-6">

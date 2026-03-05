@@ -65,7 +65,7 @@ export default function AboutContent() {
         },
         {
             q: "Do you review products before listing them?",
-            a: "Both. Individuals find high-quality AI assets, and teams use Neural Nexus to speed up delivery and reduce experimentation time.",
+            a: "Both. Individuals find high-quality AI assets, and teams use AiAppSpace to speed up delivery and reduce experimentation time.",
         },
     ];
 
@@ -112,13 +112,13 @@ export default function AboutContent() {
 
                     <div className="mt-6 grid gap-8 lg:grid-cols-2 items-center">
                         <div>
-                            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+                            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
                                 A modern marketplace for{" "}
                                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                                     AI creators
                                 </span>{" "}
                                 & teams.
-                            </h1>
+                            </h2>
 
                             <p className="mt-4 text-md md:text-md text-foreground/75 leading-relaxed">
                                 Our AI Digital Marketplace was founded on a simple principle: democratize access to powerful AI tools and digital products.
@@ -160,8 +160,8 @@ export default function AboutContent() {
                                     }}
                                 />
                                 <Image
-                                    src="/aiidea.png"
-                                    alt="Neural Nexus marketplace preview"
+                                    src="/assets/ai-img.webp"
+                                    alt="AiAppSpace marketplace preview"
                                     width={1400}
                                     height={900}
                                     priority
@@ -250,11 +250,11 @@ export default function AboutContent() {
                                     }}
                                 />
                                 <Image
-                                    src="/aiidea.png"
+                                    src="/assets/ai-img1.webp"
                                     alt="Creators building AI products"
                                     width={1400}
                                     height={900}
-                                    className="h-auto w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                                    className="h-auto lg:h-[500px] w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
                                 />
                             </div>
                         </motion.div>
@@ -340,11 +340,11 @@ export default function AboutContent() {
                                     }}
                                 />
                                 <Image
-                                    src="/aiidea.png"
+                                    src="/assets/ai-img2.jpg"
                                     alt="Security and trust layer"
                                     width={1400}
                                     height={900}
-                                    className="h-auto w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                                    className="h-auto lg:h-[500px] w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
                                 />
                             </div>
                         </motion.div>
@@ -355,7 +355,7 @@ export default function AboutContent() {
                 <motion.section className="mt-14 md:mt-20" {...fadeUp(0.6)}>
                     <h2 className="text-3xl md:text-4xl font-bold">Frequently Asked Questions</h2>
                     <p className="mt-2 text-foreground/70 max-w-2xl">
-We provide clear answers to common questions about purchasing, selling, licensing, payments, and product access. Our goal is to remove uncertainty and make the marketplace experience straightforward for everyone.
+                        We provide clear answers to common questions about purchasing, selling, licensing, payments, and product access. Our goal is to remove uncertainty and make the marketplace experience straightforward for everyone.
                     </p>
 
                     <div className="mt-7 grid gap-3">

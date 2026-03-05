@@ -24,6 +24,9 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplaceback
 
 const dynamicWords = ["Templates", "AI Bots", "Datasets", "Models", "Prompts"];
 
+// ─── Config: how many items to show initially ───────────────────────────────
+const INITIAL_VISIBLE_COUNT = 8;
+
 function ExplorePageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -53,6 +56,11 @@ function ExplorePageContent() {
   const [categorySearch, setCategorySearch] = useState('');
   const [useCaseSearch, setUseCaseSearch] = useState('');
   const [tagSearch, setTagSearch] = useState('');
+
+  // See More / See Less states
+  const [visibleCategoriesCount, setVisibleCategoriesCount] = useState(INITIAL_VISIBLE_COUNT);
+  const [visibleUseCasesCount, setVisibleUseCasesCount] = useState(INITIAL_VISIBLE_COUNT);
+  const [visibleTagsCount, setVisibleTagsCount] = useState(INITIAL_VISIBLE_COUNT);
 
   // Help sync URL → filters only once at mount
   const [isInitialSyncDone, setIsInitialSyncDone] = useState(false);
@@ -136,7 +144,6 @@ function ExplorePageContent() {
 
   // ─── Fetch products when filters or sync status changes ──────────────
   useEffect(() => {
-    // Wait until initial URL → filter sync is complete
     if (!isInitialSyncDone) return;
 
     const fetchProducts = async () => {
@@ -146,15 +153,14 @@ function ExplorePageContent() {
 
         if (searchQuery) params.search = searchQuery;
         if (selectedCategories.length > 0) {
-          // Currently supporting only one category — adjust if you want multiple
           const catId = selectedCategories[0];
-          params.category = catId; // backend expects ObjectId or slug (your choice)
+          params.category = catId;
         }
         if (selectedUseCases.length > 0) params.useCase = selectedUseCases[0];
         if (selectedTags.length > 0) params.tag = selectedTags[0];
         if (sortBy) params.sort = sortBy;
 
-        console.log("Fetching with params:", params); // ← debug tip
+        console.log("Fetching with params:", params);
 
         const response = await api.get('/products', { params });
         setProducts(response.data || []);
@@ -191,14 +197,11 @@ function ExplorePageContent() {
   const handleCategoryToggle = (categoryId: string) => {
     setSelectedCategories((prev) => {
       const isAlreadySelected = prev.includes(categoryId);
-
       let newCategories: string[];
 
       if (isAlreadySelected) {
-        // If same category clicked → unselect
         newCategories = [];
       } else {
-        // Always keep only ONE category
         newCategories = [categoryId];
       }
 
@@ -219,6 +222,7 @@ function ExplorePageContent() {
       return newCategories;
     });
   };
+
   const handleUseCaseToggle = (useCase: string) => {
     setSelectedUseCases((prev) =>
       prev.includes(useCase) ? prev.filter((uc) => uc !== useCase) : [...prev, useCase]
@@ -267,6 +271,24 @@ function ExplorePageContent() {
     selectedTags.length > 0 ||
     !!searchQuery;
 
+  // ─── See More / See Less logic ───────────────────────────────────────
+  const showMoreCategories = () => setVisibleCategoriesCount((prev) => prev + 10);
+  const showLessCategories = () => setVisibleCategoriesCount(INITIAL_VISIBLE_COUNT);
+
+  const showMoreUseCases = () => setVisibleUseCasesCount((prev) => prev + 10);
+  const showLessUseCases = () => setVisibleUseCasesCount(INITIAL_VISIBLE_COUNT);
+
+  const showMoreTags = () => setVisibleTagsCount((prev) => prev + 15);
+  const showLessTags = () => setVisibleTagsCount(INITIAL_VISIBLE_COUNT);
+
+  const visibleCategories = filteredCategories.slice(0, visibleCategoriesCount);
+  const visibleUseCases = filteredUseCases.slice(0, visibleUseCasesCount);
+  const visibleTags = filteredTags.slice(0, visibleTagsCount);
+
+  const hasMoreCategories = visibleCategoriesCount < filteredCategories.length;
+  const hasMoreUseCases = visibleUseCasesCount < filteredUseCases.length;
+  const hasMoreTags = visibleTagsCount < filteredTags.length;
+
   return (
     <>
       <HeroSection />
@@ -275,10 +297,10 @@ function ExplorePageContent() {
         {/* Header */}
         <header className="mb-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
               Explore <span className="text-primary">{typedWord}</span>
               <span className="animate-blink">|</span>
-            </h1>
+            </h2>
             <div className="flex items-center gap-3">
               <Button
                 variant="outline"
@@ -374,7 +396,7 @@ function ExplorePageContent() {
             </div>
           )}
 
-          {/* Category chips */}
+          {/* Category chips (horizontal) */}
           {categories.length > 0 && (
             <div className="mt-6">
               <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
@@ -426,15 +448,15 @@ function ExplorePageContent() {
                   />
                 </button>
                 {expandedSections.categories && (
-                  <div className="space-y-2 pl-2">
+                  <div className="space-y-3 pl-2">
                     <Input
                       placeholder="Search categories..."
                       value={categorySearch}
                       onChange={(e) => setCategorySearch(e.target.value)}
                       className="h-8 text-sm"
                     />
-                    <div className="max-h-60 overflow-y-auto space-y-1.5">
-                      {filteredCategories.map((category) => {
+                    <div className="space-y-1.5">
+                      {visibleCategories.map((category) => {
                         const catId = category._id || category.id;
                         const isSelected = selectedCategories.includes(catId);
                         return (
@@ -451,6 +473,17 @@ function ExplorePageContent() {
                         );
                       })}
                     </div>
+
+                    {filteredCategories.length > INITIAL_VISIBLE_COUNT && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                          className="text-xs text-primary  px-0 p-2 mt-1"
+                        onClick={hasMoreCategories ? showMoreCategories : showLessCategories}
+                      >
+                        {hasMoreCategories ? "See More" : "See Less"}
+                      </Button>
+                    )}
                   </div>
                 )}
               </div>
@@ -471,15 +504,15 @@ function ExplorePageContent() {
                     />
                   </button>
                   {expandedSections.useCases && (
-                    <div className="space-y-2 pl-2">
+                    <div className="space-y-3 pl-2">
                       <Input
                         placeholder="Search use cases..."
                         value={useCaseSearch}
                         onChange={(e) => setUseCaseSearch(e.target.value)}
                         className="h-8 text-sm"
                       />
-                      <div className="max-h-60 overflow-y-auto space-y-1.5">
-                        {filteredUseCases.map((useCase, i) => (
+                      <div className="space-y-1.5">
+                        {visibleUseCases.map((useCase, i) => (
                           <div key={i} className="flex items-center space-x-2">
                             <Checkbox
                               id={`uc-${i}`}
@@ -492,6 +525,17 @@ function ExplorePageContent() {
                           </div>
                         ))}
                       </div>
+
+                      {filteredUseCases.length > INITIAL_VISIBLE_COUNT && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-xs text-primary  px-0 p-2 mt-1"
+                          onClick={hasMoreUseCases ? showMoreUseCases : showLessUseCases}
+                        >
+                          {hasMoreUseCases ? "See More" : "See Less"}
+                        </Button>
+                      )}
                     </div>
                   )}
                 </div>
@@ -504,7 +548,7 @@ function ExplorePageContent() {
                     onClick={() => toggleSection('tags')}
                     className="w-full flex items-center justify-between text-sm font-medium hover:text-foreground"
                   >
-                    <span>Tags</span>
+                    <span>Search Terms</span>
                     <span className="text-xs text-muted-foreground">
                       {selectedTags.length > 0 && `(${selectedTags.length})`}
                     </span>
@@ -513,15 +557,15 @@ function ExplorePageContent() {
                     />
                   </button>
                   {expandedSections.tags && (
-                    <div className="space-y-2 pl-2">
+                    <div className="space-y-3 pl-2">
                       <Input
                         placeholder="Search tags..."
                         value={tagSearch}
                         onChange={(e) => setTagSearch(e.target.value)}
                         className="h-8 text-sm"
                       />
-                      <div className="max-h-60 overflow-y-auto flex flex-wrap gap-1.5">
-                        {filteredTags.map((tag, i) => (
+                      <div className="flex flex-wrap gap-1.5">
+                        {visibleTags.map((tag, i) => (
                           <Badge
                             key={i}
                             variant={selectedTags.includes(tag) ? "default" : "outline"}
@@ -532,6 +576,17 @@ function ExplorePageContent() {
                           </Badge>
                         ))}
                       </div>
+
+                      {filteredTags.length > INITIAL_VISIBLE_COUNT && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-xs text-primary  px-0 p-2 mt-1"
+                          onClick={hasMoreTags ? showMoreTags : showLessTags}
+                        >
+                          {hasMoreTags ? "See More" : "See Less"}
+                        </Button>
+                      )}
                     </div>
                   )}
                 </div>

@@ -10,7 +10,7 @@ export default function TermsPage() {
         <article className="prose prose-invert prose-lg mx-auto text-foreground/80 space-y-6">
           <h2 className="text-2xl font-bold text-accent">1. Introduction</h2>
           <p>
-            Welcome to Neural Nexus ("Company", "we", "our", "us")! These Terms of Service ("Terms", "Terms of Service") govern your use of our website located at neuralnexus.com (together or individually "Service") operated by Neural Nexus.
+            Welcome to AiAppSpace ("Company", "we", "our", "us")! These Terms of Service ("Terms", "Terms of Service") govern your use of our website located at neuralnexus.com (together or individually "Service") operated by AiAppSpace.
           </p>
 
           <h2 className="text-2xl font-bold text-accent">2. Accounts</h2>
@@ -20,7 +20,7 @@ export default function TermsPage() {
           
           <h2 className="text-2xl font-bold text-accent">3. Intellectual Property</h2>
           <p>
-            The Service and its original content (excluding Content provided by users), features and functionality are and will remain the exclusive property of Neural Nexus and its licensors.
+            The Service and its original content (excluding Content provided by users), features and functionality are and will remain the exclusive property of AiAppSpace and its licensors.
           </p>
 
           <h2 className="text-2xl font-bold text-accent">4. User Content</h2>

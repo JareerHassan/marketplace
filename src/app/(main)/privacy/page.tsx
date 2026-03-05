@@ -15,7 +15,7 @@ export default function PrivacyPage() {
 
           <h2 className="text-2xl font-bold text-accent">2. Use of Data</h2>
           <p>
-            Neural Nexus uses the collected data for various purposes: to provide and maintain our Service; to notify you about changes to our Service; to allow you to participate in interactive features of our Service when you choose to do so; to provide customer support; to gather analysis or valuable information so that we can improve our Service.
+            AiAppSpace uses the collected data for various purposes: to provide and maintain our Service; to notify you about changes to our Service; to allow you to participate in interactive features of our Service when you choose to do so; to provide customer support; to gather analysis or valuable information so that we can improve our Service.
           </p>
 
           <h2 className="text-2xl font-bold text-accent">3. Data Security</h2>

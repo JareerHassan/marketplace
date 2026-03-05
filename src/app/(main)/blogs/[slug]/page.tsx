@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 import { renderEditorJSBlocks, calculateReadingTime } from "@/lib/blog-utils";
 
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com/api';
 
 async function getBlogBySlug(slug: string) {
@@ -55,8 +56,8 @@ export default async function BlogDetails({ params }: { params: { slug: string }
   if (!blog) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
-        <h1 className="text-2xl font-semibold text-gray-900">Blog not found</h1>
-        <Link href="/blogs" className="mt-4 text-indigo-600 hover:underline">
+        <h1 className="text-2xl font-semibold ">Blog not found</h1>
+        <Link href="/blogs" className="mt-4 text-[#ADFF2F] hover:underline">
           Return to blogs
         </Link>
       </div>
@@ -69,6 +70,7 @@ export default async function BlogDetails({ params }: { params: { slug: string }
 
   return (
     <>
+    
       {/* JSON-LD Schema Markup */}
       {seo.schema_markup && (
         <script
@@ -77,10 +79,12 @@ export default async function BlogDetails({ params }: { params: { slug: string }
         />
       )}
 
-      <article className="min-h-screen pb-20 bg-white">
+
+
+      <article className="min-h-screen pb-20 ">
         {/* Navigation */}
         <nav className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-gray-100">
-          <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className=" mx-auto px-6 py-4">
             <Link
               href="/blogs"
               className="group flex items-center text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
@@ -93,16 +97,16 @@ export default async function BlogDetails({ params }: { params: { slug: string }
 
         {/* Hero Header */}
         <header className="pt-16 pb-12">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className=" mx-auto px-6">
             {/* Category */}
             {blog.category && (
-              <p className="text-sm text-indigo-600 font-semibold uppercase mb-4">
+              <p className="text-sm  font-semibold uppercase mb-4">
                 {blog.category}
               </p>
             )}
 
             {/* Date and Reading Time */}
-            <div className="flex items-center space-x-2 text-sm text-gray-500 mb-6">
+            <div className="flex items-center space-x-2 text-sm  mb-6">
               <time dateTime={blog.createdAt}>
                 {blog.createdAt
                   ? new Date(blog.createdAt).toLocaleDateString('en-US', {
@@ -131,7 +135,7 @@ export default async function BlogDetails({ params }: { params: { slug: string }
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-gray-900 mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1]  mb-8">
               {blog.title}
             </h1>
 
@@ -165,13 +169,13 @@ export default async function BlogDetails({ params }: { params: { slug: string }
         </header>
 
         {/* Body Content */}
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="prose prose-lg max-w-none">
+        <div className=" mx-auto px-6">
+          <div>
             {blocks.length > 0 ? (
               renderEditorJSBlocks(blocks)
             ) : (
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <p className="text-gray-600 italic">No content available.</p>
+              <div className="p-6 rounded-lg">
+                <p className=" italic">No content available.</p>
               </div>
             )}
           </div>
@@ -180,12 +184,12 @@ export default async function BlogDetails({ params }: { params: { slug: string }
           <footer className="mt-16 pt-8 border-t border-gray-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-gray-900">Digital Assets Marketplace</p>
-                <p className="text-xs text-gray-500">Industry Insights & News</p>
+                <p className="text-sm font-semibold ">Digital Assets Marketplace</p>
+                <p className="text-xs ">Industry Insights & News</p>
               </div>
               <Link
                 href="/blogs"
-                className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
+                className="text-sm text-[#ADFF2F]  font-medium"
               >
                 ← Back to Blogs
               </Link>

@@ -36,14 +36,14 @@ export function renderEditorJSBlocks(blocks: any[] = []) {
         const level = block.data?.level || 2;
         const HeaderTag = `h${level}` as keyof JSX.IntrinsicElements;
         return (
-          <HeaderTag key={key} className="text-2xl font-bold my-4 text-gray-900">
+          <HeaderTag key={key} className="text-2xl font-bold my-4">
             {block.data?.text}
           </HeaderTag>
         );
 
       case 'paragraph':
         return (
-          <p key={key} className="my-4 text-gray-700 leading-relaxed">
+          <p key={key} className="my-4  leading-relaxed">
             {block.data?.text}
           </p>
         );
@@ -56,7 +56,7 @@ export function renderEditorJSBlocks(blocks: any[] = []) {
             className={`my-4 ${block.data?.style === 'ordered' ? 'list-decimal' : 'list-disc'} pl-6 space-y-2`}
           >
             {block.data?.items?.map((item: any, idx: number) => (
-              <li key={idx} className="text-gray-700">
+              <li key={idx} >
                 {typeof item === 'string' ? item : item.content || item}
               </li>
             ))}
@@ -77,7 +77,7 @@ export function renderEditorJSBlocks(blocks: any[] = []) {
               </div>
             )}
             {block.data?.caption && (
-              <p className="text-sm text-gray-500 mt-2 text-center italic">
+              <p className="text-sm  mt-2 text-center italic">
                 {block.data.caption}
               </p>
             )}
@@ -88,11 +88,11 @@ export function renderEditorJSBlocks(blocks: any[] = []) {
         return (
           <blockquote
             key={key}
-            className="border-l-4 border-indigo-500 pl-4 italic my-6 text-gray-700"
+            className="border-l-4 border-[#ADFF2F] pl-4 italic my-6 text-gray-700"
           >
             <p className="text-lg">{block.data?.text}</p>
             {block.data?.caption && (
-              <footer className="text-sm text-gray-500 mt-2">
+              <footer className="text-sm  mt-2">
                 — {block.data.caption}
               </footer>
             )}
@@ -113,7 +113,7 @@ export function renderEditorJSBlocks(blocks: any[] = []) {
               </a>
             )}
             {block.data?.meta?.description && (
-              <p className="text-sm text-gray-600 mt-2">
+              <p className="text-sm  mt-2">
                 {block.data.meta.description}
               </p>
             )}

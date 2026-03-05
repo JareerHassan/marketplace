@@ -256,7 +256,7 @@ export default function HomePage() {
           </section>
 
           {/* Testimonials */}
-          <section className="py-16 md:py-24 bg-card/50 mx-auto container">
+          {/* <section className="py-16 md:py-24 bg-card/50 mx-auto container">
             <div className="container px-4 md:px-6">
               <h2 className="text-3xl font-bold tracking-tight text-center">From the Community</h2>
               <p className="mt-2 text-center  text-muted-foreground max-w-5xl mx-auto">Professionals across industries rely on this ecosystem to discover and deploy high-performance digital tools. The platform has become a trusted source for scalable AI solutions and production-ready software assets. Sellers benefit from streamlined monetization and marketplace visibility, while buyers appreciate the quality control and curated experience.
@@ -281,7 +281,7 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-          </section>
+          </section> */}
 
         </main>
       </div>

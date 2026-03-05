@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,7 +23,7 @@ const navLinks = [
   { href: '/categories', label: 'Categories' },
   { href: '/blogs', label: 'Blogs' },
   { href: '/faq', label: 'FAQ' },
-   { href: '/contact', label: 'Contact Us' },
+  { href: '/contact', label: 'Contact Us' },
 ];
 
 function ThemeToggle() {
@@ -34,16 +35,18 @@ function ThemeToggle() {
         <Button variant="ghost" size="icon">
           <Icons.Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Icons.Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme('light')}>
           Light
         </DropdownMenuItem>
+
         <DropdownMenuItem onClick={() => setTheme('dark')}>
           Dark
         </DropdownMenuItem>
+
         <DropdownMenuItem onClick={() => setTheme('system')}>
           System
         </DropdownMenuItem>
@@ -64,6 +67,7 @@ export default function Header() {
       typeof window !== 'undefined'
         ? localStorage.getItem('userToken')
         : null;
+
     setIsLoggedIn(!!token);
   }, []);
 
@@ -116,119 +120,128 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
-      <div className="container flex h-16 items-center px-3">
+      <div className="container flex h-16 items-center justify-between px-3">
+
+        {/* Mobile Logo */}
+        <Link href="/" className="flex items-center lg:hidden">
+          <Image
+            src="/assets/logo1.png"
+            alt="AiAppSpace Logo"
+            width={120}
+            height={40}
+            className="object-contain"
+          />
+        </Link>
 
         {/* Desktop Logo + Nav */}
-        <div className="mr-4 hidden lg:flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Icons.Logo className="h-6 w-6 text-primary" />
-            <span className="hidden font-bold sm:inline-block font-headline">
-              Neural Nexus
-            </span>
+        <div className="mr-4 hidden lg:flex items-center">
+          <Link href="/" className="mr-6 flex items-center">
+            <Image
+              src="/assets/logo1.png"
+              alt="AiAppSpace Logo"
+              width={180}
+              height={60}
+              className="object-contain"
+            />
           </Link>
+
           {renderNavLinks()}
         </div>
 
-        {/* Mobile + Tablet Toggle */}
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="lg:hidden"
-              aria-label="Open menu"
+        {/* Desktop Search */}
+        <div className="hidden lg:flex ml-auto mr-4 w-[300px]">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch();
+            }}
+            className="relative w-full"
+          >
+            <Input
+              type="search"
+              placeholder="Search tools..."
+              className="w-full pr-10"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+
+            <button
+              type="submit"
+              className="absolute text-black right-3 top-1/2 -translate-y-1/2"
             >
-              <Icons.Menu className="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
-
-          <SheetContent side="left" className="pr-0">
-            <Link href="/" className="mr-6 flex items-center space-x-2">
-              <Icons.Logo className="h-6 w-6 text-primary" />
-              <span className="font-bold font-headline">
-                Neural Nexus
-              </span>
-            </Link>
-
-            <div className="my-4 px-6">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleSearch();
-                }}
-                className="relative mb-4"
-              >
-                <Input
-                  type="search"
-                  placeholder="Search tools..."
-                  className="w-full pr-10"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <button
-                  type="submit"
-                  className="absolute right-3 top-1/2 -translate-y-1/2"
-                >
-                  <Icons.Search className="h-4 w-4 text-muted-foreground" />
-                </button>
-              </form>
-            </div>
-
-            <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
-              <div className="flex flex-col space-y-3">
-                {renderNavLinks(true)}
-                <Button
-                  onClick={handleSubmitTool}
-                  variant="default"
-                  className="w-40 mt-4 bg-primary hover:bg-primary/90"
-                >
-                  Submit Tool
-                </Button>
-              </div>
-            </div>
-          </SheetContent>
-        </Sheet>
+              <Icons.Search className="h-4 w-4 text-muted-foreground" />
+            </button>
+          </form>
+        </div>
 
         {/* Right Section */}
-        <div className="flex flex-1 items-center justify-between space-x-2 lg:justify-end">
+        <div className="flex items-center gap-2">
 
-          {/* Desktop Search */}
-          <div className="w-full flex-1 lg:w-auto lg:flex-none max-w-md hidden lg:block">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSearch();
-              }}
-              className="relative"
-            >
-              <Input
-                type="search"
-                placeholder="Search tools, tags, use cases..."
-                className="w-full pr-10"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <button
-                type="submit"
-                className="absolute right-3 top-1/2 -translate-y-1/2"
+          <ThemeToggle />
+
+          {/* Mobile Menu */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="lg:hidden"
               >
-                <Icons.Search className="h-4 w-4 text-muted-foreground" />
-              </button>
-            </form>
-          </div>
+                <Icons.Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
 
-          {/* Theme + Submit */}
-          <nav className="flex items-center gap-2">
-            <ThemeToggle />
-            <Button
-              onClick={handleSubmitTool}
-              variant="default"
-              size="sm"
-              className="bg-primary hover:bg-primary/90 hidden lg:inline-flex"
-            >
-              Submit Tool
-            </Button>
-          </nav>
+            <SheetContent side="left" className="pr-0">
+
+              <div className="my-4 px-6">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSearch();
+                  }}
+                  className="relative mb-4"
+                >
+                  <Input
+                    type="search"
+                    placeholder="Search tools..."
+                    className="w-full pr-10"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+
+                  <button
+                    type="submit"
+                    className="absolute right-3 top-1/2 -translate-y-1/2"
+                  >
+                    <Icons.Search className="h-4 w-4 text-muted-foreground" />
+                  </button>
+                </form>
+              </div>
+
+              <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
+                <div className="flex flex-col space-y-3">
+                  {renderNavLinks(true)}
+
+                  <Button
+                    onClick={handleSubmitTool}
+                    className="w-40 mt-4 text-black bg-primary hover:bg-primary/90"
+                  >
+                    Submit Tool
+                  </Button>
+                </div>
+              </div>
+
+            </SheetContent>
+          </Sheet>
+
+          {/* Desktop Submit */}
+          <Button
+            onClick={handleSubmitTool}
+            size="sm"
+            className="bg-primary text-black hover:bg-primary/90 hidden lg:inline-flex"
+          >
+            Submit Tool
+          </Button>
 
         </div>
       </div>

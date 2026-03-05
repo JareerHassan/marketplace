@@ -119,7 +119,7 @@ export const reviews: Review[] = [
 
 export const testimonials = [
   {
-    quote: "Neural Nexus has revolutionized how I find and deploy AI tools. The quality of products is unmatched.",
+    quote: "AiAppSpace has revolutionized how I find and deploy AI tools. The quality of products is unmatched.",
     name: "Alexia Volkova",
     title: "Lead AI Engineer, Cybersystems Inc.",
     avatarUrl: 'https://picsum.photos/seed/201/100/100'

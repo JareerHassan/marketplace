@@ -167,9 +167,9 @@ const App = () => {
 
       <div className="min-h-screen font-sans p-4 sm:p-8">
         <header className="text-center py-12">
-          <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight sm:text-6xl">
+          <h2 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight sm:text-6xl">
             Everything You Need to Know
-          </h1>
+          </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto">
             Here you’ll find answers related to digital purchases, product access, payments, licensing, and selling on our platform. If you cannot find your answer, our support team is ready to help.          </p>
         </header>

@@ -20,10 +20,10 @@ const AgentControlSection: React.FC = () => {
           </h2>
 
           {/* Main Statement */}
-          <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 max-w-5xl mx-auto">
+          <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 max-w-5xl mx-auto">
             Why Build AI Agents with Modern Automation?
 
-          </h1>
+          </h2>
 
           {/* Sub-description */}
           <p className="text-lg text-gray-400 max-w-3xl mx-auto">

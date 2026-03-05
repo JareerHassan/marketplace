@@ -30,7 +30,7 @@ const prompt = ai.definePrompt({
   name: 'aiShoppingAssistantPrompt',
   input: {schema: AiShoppingAssistantInputSchema},
   output: {schema: AiShoppingAssistantOutputSchema},
-  prompt: `You are an AI shopping assistant for an AI digital products marketplace called Neural Nexus.
+  prompt: `You are an AI shopping assistant for an AI digital products marketplace called AiAppSpace.
   Your goal is to help buyers find the AI tools and digital products that best meet their needs.
   Respond to the user query with personalized product recommendations and instant support. 
   Include the Product Name, Short description, Price, Category, and a Link to the product page in your response if available.

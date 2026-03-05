@@ -265,7 +265,7 @@ export default function LandingPage() {
       <main style={{ backgroundColor: COLORS.brandDark }} className="w-full overflow-x-hidden">
 
         {/* --- HERO SECTION --- */}
-        <section className="relative min-h-[90dvh] w-full flex items-center justify-center pt-40 pb-10" style={{ backgroundImage: `url('/assets/bg-img.jpeg')`, backgroundSize: 'cover', }}>
+        <section className="relative min-h-[90dvh] w-full flex items-center justify-center pt-40 pb-10" style={{ backgroundImage: `url('/assets/Ai.png')`, backgroundSize: 'cover', }}>
           <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
 
           </div>

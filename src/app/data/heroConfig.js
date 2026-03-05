@@ -25,6 +25,7 @@ export const HERO_CONFIG = {
       { label: "Blogs", href: "/blogs" },
     ],
   },
+   
 
   "/faq": {
     title: "Frequently Asked Questions",

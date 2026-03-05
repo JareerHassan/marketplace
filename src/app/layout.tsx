@@ -5,9 +5,9 @@ import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'Neural Nexus - AI Digital Products Marketplace',
+  title: 'AiAppSpace - AI Digital Products Marketplace',
   description: 'The future of AI digital products. Discover, buy, and sell cutting-edge AI tools, prompts, and more.',
-  keywords: ['AI marketplace', 'digital products', 'AI tools', 'chatbots', 'prompts', 'neural nexus'],
+  keywords: ['AI marketplace', 'digital products', 'AI tools', 'chatbots', 'prompts', 'aiappspace'],
 };
 
 export default function RootLayout({

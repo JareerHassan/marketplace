@@ -273,7 +273,7 @@ export default function LandingPage() {
   ];
 
   const boxImage =
-    "/assets/aiassistants.png";
+    "/assets/gpt.png";
   return (
     <>
       <main
@@ -315,7 +315,7 @@ export default function LandingPage() {
                 <div className="absolute h-[300px] w-[300px] rounded-full opacity-10 blur-[100px] bg-[#ADFF2F]" />
                 <div className="relative w-full max-w-[320px] lg:max-w-[450px]">
                   <img
-                    src="/assets/aiassistants.png"
+                    src="/assets/gpt.png"
                     alt="App"
                     className="w-full h-auto drop-shadow-2xl"
                   />
@@ -449,7 +449,7 @@ export default function LandingPage() {
                 </div>
                 <div className="absolute -bottom-10 -right-10 w-2/3 opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
                   <img
-                    src="/assets/aiassistants.png"
+                    src="/assets/gpt.png"
                     className="w-full h-auto rotate-[-10deg]"
                   />
                 </div>
@@ -495,7 +495,7 @@ export default function LandingPage() {
                   {/* Mockup Overlap integration */}
                   <div className="absolute -bottom-12 -right-12 w-48 opacity-40 group-hover:opacity-100 transition-all duration-700 rotate-[15deg]">
                     <img
-                      src="/assets/aiassistants.png"
+                      src="/assets/gpt.png"
                       className="w-full h-auto"
                       alt="mockup"
                     />
@@ -549,7 +549,7 @@ export default function LandingPage() {
             >
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src="/assets/aiassistants.png"
+                  src="/assets/gpt.png"
                   alt="Our Team"
                   className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
                 />
@@ -702,7 +702,7 @@ export default function LandingPage() {
                 className="rounded-3xl overflow-hidden h-[420px]"
               >
                 <img
-                  src="/assets/aiassistants.png"
+                  src="/assets/gpt.png"
                   className="w-full h-full object-cover"
                   alt="Tech Analysis"
                 />
@@ -823,7 +823,7 @@ export default function LandingPage() {
               {/* Background Image with Overlay */}
               <div className="absolute inset-0">
                 <img
-                  src="/assets/aiassistants.png"
+                  src="/assets/gpt.png"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   alt="Tutorial Thumbnail"
                 />
@@ -885,7 +885,7 @@ export default function LandingPage() {
             <div className="relative flex justify-center lg:justify-end">
               <div className="relative z-20 w-[90%] md:w-[550px]">
                 <img
-                  src="/assets/aiassistants.png"
+                  src="/assets/gpt.png"
                   alt="Mobile App Mockup"
                   className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
                 />

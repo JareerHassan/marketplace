@@ -193,7 +193,22 @@ function ExplorePageContent() {
     }
     router.push(`/products?${params.toString()}`);
   };
+const dropdownRef = useRef<HTMLDivElement | null>(null);
 
+useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setShowCategoryDropdown(false);
+      setExpandedGroup(null);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => document.removeEventListener("mousedown", handleClickOutside);
+}, []);
   const handleCategoryToggle = (categoryId: string) => {
     setSelectedCategories((prev) => {
       const isAlreadySelected = prev.includes(categoryId);
@@ -289,6 +304,30 @@ function ExplorePageContent() {
   const hasMoreUseCases = visibleUseCasesCount < filteredUseCases.length;
   const hasMoreTags = visibleTagsCount < filteredTags.length;
 
+  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
+const [expandedGroup, setExpandedGroup] = useState<string | null>(null);
+
+const businessCategories = categories.filter(
+  (c) => c.type?.toLowerCase() === "business"
+);
+
+const toolsCategories = categories.filter(
+  (c) => c.type?.toLowerCase() === "tools" || c.type?.toLowerCase() === "tool"
+);
+
+const groupedCategories = [
+  {
+    id: "business",
+    name: "Business Categories",
+    children: businessCategories,
+  },
+  {
+    id: "tools",
+    name: "Tools Categories",
+    children: toolsCategories,
+  },
+].filter((group) => group.children.length > 0);
+
   return (
     <>
       <HeroSection />
@@ -329,26 +368,112 @@ function ExplorePageContent() {
           </div>
 
           {/* Search */}
-          <div className="relative max-w-2xl">
-            <Input
-              type="search"
-              placeholder="Search products, tags, use cases..."
-              className="w-full !py-6 !pl-12 !pr-12 text-base"
-              value={searchQuery}
-              onChange={(e) => handleSearch(e.target.value)}
-            />
-            <Icons.Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            {searchQuery && (
-              <Button
-                variant="ghost"
-                size="sm"
-                className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 p-0"
-                onClick={() => handleSearch('')}
+       <div className="relative max-w-2xl">
+  <div className="flex flex-col sm:flex-row gap-3">
+    {/* Category Dropdown */}
+<div className="relative min-w-[200px]" ref={dropdownRef}>
+        <Button
+        type="button"
+        variant="outline"
+        className="w-full justify-between !py-6"
+        onClick={() => setShowCategoryDropdown((prev) => !prev)}
+      >
+        Browse Categories
+        <Icons.ChevronDown className="h-4 w-4 ml-2" />
+      </Button>
+
+      {showCategoryDropdown && (
+        <div className="absolute top-full left-0 mt-1 w-full sm:w-80 rounded-xl border bg-background shadow-lg z-50 p-2">
+          {groupedCategories.map((group) => (
+            <div key={group.id} className="border-b last:border-b-0 py-1">
+              <button
+                type="button"
+                onClick={() =>
+                  setExpandedGroup((prev) =>
+                    prev === group.id ? null : group.id
+                  )
+                }
+                className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-md hover:bg-muted"
               >
-                <Icons.X className="h-4 w-4" />
-              </Button>
-            )}
+                <span>{group.name}</span>
+                <Icons.ChevronDown
+                  className={`h-4 w-4 transition-transform ${
+                    expandedGroup === group.id ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {expandedGroup === group.id && (
+                <div className="mt-1 ml-2 space-y-1">
+                 {group.children.map((category) => {
+  const catId = category._id || category.id;
+  const isSelected = selectedCategories.includes(catId);
+
+  return (
+    <button
+      key={catId}
+      type="button"
+      onClick={() => {
+        handleCategoryToggle(catId);
+        setShowCategoryDropdown(false);
+        setExpandedGroup(null);
+      }}
+      className={`w-full text-left px-3 py-2 text-sm rounded-md transition ${
+        isSelected
+          ? "bg-primary text-primary-foreground"
+          : "hover:bg-muted"
+      }`}
+    >
+      {category.name}
+    </button>
+  );
+})}
+                </div>
+              )}
+            </div>
+          ))}
+
+          <div className="pt-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="w-full"
+              onClick={() => {
+                clearFilters();
+                setExpandedGroup(null);
+              }}
+            >
+              Clear all
+            </Button>
           </div>
+        </div>
+      )}
+    </div>
+
+    {/* Search Input */}
+    <div className="relative flex-1">
+      <Input
+        type="text"
+        placeholder="Search products, tags, use cases..."
+        className="w-full !py-6 !pl-12 !pr-12 text-base"
+        value={searchQuery}
+        onChange={(e) => handleSearch(e.target.value)}
+      />
+      <Icons.Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+
+      {searchQuery && (
+        <Button
+          variant="ghost"
+          size="sm"
+          className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 p-0"
+          onClick={() => handleSearch("")}
+        >
+          <Icons.X className="h-4 w-4" />
+        </Button>
+      )}
+    </div>
+  </div>
+</div>
 
           {/* Active filters */}
           {hasActiveFilters && (
@@ -397,7 +522,7 @@ function ExplorePageContent() {
           )}
 
           {/* Category chips (horizontal) */}
-          {categories.length > 0 && (
+          {/* {categories.length > 0 && (
             <div className="mt-6">
               <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {categories.map((category) => {
@@ -417,7 +542,7 @@ function ExplorePageContent() {
                 })}
               </div>
             </div>
-          )}
+          )} */}
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">

@@ -173,8 +173,8 @@ export default function FloatingChatbot() {
 
       {/* Chat Widget */}
       {isOpen && (
-        <Card className="fixed bottom-24 right-6 w-96 h-[500px] shadow-2xl z-50 flex flex-col">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 border-b">
+        <Card className="fixed bottom-24 right-6 w-96 h-[450px] shadow-2xl z-50 flex flex-col">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
             <div className="flex items-center gap-2">
               <Avatar className="h-8 w-8">
                 <AvatarFallback className="bg-primary/20 text-primary">
@@ -210,8 +210,13 @@ export default function FloatingChatbot() {
 
           <CardContent className="flex-1 flex flex-col p-0 overflow-hidden">
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-3 space-y-3 max-h-[380px]">
-              {messages.length === 0 && (
+<div
+  className="flex-1 overflow-y-auto p-3 space-y-3 max-h-[380px] chat-scroll"
+  style={{
+    scrollbarWidth: "none",
+    msOverflowStyle: "none",
+  }}
+>              {messages.length === 0 && (
                 <div className="flex items-center justify-center h-full">
                   <div className="text-center">
                     <Icons.Bot className="h-12 w-12 mx-auto mb-2 text-muted-foreground/50" />
@@ -319,7 +324,7 @@ export default function FloatingChatbot() {
             {/* Input */}
             <form
               onSubmit={handleSubmit}
-              className="p-4 border-t flex items-center gap-2"
+              className="p-4 flex items-center gap-2"
             >
               <Input
                 ref={inputRef}

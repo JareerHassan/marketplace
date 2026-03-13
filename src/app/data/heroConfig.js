@@ -71,4 +71,13 @@ export const HERO_CONFIG = {
       { label: "Privacy", href: "/privacy" },
     ],
   },
+
+  "/featuredapps": {
+    title: "Featured Apps",
+    subtitle: "Discover the latest and greatest AI applications in our marketplace.",
+    breadcrumb: [
+      { label: "Home", href: "/" },
+      { label: "Featured Apps", href: "/featuredapps" },
+    ],
+  },
 };

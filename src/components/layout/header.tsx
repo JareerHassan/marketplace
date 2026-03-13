@@ -19,9 +19,10 @@ import {
 
 const navLinks = [
   { href: '/about', label: 'About' },
+  { href: '/featuredapps', label: 'Featured Apps' },
   { href: '/products', label: 'Products' },
   { href: '/categories', label: 'Categories' },
-  { href: '/blogs', label: 'Blogs' },
+  // { href: '/blogs', label: 'Blogs' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact Us' },
 ];

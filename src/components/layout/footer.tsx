@@ -7,7 +7,7 @@ import Image from 'next/image';
 const footerLinks = {
   platform: [
     { href: '/products', label: 'Products' },
-    { href: '/categories', label: 'Categories' },
+    { href: '/featuredapps', label: 'Featured Apps' },
     { href: '/auth/login', label: 'Become a Seller' },
     { href: '/chatbot', label: 'AI Assistant' },
   ],

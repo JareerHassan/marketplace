@@ -335,7 +335,7 @@ const groupedCategories = [
       <div className="container mx-auto px-4 py-6 md:py-8">
         {/* Header */}
         <header className="mb-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+          {/* <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
               Explore <span className="text-primary">{typedWord}</span>
               <span className="animate-blink">|</span>
@@ -365,7 +365,7 @@ const groupedCategories = [
                 </SelectContent>
               </Select>
             </div>
-          </div>
+          </div> */}
 
           {/* Search */}
        <div className="relative max-w-2xl">

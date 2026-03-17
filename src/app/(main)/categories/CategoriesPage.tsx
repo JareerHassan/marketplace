@@ -152,16 +152,6 @@ const otherCategories = categories.filter(
 
       <div className="container mx-auto px-4 py-8 md:py-12">
 
-        <header className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#b3ec25] via-[#b3ec25] to-[#b3ec25] bg-clip-text text-transparent">
-            Product Categories
-          </h2>
-
-          <p className="mt-3 max-w-4xl text-lg text-muted-foreground">
-            Our marketplace is organized to make discovery simple and scalable.
-          </p>
-        </header>
-
         {loading ? (
           <div className="flex justify-center py-24">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>

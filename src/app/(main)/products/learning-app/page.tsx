@@ -1,20 +1,37 @@
-import { Metadata } from 'next';
-import LearningPageClient from './LearningPage';
+import type { Metadata } from "next";
+import LearningPageClient from "./LearningPage";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://aiappspace.com"),
+
   title: "Ethical Hacking Learning App with AI Quizzes",
   description:
     "Learn ethical hacking with AI quizzes, smart exams, and structured cybersecurity modules. Build real skills with our AI-powered learning app.",
 
-  // ✅ Canonical URL
+  keywords: [
+    "Ethical Hacking Learning App",
+    "learn ethical hacking app",
+    "AI cybersecurity quizzes",
+    "cybersecurity learning app",
+    "penetration testing learning app",
+    "cybersecurity exam practice app",
+    "AI hacking quiz app",
+    "ethical hacking course app",
+    "cybersecurity training app",
+    "ethical hacking mobile app",
+  ],
+
+  applicationName: "Ethical Hacking Learning App",
+  category: "Education",
+
   alternates: {
-    canonical: "https://yourdomain.com/apps/ethical-hacking-learning-app",
+    canonical: "/products/learning-app",
   },
 
-  // ✅ Robots Tag
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -24,35 +41,69 @@ export const metadata: Metadata = {
     },
   },
 
-  // ✅ Open Graph
   openGraph: {
     title: "Ethical Hacking Learning App with AI Quizzes",
     description:
       "Learn ethical hacking with AI quizzes, penetration testing modules, and AI-powered cybersecurity exam practice.",
-    url: "https://yourdomain.com/apps/ethical-hacking-learning-app",
+    url: "https://aiappspace.com/products/learning-app",
+    siteName: "AI App Space",
     type: "website",
-    images: [{ url: "/assets/ethical-hacking-app.png" }],
+    locale: "en_US",
+    images: [
+      {
+        url: "https://aiappspace.com/assets/learningapps.png",
+        width: 1200,
+        height: 630,
+        alt: "Ethical Hacking Learning App preview",
+      },
+    ],
   },
 
-  // ✅ Twitter Card
   twitter: {
     card: "summary_large_image",
     title: "Ethical Hacking Learning App with AI Quizzes",
     description:
       "AI cybersecurity quizzes, penetration testing lessons, and structured exam practice in one powerful learning app.",
-    images: ["/assets/ethical-hacking-app.png"],
+    images: ["https://aiappspace.com/assets/learningapps.png"],
+    creator: "@aiappspace",
   },
 
-  // ✅ SEO Keywords (Optional but helpful)
-  keywords: [
-    "Ethical Hacking Learning App",
-    "learn ethical hacking app",
-    "AI cybersecurity quizzes",
-    "penetration testing learning app",
-    "cybersecurity exam practice app",
-  ],
+  authors: [{ name: "AI App Space" }],
+  creator: "AI App Space",
+  publisher: "AI App Space",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Ethical Hacking Learning App",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Android",
+  description:
+    "Learn ethical hacking with AI quizzes, smart exams, and structured cybersecurity modules in one mobile learning app.",
+  url: "https://aiappspace.com/products/learning-app",
+  image: "https://aiappspace.com/assets/learningapps.png",
+  publisher: {
+    "@type": "Organization",
+    name: "AI App Space",
+    url: "https://aiappspace.com",
+  },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+  },
 };
 
 export default function Page() {
-  return <LearningPageClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <LearningPageClient />
+    </>
+  );
 }

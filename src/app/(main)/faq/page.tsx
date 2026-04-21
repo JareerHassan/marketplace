@@ -4,20 +4,28 @@ import type { Metadata } from "next";
 import FAQPage from "./FAQPage";
 
 export const metadata: Metadata = {
-  title: "AI App Space FAQs | Buying, Selling & Marketplace Help",
+  title: "AI Tools FAQ | AI App Space",
   description:
-    "Find answers about buying AI tools, digital downloads, payments, licensing, seller accounts, and marketplace support on AI App Space.",
+    "Find answers to common questions about AI tools, pricing, features, and how our AI marketplace works.",
   keywords: [
-    "AI App Space FAQs",
-    "AI marketplace FAQs",
-    "digital product support",
-    "AI tools marketplace help",
-    "buy AI tools FAQ",
-    "sell digital products FAQ",
-    "AI App Space help",
-    "marketplace support",
-    "digital downloads FAQ",
-    "seller account help",
+    "AI tools marketplace FAQ",
+    "AI tools questions",
+    "AI tools guide",
+    "AI tools platform help",
+    "AI tools pricing questions",
+    "AI tools platform",
+    "AI apps marketplace",
+    "Best Ai Apps",
+    "AI Tools to earn Money online",
+    "SaaS tools marketplace",
+    "best AI tools",
+    "AI tools for business",
+    "how AI tools marketplace works",
+    "how to choose AI tools",
+    "are AI tools worth it",
+    "AI tools FAQ",
+    "AI marketplace questions",
+    "AI tools help",
   ],
   alternates: {
     canonical: "https://aiappspace.com/faq",
@@ -27,9 +35,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "AI App Space FAQs | Buying, Selling & Marketplace Help",
+    title: "AI Tools FAQ & Help Guide",
     description:
-      "Get help with buying AI tools, payments, licensing, seller accounts, and digital product support on AI App Space.",
+      "Get answers to your AI tools questions and learn how to use our marketplace effectively.",
     url: "https://aiappspace.com/faq",
     siteName: "AI App Space",
     type: "website",
@@ -39,94 +47,38 @@ export const metadata: Metadata = {
         url: "https://aiappspace.com/logo.png",
         width: 1200,
         height: 630,
-        alt: "AI App Space FAQs",
+        alt: "AI tools FAQ",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI App Space FAQs | Buying, Selling & Marketplace Help",
+    title: "AI Tools FAQ & Help Guide",
     description:
-      "Find answers about buying AI tools, payments, licensing, seller accounts, and marketplace support on AI App Space.",
+      "Get answers to your AI tools questions and learn how to use our marketplace effectively.",
     images: ["https://aiappspace.com/logo.png"],
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
+  "@type": "FAQPage",
+  mainEntity: [
     {
-      "@type": "FAQPage",
-      "@id": "https://aiappspace.com/faq#faqpage",
-      url: "https://aiappspace.com/faq",
-      name: "AI App Space FAQs",
-      description:
-        "Frequently asked questions about buying AI tools, selling digital products, payments, licensing, downloads, and seller accounts on AI App Space.",
-      isPartOf: {
-        "@id": "https://aiappspace.com/#website",
-      },
-      about: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://aiappspace.com/ai-marketplace-faqs#webpage",
-      url: "https://aiappspace.com/ai-marketplace-faqs",
-      name: "AI App Space FAQs | Buying, Selling & Marketplace Help",
-      description:
-        "Find answers about buying AI tools, digital downloads, payments, licensing, seller accounts, and marketplace support on AI App Space.",
-      isPartOf: {
-        "@id": "https://aiappspace.com/#website",
-      },
-      about: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://aiappspace.com/#organization",
-      name: "AI App Space",
-      url: "https://aiappspace.com",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://aiappspace.com/logo.png",
+      "@type": "Question",
+      name: "What is an AI tools marketplace?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "An AI tools marketplace is a platform where users can discover, compare, and access various AI tools for business, productivity, and automation.",
       },
     },
     {
-      "@type": "WebSite",
-      "@id": "https://aiappspace.com/#website",
-      url: "https://aiappspace.com",
-      name: "AI App Space",
-      publisher: {
-        "@id": "https://aiappspace.com/#organization",
+      "@type": "Question",
+      name: "Are AI tools free or paid?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "AI tools can be free, freemium, or paid depending on features and usage.",
       },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: "https://aiappspace.com/products?search={search_term_string}",
-        "query-input": "required name=search_term_string",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://aiappspace.com/ai-marketplace-faqs#breadcrumb",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: "https://aiappspace.com",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "FAQs",
-          item: "https://aiappspace.com/faq",
-        },
-      ],
     },
   ],
 };

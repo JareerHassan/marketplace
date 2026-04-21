@@ -6,24 +6,24 @@ export const metadataBase = new URL('https://aiappspace.com');
 
 export const metadata: Metadata = {
   title: {
-    default: 'AI App Space for AI Tools, SaaS products & Apps',
+    default: 'AI Tools Marketplace | Best AI Apps & SaaS Platform',
     template: '%s | AI App Space',
   },
   description:
-    'Discover premium AI tools, SaaS products, apps, and digital solutions. Buy or sell high-quality AI products built for developers, startups, agencies, and businesses.',
+    'Discover the best AI tools marketplace for business, productivity, and automation. Explore top AI apps and SaaS tools globally.',
   keywords: [
-    'AI App Space',
-    'Digital Marketplace for AI Tools',
     'AI tools marketplace',
+    'AI tools platform',
     'AI apps marketplace',
-    'buy AI tools online',
-    'sell AI tools',
+    'Best Ai Apps',
+    'AI Tools to earn Money online',
     'SaaS marketplace',
-    'digital products marketplace',
-    'AI software marketplace',
-    'startup tools marketplace',
-    'developer tools marketplace',
-    'business AI tools',
+    'best AI tools',
+    'AI tools for business',
+    'best AI tools for business',
+    'AI tools for automation platform',
+    'global AI tools marketplace',
+    'SaaS tools marketplace',
   ],
   applicationName: 'AI App Space',
   category: 'technology',
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'AI App Space for AI Tools, SaaS products & Apps',
+    title: 'Best AI Tools Marketplace for Business & Productivity',
     description:
-      'Discover premium AI tools, SaaS products, apps, and digital solutions for developers, startups, and businesses.',
+      'Explore top AI tools, apps, and SaaS solutions in one powerful marketplace.',
     url: 'https://aiappspace.com',
     siteName: 'AI App Space',
     type: 'website',
@@ -60,15 +60,15 @@ export const metadata: Metadata = {
         url: 'https://aiappspace.com/logo.png', // replace with your real OG image
         width: 1200,
         height: 630,
-        alt: 'AI App Space for AI Tools, SaaS products & Apps',
+        alt: 'AI tools marketplace platform',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI App Space for AI Tools, SaaS products & Apps',
+    title: 'Best AI Tools Marketplace for Business & Productivity',
     description:
-      'Discover premium AI tools, SaaS products, apps, and digital solutions.',
+      'Explore top AI tools, apps, and SaaS solutions in one powerful marketplace.',
     images: ['https://aiappspace.com/logo.png'], // replace with your real image
     // creator: '@yourtwitterhandle',
   },
@@ -83,23 +83,6 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'WebSite',
-      '@id': 'https://aiappspace.com/#website',
-      url: 'https://aiappspace.com',
-      name: 'AI App Space',
-      description:
-        'Digital marketplace for AI tools, SaaS products, apps, and digital solutions.',
-      publisher: {
-        '@id': 'https://aiappspace.com/#organization',
-      },
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: 'https://aiappspace.com/products?search={search_term_string}',
-        'query-input': 'required name=search_term_string',
-      },
-      inLanguage: 'en',
-    },
-    {
       '@type': 'Organization',
       '@id': 'https://aiappspace.com/#organization',
       name: 'AI App Space',
@@ -110,10 +93,22 @@ const jsonLd = {
       },
     },
     {
+      '@type': 'WebSite',
+      '@id': 'https://aiappspace.com/#website',
+      url: 'https://aiappspace.com',
+      name: 'AI App Space',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: 'https://aiappspace.com/search?q={search_term_string}',
+        'query-input': 'required name=search_term_string',
+      },
+      inLanguage: 'en',
+    },
+    {
       '@type': 'WebPage',
       '@id': 'https://aiappspace.com/#webpage',
       url: 'https://aiappspace.com',
-      name: 'AI App Space for AI Tools, SaaS products & Apps',
+      name: 'Best AI Tools Marketplace for Business & Productivity',
       isPartOf: {
         '@id': 'https://aiappspace.com/#website',
       },
@@ -121,7 +116,7 @@ const jsonLd = {
         '@id': 'https://aiappspace.com/#organization',
       },
       description:
-        'Discover premium AI tools, SaaS products, apps, and digital solutions. Buy or sell high-quality AI products built for developers, startups, agencies, and businesses.',
+        'Discover the best AI tools marketplace for business, productivity, and automation. Explore top AI apps and SaaS tools globally.',
       inLanguage: 'en',
     },
   ],

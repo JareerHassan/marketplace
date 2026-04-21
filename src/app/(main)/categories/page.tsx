@@ -4,20 +4,22 @@ import type { Metadata } from "next";
 import CategoriesPage from "./CategoriesPage";
 
 export const metadata: Metadata = {
-  title: "AI App Space Categories | Browse AI Tools by Industry & Function",
+  title: "AI Tools Categories | Find AI Tools by Use Case",
   description:
-    "Explore AI App Space categories to discover AI tools, SaaS products, apps, and digital solutions organized by industry, use case, and business function.",
+    "Browse AI tools categories including marketing, writing, automation, and business tools.",
   keywords: [
-    "AI App Space categories",
+    "AI tools for business",
+    "AI marketing tools",
+    "AI writing tools",
+    "AI automation tools",
+    "AI tools platform",
+    "AI apps marketplace",
+    "Best Ai Apps",
+    "AI Tools to earn Money online",
+    "SaaS tools marketplace",
+    "best AI tools",
     "AI tools categories",
-    "AI software by industry",
-    "AI tools marketplace categories",
-    "browse AI tools online",
-    "AI product categories",
-    "AI SaaS categories",
-    "business AI tools",
-    "developer AI tools",
-    "AI apps by category",
+    "AI tools for small business marketing",
   ],
   alternates: {
     canonical: "https://aiappspace.com/categories",
@@ -27,9 +29,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "AI App Space Categories | Browse AI Tools by Industry & Function",
+    title: "AI Tools Categories",
     description:
-      "Explore AI App Space categories organized by industry, business needs, and practical AI use cases.",
+      "Explore AI tools by category and use case.",
     url: "https://aiappspace.com/categories",
     siteName: "AI App Space",
     type: "website",
@@ -39,96 +41,23 @@ export const metadata: Metadata = {
         url: "https://aiappspace.com/logo.png",
         width: 1200,
         height: 630,
-        alt: "AI App Space Categories",
+        alt: "AI tools categories",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI App Space Categories | Browse AI Tools by Industry & Function",
+    title: "AI Tools Categories",
     description:
-      "Explore AI App Space categories to discover AI tools, SaaS products, apps, and digital solutions.",
+      "Explore AI tools by category and use case.",
     images: ["https://aiappspace.com/logo.png"],
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "CollectionPage",
-      "@id": "https://aiappspace.com/categories#collectionpage",
-      url: "https://aiappspace.com/categories",
-      name: "AI App Space Categories",
-      description:
-        "Browse AI App Space categories to explore AI tools, SaaS products, apps, and digital solutions by industry and function.",
-      isPartOf: {
-        "@id": "https://aiappspace.com/#website",
-      },
-      about: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://aiappspace.com/categories#webpage",
-      url: "https://aiappspace.com/categories",
-      name: "AI App Space Categories | Browse AI Tools by Industry & Function",
-      description:
-        "Explore AI App Space categories to discover AI tools, SaaS products, apps, and digital solutions organized by industry, use case, and business function.",
-      isPartOf: {
-        "@id": "https://aiappspace.com/#website",
-      },
-      about: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://aiappspace.com/#organization",
-      name: "AI App Space",
-      url: "https://aiappspace.com",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://aiappspace.com/logo.png",
-      },
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://aiappspace.com/#website",
-      url: "https://aiappspace.com",
-      name: "AI App Space",
-      publisher: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: "https://aiappspace.com/products?search={search_term_string}",
-        "query-input": "required name=search_term_string",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://aiappspace.com/categories#breadcrumb",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: "https://aiappspace.com",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Categories",
-          item: "https://aiappspace.com/categories",
-        },
-      ],
-    },
-  ],
+  "@type": "CollectionPage",
+  name: "AI Tools Categories",
 };
 
 export default function Page() {

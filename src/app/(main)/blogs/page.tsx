@@ -20,33 +20,34 @@ async function getBlogs() {
 }
 
 export const metadata: Metadata = {
-  title: "AI App Space Blogs | AI Insights, News & Tutorials",
+  title: "Best AI Tools Blog | Guides & Reviews",
   description:
-    "Explore AI App Space blogs for the latest AI insights, tutorials, marketplace news, SaaS trends, and expert articles for creators, developers, startups, and businesses.",
+    "Read guides, reviews, and updates on the best AI tools.",
   keywords: [
-    "AI App Space blogs",
-    "AI blogs",
-    "AI insights",
-    "AI tutorials",
-    "AI marketplace news",
-    "SaaS blog",
-    "AI tools articles",
-    "digital marketplace blog",
-    "AI business insights",
-    "developer AI articles",
+    "best AI tools",
+    "AI tools guide",
+    "AI tools list",
+    "AI tools platform",
+    "AI apps marketplace",
+    "Best Ai Apps",
+    "AI Tools to earn Money online",
+    "SaaS tools marketplace",
+    "AI tools for business",
+    "best free AI tools",
+    "AI tools blog",
   ],
   alternates: {
-    canonical: "https://aiappspace.com/blogs",
+    canonical: "https://aiappspace.com/blog",
   },
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: "AI App Space Blogs | AI Insights, News & Tutorials",
+    title: "AI Tools Blog",
     description:
-      "Explore AI App Space blogs for AI insights, tutorials, marketplace news, and expert articles.",
-    url: "https://aiappspace.com/blogs",
+      "Learn about AI tools and trends.",
+    url: "https://aiappspace.com/blog",
     siteName: "AI App Space",
     type: "website",
     locale: "en_US",
@@ -55,108 +56,23 @@ export const metadata: Metadata = {
         url: "https://aiappspace.com/logo.png",
         width: 1200,
         height: 630,
-        alt: "AI App Space Blogs",
+        alt: "AI tools blog",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI App Space Blogs | AI Insights, News & Tutorials",
+    title: "AI Tools Blog",
     description:
-      "Explore AI App Space blogs for AI insights, tutorials, marketplace news, and expert articles.",
+      "Learn about AI tools and trends.",
     images: ["https://aiappspace.com/logo.png"],
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Blog",
-      "@id": "https://aiappspace.com/blogs#blog",
-      url: "https://aiappspace.com/blogs",
-      name: "AI App Space Blogs",
-      description:
-        "Explore AI App Space blogs for the latest AI insights, tutorials, marketplace news, SaaS trends, and expert articles.",
-      publisher: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "CollectionPage",
-      "@id": "https://aiappspace.com/blogs#collectionpage",
-      url: "https://aiappspace.com/blogs",
-      name: "AI App Space Blogs",
-      description:
-        "Browse blog articles, tutorials, updates, and AI insights on AI App Space.",
-      isPartOf: {
-        "@id": "https://aiappspace.com/#website",
-      },
-      about: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://aiappspace.com/blogs#webpage",
-      url: "https://aiappspace.com/blogs",
-      name: "AI App Space Blogs | AI Insights, News & Tutorials",
-      description:
-        "Explore AI App Space blogs for the latest AI insights, tutorials, marketplace news, SaaS trends, and expert articles for creators, developers, startups, and businesses.",
-      isPartOf: {
-        "@id": "https://aiappspace.com/#website",
-      },
-      about: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://aiappspace.com/#organization",
-      name: "AI App Space",
-      url: "https://aiappspace.com",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://aiappspace.com/logo.png",
-      },
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://aiappspace.com/#website",
-      url: "https://aiappspace.com",
-      name: "AI App Space",
-      publisher: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: "https://aiappspace.com/products?search={search_term_string}",
-        "query-input": "required name=search_term_string",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://aiappspace.com/blogs#breadcrumb",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: "https://aiappspace.com",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Blogs",
-          item: "https://aiappspace.com/blogs",
-        },
-      ],
-    },
-  ],
+  "@type": "Blog",
+  name: "AI App Space Blog",
 };
 
 export default async function BlogsPage() {

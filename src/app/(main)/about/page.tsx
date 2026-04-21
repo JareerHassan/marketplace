@@ -5,20 +5,22 @@ import HeroSection from "@/components/HeroSection";
 import AboutContent from "@/components/AboutContent";
 
 export const metadata: Metadata = {
-  title: "About AI App Space",
+  title: "About AI App Space | AI Tools Marketplace",
   description:
-    "Learn about AI App Space, built to help creators, startups, and businesses discover, buy, and sell AI tools, SaaS products, and digital solutions.",
+    "Learn about AI App Space, a leading AI tools platform helping businesses discover and use the best AI solutions worldwide.",
   keywords: [
-    "About AI App Space",
-    "AI App Space",
-    "AI digital marketplace",
-    "SaaS marketplace ecosystem",
-    "sell AI tools online",
-    "buy AI software",
-    "digital products marketplace",
-    "AI marketplace for startups",
-    "AI SaaS products",
-    "AI business tools",
+    "AI tools platform",
+    "AI marketplace",
+    "AI tools directory",
+    "AI SaaS platform",
+    "AI apps marketplace",
+    "Best Ai Apps",
+    "AI Tools to earn Money online",
+    "SaaS tools marketplace",
+    "best AI tools",
+    "AI tools for business",
+    "best AI tools platform for business",
+    "AI tools marketplace platform",
   ],
   alternates: {
     canonical: "https://aiappspace.com/about",
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About AI App Space",
     description:
-      "Learn about AI App Space and how it helps creators and businesses grow with AI tools and SaaS products.",
+      "Discover our mission to simplify access to AI tools globally.",
     url: "https://aiappspace.com/about",
     siteName: "AI App Space",
     type: "website",
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
         url: "https://aiappspace.com/logo.png",
         width: 1200,
         height: 630,
-        alt: "About AI App Space",
+        alt: "AI tools platform",
       },
     ],
   },
@@ -48,80 +50,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About AI App Space",
     description:
-      "Learn about AI App Space for AI tools, apps, and SaaS products.",
+      "Discover our mission to simplify access to AI tools globally.",
     images: ["https://aiappspace.com/logo.png"],
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://aiappspace.com/about#webpage",
-      url: "https://aiappspace.com/about",
-      name: "About AI App Space",
-      description:
-        "Learn about AI App Space, built to help creators, startups, and businesses discover, buy, and sell AI tools, SaaS products, and digital solutions.",
-      isPartOf: {
-        "@id": "https://aiappspace.com/#website",
-      },
-      about: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "AboutPage",
-      "@id": "https://aiappspace.com/about#aboutpage",
-      url: "https://aiappspace.com/about",
-      name: "About AI App Space",
-      description:
-        "Learn about AI App Space and how it helps creators and businesses grow with AI tools and SaaS products.",
-      mainEntity: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://aiappspace.com/#organization",
-      name: "AI App Space",
-      url: "https://aiappspace.com",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://aiappspace.com/logo.png",
-      },
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://aiappspace.com/#website",
-      url: "https://aiappspace.com",
-      name: "AI App Space",
-      publisher: {
-        "@id": "https://aiappspace.com/#organization",
-      },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://aiappspace.com/about#breadcrumb",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: "https://aiappspace.com",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "About",
-          item: "https://aiappspace.com/about",
-        },
-      ],
-    },
-  ],
+  "@type": "AboutPage",
+  name: "About AI App Space",
+  url: "https://aiappspace.com/about",
 };
 
 export default function AboutPage() {

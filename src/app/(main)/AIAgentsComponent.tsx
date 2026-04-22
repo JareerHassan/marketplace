@@ -9,7 +9,7 @@ const WORKFLOW_IMAGE_URL = "https://asset.uinjkt.ac.id/uploads/nrVDCWWX/2024/03/
 const AgentControlSection: React.FC = () => {
   return (
     // Main container with deep purple background, setting padding and text color
-    <div className="min-h-screen py-16 md:py-24 font-inter">
+    <div className="min-h-screen  font-inter">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* -------------------- 1. HEADER SECTION -------------------- */}

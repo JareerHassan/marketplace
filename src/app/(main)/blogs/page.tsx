@@ -20,9 +20,9 @@ async function getBlogs() {
 }
 
 export const metadata: Metadata = {
-  title: "Best AI Tools Blog | Guides & Reviews",
+  title: "Best AI Tools & SaaS Products Articles | Guides & Reviews",
   description:
-    "Read guides, reviews, and updates on the best AI tools.",
+    "Read guides, reviews, and updates on the best AI tools & SaaS products for business and productivity.",
   keywords: [
     "best AI tools",
     "AI tools guide",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "AI tools blog",
   ],
   alternates: {
-    canonical: "https://aiappspace.com/blog",
+    canonical: "https://aiappspace.com/blogs",
   },
   robots: {
     index: true,
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "AI Tools Blog",
     description:
       "Learn about AI tools and trends.",
-    url: "https://aiappspace.com/blog",
+    url: "https://aiappspace.com/blogs",
     siteName: "AI App Space",
     type: "website",
     locale: "en_US",
@@ -89,16 +89,8 @@ export default async function BlogsPage() {
         <HeroSection />
 
         <div className="py-16 px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-300 mb-4 tracking-tight">
-                Latest <span className="text-[#ADFF2F]">Insights</span>
-              </h1>
-              <div className="h-1.5 w-20 bg-[#ADFF2F] mx-auto rounded-full"></div>
-              <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
-                Explore our latest articles, tutorials, and news from AI App Space.
-              </p>
-            </div>
+          <div className=" mx-auto">
+           
 
             {blogs.length === 0 ? (
               <div className="text-center py-20 rounded-3xl shadow-sm border border-gray-100">

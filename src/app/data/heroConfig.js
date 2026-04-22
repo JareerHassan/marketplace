@@ -55,11 +55,11 @@ export const HERO_CONFIG = {
   },
 
   "/terms": {
-    title: "Terms & Conditions",
+    title: "Terms of Service",
     subtitle: "Read the terms and conditions of using our AI platform.",
     breadcrumb: [
       { label: "Home", href: "/" },
-      { label: "Terms", href: "/terms" },
+      { label: "Terms of Service", href: "/terms" },
     ],
   },
 
@@ -68,7 +68,16 @@ export const HERO_CONFIG = {
     subtitle: "Understand how we handle your data securely and transparently.",
     breadcrumb: [
       { label: "Home", href: "/" },
-      { label: "Privacy", href: "/privacy" },
+      { label: "Privacy Policy", href: "/privacy" },
+    ],
+  },
+
+  "/disclaimer": {
+    title: "Disclaimer",
+    subtitle: "Important notices about our marketplace, listings, and website content.",
+    breadcrumb: [
+      { label: "Home", href: "/" },
+      { label: "Disclaimer", href: "/disclaimer" },
     ],
   },
 

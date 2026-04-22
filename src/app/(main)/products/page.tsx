@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import ExplorePage from "./ExplorePageClient";
 
 export const metadata: Metadata = {
-  title: "AI Apps for Business | Explore AI Tools",
+  title: "AI Apps for Business | Explore AI Tools & SaaS Products",
   description:
     "Explore AI apps and tools designed for business, productivity, and automation.",
   keywords: [

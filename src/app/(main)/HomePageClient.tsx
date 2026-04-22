@@ -142,7 +142,7 @@ export default function HomePage() {
           <HoverProductCards />
 
           {/* Trending Categories */}
-          <section className="py-16 mx-auto container">
+          <section className=" mx-auto container">
             <div className="container px-4 md:px-6">
               <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#b3ec25] via-from-[#b3ec25] to-purple-200 bg-clip-text text-transparent">
                 Trending Categories
@@ -158,7 +158,7 @@ export default function HomePage() {
                   <p>No categories available at the moment.</p>
                 </div>
               ) : (
-                <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                   {categories.slice(0, 4).map((category) => {
                     const IconComponent = getCategoryIcon(category);
                     const iconUrl = getCategoryIconUrl(category);
@@ -233,7 +233,7 @@ export default function HomePage() {
           <AIBanner />
 
           {/* How It Works */}
-          <section className="py-16 md:py-24 mx-auto container">
+          <section className="mb-12 mx-auto container">
             <div className="container px-4 md:px-6">
               <h2 className="text-3xl font-bold tracking-tight text-center">How It Works</h2>
               <div className="mt-12 grid md:grid-cols-2 gap-12">

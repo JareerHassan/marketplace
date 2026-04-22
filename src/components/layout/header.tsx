@@ -22,7 +22,6 @@ const navLinks = [
   { href: '/featuredapps', label: 'Featured Apps' },
   { href: '/products', label: 'Products' },
   { href: '/categories', label: 'Categories' },
-  // { href: '/blogs', label: 'Blogs' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact Us' },
 ];
@@ -59,11 +58,16 @@ function ThemeToggle() {
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
+  const { resolvedTheme } = useTheme();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [mounted, setMounted] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
     const token =
       typeof window !== 'undefined'
         ? localStorage.getItem('userToken')
@@ -83,6 +87,8 @@ export default function Header() {
     } else {
       router.push('/auth/login');
     }
+
+    setIsSheetOpen(false);
   };
 
   const handleSearch = () => {
@@ -91,8 +97,14 @@ export default function Header() {
         `/products?search=${encodeURIComponent(searchQuery.trim())}`
       );
       setSearchQuery('');
+      setIsSheetOpen(false);
     }
   };
+
+  const currentLogo =
+    mounted && resolvedTheme === 'light'
+      ? '/assets/logo3.png'
+      : '/assets/logo1.png';
 
   const renderNavLinks = (isMobile = false) => (
     <nav
@@ -105,6 +117,9 @@ export default function Header() {
         <Link
           key={link.href}
           href={link.href}
+          onClick={() => {
+            if (isMobile) setIsSheetOpen(false);
+          }}
           className={cn(
             'text-sm font-medium transition-colors hover:text-primary',
             pathname.startsWith(link.href)
@@ -122,15 +137,15 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-sm">
       <div className="container flex h-16 items-center justify-between px-3">
-
         {/* Mobile Logo */}
         <Link href="/" className="flex items-center lg:hidden">
           <Image
-            src="/assets/logo1.png"
+            src={currentLogo}
             alt="AiAppSpace Logo"
             width={120}
             height={40}
             className="object-contain"
+            priority
           />
         </Link>
 
@@ -138,11 +153,12 @@ export default function Header() {
         <div className="mr-4 hidden lg:flex items-center">
           <Link href="/" className="mr-6 flex items-center">
             <Image
-              src="/assets/logo1.png"
+              src={currentLogo}
               alt="AiAppSpace Logo"
               width={180}
               height={60}
               className="object-contain"
+              priority
             />
           </Link>
 
@@ -177,11 +193,10 @@ export default function Header() {
 
         {/* Right Section */}
         <div className="flex items-center gap-2">
-
           <ThemeToggle />
 
           {/* Mobile Menu */}
-          <Sheet>
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
@@ -193,7 +208,6 @@ export default function Header() {
             </SheetTrigger>
 
             <SheetContent side="left" className="pr-0">
-
               <div className="my-4 px-6">
                 <form
                   onSubmit={(e) => {
@@ -231,7 +245,6 @@ export default function Header() {
                   </Button>
                 </div>
               </div>
-
             </SheetContent>
           </Sheet>
 
@@ -243,7 +256,6 @@ export default function Header() {
           >
             Submit Tool
           </Button>
-
         </div>
       </div>
     </header>

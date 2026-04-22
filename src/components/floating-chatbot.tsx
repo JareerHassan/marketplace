@@ -157,42 +157,56 @@ export default function FloatingChatbot() {
       <Button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg z-50",
+          "fixed z-50 rounded-full shadow-lg",
+          "h-12 w-12 bottom-4 right-4",
+          "sm:h-14 sm:w-14 sm:bottom-6 sm:right-6",
           "bg-primary hover:bg-primary/90 text-black",
           "transition-all duration-300",
           isOpen && "scale-90"
         )}
         size="icon"
+        aria-label={isOpen ? "Close chatbot" : "Open chatbot"}
       >
         {isOpen ? (
-          <Icons.X className="h-6 w-6" />
+          <Icons.X className="h-5 w-5 sm:h-6 sm:w-6" />
         ) : (
-          <Icons.Bot className="h-6 w-6" />
+          <Icons.Bot className="h-5 w-5 sm:h-6 sm:w-6" />
         )}
       </Button>
 
       {/* Chat Widget */}
       {isOpen && (
-        <Card className="fixed bottom-24 right-6 w-96 h-[450px] shadow-2xl z-50 flex flex-col">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-            <div className="flex items-center gap-2">
-              <Avatar className="h-8 w-8">
+        <Card
+          className={cn(
+            "fixed z-50 flex flex-col shadow-2xl overflow-hidden",
+            "bottom-20 left-3 right-3 w-auto",
+            "h-[calc(100dvh-6rem)] max-h-[640px]",
+            "sm:bottom-24 sm:right-6 sm:left-auto sm:w-96 sm:h-[450px]"
+          )}
+        >
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 border-b px-4 py-3">
+            <div className="flex items-center gap-2 min-w-0">
+              <Avatar className="h-8 w-8 shrink-0">
                 <AvatarFallback className="bg-primary/20 text-primary">
                   <Icons.Bot className="h-4 w-4" />
                 </AvatarFallback>
               </Avatar>
-              <div>
-                <h3 className="font-semibold text-sm">AI Assistant</h3>
-                <p className="text-xs text-muted-foreground">Ask me anything</p>
+              <div className="min-w-0">
+                <h3 className="font-semibold text-sm truncate">AI Assistant</h3>
+                <p className="text-xs text-muted-foreground truncate">
+                  Ask me anything
+                </p>
               </div>
             </div>
-            <div className="flex items-center gap-1">
+
+            <div className="flex items-center gap-1 shrink-0">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={handleClear}
-                className="h-7 w-7 p-0"
+                className="h-8 w-8 p-0"
                 title="New chat"
+                aria-label="New chat"
               >
                 <Icons.PlusCircle className="h-4 w-4" />
               </Button>
@@ -200,25 +214,27 @@ export default function FloatingChatbot() {
                 variant="ghost"
                 size="sm"
                 onClick={handleClose}
-                className="h-7 w-7 p-0"
+                className="h-8 w-8 p-0"
                 title="Close"
+                aria-label="Close"
               >
                 <Icons.X className="h-4 w-4" />
               </Button>
             </div>
           </CardHeader>
 
-          <CardContent className="flex-1 flex flex-col p-0 overflow-hidden">
+          <CardContent className="flex flex-1 flex-col p-0 min-h-0">
             {/* Messages */}
-<div
-  className="flex-1 overflow-y-auto p-3 space-y-3 max-h-[380px] chat-scroll"
-  style={{
-    scrollbarWidth: "none",
-    msOverflowStyle: "none",
-  }}
->              {messages.length === 0 && (
+            <div
+              className="chat-scroll flex-1 overflow-y-auto p-3 space-y-3 min-h-0"
+              style={{
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+              }}
+            >
+              {messages.length === 0 && (
                 <div className="flex items-center justify-center h-full">
-                  <div className="text-center">
+                  <div className="text-center px-4">
                     <Icons.Bot className="h-12 w-12 mx-auto mb-2 text-muted-foreground/50" />
                     <p className="text-sm text-muted-foreground">
                       Start a conversation...
@@ -247,13 +263,15 @@ export default function FloatingChatbot() {
 
                     <div
                       className={cn(
-                        "max-w-[80%] rounded-lg px-3 py-2 text-sm",
+                        "max-w-[85%] sm:max-w-[80%] rounded-lg px-3 py-2 text-sm break-words",
                         isUser
                           ? "bg-primary text-primary-foreground"
                           : "bg-muted"
                       )}
                     >
-                      <p className="whitespace-pre-wrap">{message.content}</p>
+                      <p className="whitespace-pre-wrap break-words">
+                        {message.content}
+                      </p>
 
                       {/* Recommendations */}
                       {message.recommendations &&
@@ -267,17 +285,20 @@ export default function FloatingChatbot() {
                               >
                                 <div className="flex items-start justify-between gap-2">
                                   <div className="flex-1 min-w-0">
-                                    <div className="flex items-center gap-1 mb-1">
+                                    <div className="flex items-center gap-1 mb-1 flex-wrap">
                                       <h5 className="font-semibold truncate">
                                         {rec.name}
                                       </h5>
                                       {rec.pricingModel && (
-                                        <Badge variant="outline" className="text-[10px] shrink-0">
+                                        <Badge
+                                          variant="outline"
+                                          className="text-[10px] shrink-0"
+                                        >
                                           {rec.pricingModel}
                                         </Badge>
                                       )}
                                     </div>
-                                    <p className="text-muted-foreground line-clamp-2 text-[10px]">
+                                    <p className="text-muted-foreground line-clamp-2 text-[10px] break-words">
                                       {rec.shortDescription}
                                     </p>
                                   </div>
@@ -324,20 +345,20 @@ export default function FloatingChatbot() {
             {/* Input */}
             <form
               onSubmit={handleSubmit}
-              className="p-4 flex items-center gap-2"
+              className="border-t p-3 sm:p-4 flex items-center gap-2 bg-background"
             >
               <Input
                 ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask me anything..."
-                className="flex-1 h-9 text-sm"
+                className="flex-1 h-10 text-sm"
                 disabled={isLoading || !isInitialized}
               />
               <Button
                 type="submit"
                 size="sm"
-                className="h-9 px-3"
+                className="h-10 px-3 shrink-0"
                 disabled={isLoading || !isInitialized || !input.trim()}
               >
                 <Icons.Send className="h-4 w-4" />

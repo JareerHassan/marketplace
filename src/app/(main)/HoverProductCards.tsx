@@ -70,7 +70,7 @@ export default function HoverProductCards() {
     };
 
     return (
-        <section className="py-16 container mx-auto">
+        <section className="py-12 container mx-auto">
             <div className="px-4 md:px-6 mx-auto">
                 <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#b3ec25] via-[#b3ec25]to-purple-200 bg-clip-text text-transparent">
                     Trending AI Tools

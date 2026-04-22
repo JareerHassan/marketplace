@@ -239,35 +239,33 @@ const faqData: FAQItem[] = [
     answer: "Yes, AI tools are becoming essential for businesses to stay competitive, improve efficiency, and scale operations.",
   },
 ];
-
-// 2. FAQ Accordion Component
-const FAQItemComponent: React.FC<{ item: FAQItem, index: number, open: boolean, toggle: (index: number) => void }> = ({ item, index, open, toggle }) => {
-
+const FAQItemComponent: React.FC<{
+  item: FAQItem;
+  index: number;
+  open: boolean;
+  toggle: (index: number) => void;
+}> = ({ item, index, open, toggle }) => {
   return (
     <div className="border-b border-gray-200 dark:border-gray-700">
       <button
         onClick={() => toggle(index)}
-        // Simplified classes, keeping p-5 for spacing
-        className="w-full flex justify-between items-center p-5 text-left transition duration-300 "
-        aria-expanded={open}
-        aria-controls={`faq-answer-${index}`}
+        className="w-full flex justify-between items-start sm:items-center gap-4 px-4 py-4 sm:px-6 sm:py-5 text-left transition duration-300"
       >
-        {/* Simplified content: just the question span */}
-        <span className="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <span className="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100 leading-snug">
           {item.question}
         </span>
-        {/* Reverted to Plus icon with rotate-45 animation, using orange color for consistency */}
+
         <Plus
-          className={`w-6 h-6 text-primary  transform transition-transform duration-300 ${open ? 'rotate-45' : ''
+          className={`min-w-[22px] w-5 h-5 sm:w-6 sm:h-6 text-primary transition-transform duration-300 ${open ? "rotate-45" : ""
             }`}
         />
       </button>
+
       <div
-        id={`faq-answer-${index}`}
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${open ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+        className={`overflow-hidden transition-all duration-500 ${open ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
           }`}
       >
-        <p className="p-5 pt-0 text-gray-600 dark:text-gray-300 leading-relaxed">
+        <p className="px-4 pb-4 sm:px-6 text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
           {item.answer}
         </p>
       </div>
@@ -275,58 +273,66 @@ const FAQItemComponent: React.FC<{ item: FAQItem, index: number, open: boolean, 
   );
 };
 
-// 3. Main Application Component
 const App = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [activeCategory, setActiveCategory] = useState<string>("All");
 
   const toggleIndex = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const categories = ['All', ...Array.from(new Set(faqData.map(item => item.category)))];
+  const categories = [
+    "All",
+    ...Array.from(new Set(faqData.map((item) => item.category))),
+  ];
 
-  const filteredFaqData = activeCategory === 'All'
-    ? faqData
-    : faqData.filter(item => item.category === activeCategory);
+  const filteredFaqData =
+    activeCategory === "All"
+      ? faqData
+      : faqData.filter((item) => item.category === activeCategory);
 
   return (
     <>
       <HeroSection />
 
-      <div className="min-h-screen font-sans p-4 sm:p-8">
-        <header className="text-center py-12">
-          <h2 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight sm:text-6xl">
+      <div className="min-h-screen font-sans px-3 sm:px-6 lg:px-10 py-6 sm:py-10">
+
+        {/* HEADER */}
+        <header className="text-center mx-auto mb-10 sm:mb-14">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white mb-3 sm:mb-4 leading-tight">
             Everything You Need to Know
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto">
-            Here you’ll find answers related to digital purchases, product access, payments, licensing, and selling on our platform. If you cannot find your answer, our support team is ready to help.          </p>
+
+          <p className="text-sm sm:text-lg text-gray-600 dark:text-gray-400">
+            Here you’ll find answers related to digital purchases, product access,
+            payments, licensing, and selling on our platform.
+          </p>
         </header>
 
-        <main className="max-w-5xl mx-auto">
-          {/* Category Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8 p-3">
-            {categories.map(category => (
+        <main className=" mx-auto">
+
+          {/* CATEGORY FILTER */}
+          <div className="flex overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 mb-6 sm:mb-10 pb-2">
+            {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => {
                   setActiveCategory(category);
-                  setOpenIndex(null); // Close any open accordion when changing category
+                  setOpenIndex(null);
                 }}
-                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 shadow-sm
+                className={`whitespace-nowrap px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all duration-200
                 ${activeCategory === category
-                    ? 'bg-primary text-white shadow-primary-500/50'
-                    : ' text-gray-700 hover:bg-[#1b1541] hover:text-orange-600 dark:text-gray-200 dark:hover:bg-[#1b1541]'
-                  }
-              `}
+                    ? "bg-primary text-white"
+                    : "bg-gray-100 dark:bg-[#1b1541] text-gray-700 dark:text-gray-200 hover:bg-[#1b1541] hover:text-orange-500"
+                  }`}
               >
                 {category}
               </button>
             ))}
           </div>
 
-          {/* FAQ Accordion List */}
-          <div className="rounded-xl overflow-hidden">
+          {/* FAQ LIST */}
+          <div className="bg-white dark:bg-[#0f0b2c] rounded-xl shadow-md overflow-hidden">
             {filteredFaqData.length > 0 ? (
               filteredFaqData.map((item, index) => (
                 <FAQItemComponent
@@ -338,24 +344,30 @@ const App = () => {
                 />
               ))
             ) : (
-              <div className="p-10 text-center text-gray-500 dark:text-gray-400">
-                No FAQs found in the "{activeCategory}" category.
+              <div className="p-6 text-center text-gray-500">
+                No FAQs found.
               </div>
             )}
           </div>
 
-          {/* Contact CTA */}
-          <div className="mt-12 p-8 text-center bg-[#1b1541] dark:bg-[#1b1541]/20 rounded-xl border border-gray/10 shadow-inner">
-            <h3 className="text-2xl font-bold text-white  mb-3">Still have questions?</h3>
-            <p className="text-white mb-4">
-              If you cannot find the answer to your question, please reach out to our customer support team for assistance.            </p>
+          {/* CTA */}
+          <div className="mt-10 sm:mt-14 p-5 sm:p-8 text-center bg-[#1b1541] rounded-xl">
+            <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
+              Still have questions?
+            </h3>
+
+            <p className="text-sm sm:text-base text-white mb-4">
+              If you cannot find the answer, contact our support team.
+            </p>
+
             <a
               href="/contact"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-primary hover:bg-primary/80 transition duration-150 ease-in-out transform hover:scale-105"
+              className="inline-block px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base rounded-full bg-primary text-white hover:scale-105 transition"
             >
               Contact Support
             </a>
           </div>
+
         </main>
       </div>
     </>

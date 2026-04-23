@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin
+Disallow: /seller/
+Disallow: /buyer/
+
+Sitemap: https://aiappspace.com/sitemap.xml

@@ -3,24 +3,59 @@ import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | AI App Space",
+  metadataBase: new URL("https://aiappspace.com"),
+  title: "Terms of Service | AI Tools Marketplace — AI App Space",
   description:
-    "Terms and conditions for using AI App Space—our marketplace for AI tools, SaaS products, digital apps, and related services.",
+    "Read the Terms of Service for AI App Space: rules for using our AI tools marketplace, accounts, purchases, seller listings, acceptable use, and liability.",
+  keywords: [
+    "AI App Space terms",
+    "terms of service",
+    "terms and conditions",
+    "AI marketplace terms",
+    "AI tools marketplace agreement",
+    "user agreement",
+    "seller terms",
+    "digital marketplace terms",
+    "AI SaaS marketplace",
+    "aiappspace.com terms",
+  ],
   alternates: {
-    canonical: "https://aiappspace.com/terms",
+    canonical: "/terms",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   openGraph: {
     title: "Terms of Service | AI App Space",
     description:
-      "Read the terms governing your use of AI App Space, including accounts, purchases, listings, and acceptable use.",
+      "Official terms for using AI App Space: accounts, marketplace purchases, listings, acceptable use, IP, and dispute resolution.",
     url: "https://aiappspace.com/terms",
     siteName: "AI App Space",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "https://aiappspace.com/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "AI App Space — Terms of Service",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service | AI App Space",
+    description:
+      "Terms and conditions for the AI App Space AI tools and SaaS marketplace.",
+    images: ["https://aiappspace.com/logo.png"],
   },
 };
 
@@ -30,10 +65,7 @@ export default function TermsPage() {
             <HeroSection />
 
     <div className="container mx-auto px-4 py-12 md:py-20">
-      
       <div className=" mx-auto">
-     
-
         <article className="prose prose-invert prose-lg mx-auto text-foreground/80 space-y-8 max-w-none">
           <section>
             <h2 className="text-2xl font-bold text-accent not-prose">1. Agreement</h2>

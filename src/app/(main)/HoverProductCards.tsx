@@ -77,8 +77,7 @@ export default function HoverProductCards() {
                 </h2>
                <div className="flex gap-6 ">
                 <p className="mt-2 max-w-6xl text-muted-foreground">
-                    Explore powerful tools crafted for creators, developers, startups, and digital entrepreneurs. Our marketplace highlights innovative AI-driven solutions designed to automate workflows, enhance productivity, and accelerate product development. Every tool featured here reflects quality, performance, and real-world usability for modern digital professionals.
-                </p>
+Explore the best AI tools and AI apps for business crafted for creators, developers, startups, and digital entrepreneurs. Our AI tools marketplace highlights innovative AI business tools and SaaS tools designed to automate workflows, boost productivity, and accelerate product development. From AI tools for automation to AI productivity tools, every solution featured here is selected for quality, performance, and real-world usability. Discover trusted AI software for business and explore a modern AI apps marketplace built for today’s digital professionals.                </p>
        
                 </div>
 

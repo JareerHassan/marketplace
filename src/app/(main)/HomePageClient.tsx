@@ -148,7 +148,7 @@ export default function HomePage() {
                 Trending Categories
               </h2>
               <p className="mt-2 max-w-6xl text-muted-foreground">
-                Discover tools organized by business niche and AI functionality. Whether you are looking for writing automation, marketing optimization, coding assistance, cybersecurity tools, AI agents, or productivity enhancements, our structured category system makes it easy to find exactly what fits your needs. Our marketplace is built around both industry-specific and functional AI classifications to ensure intelligent discovery.                </p>
+Discover AI tools for business organized by niche, use case, and functionality. Whether you are looking for AI writing tools, AI marketing tools, AI coding tools, AI cybersecurity tools, AI agents, or AI productivity tools, our AI tools marketplace makes it easy to find the right solution for your goals. Our structured AI tools categories are designed to support intelligent discovery, helping users explore the best AI apps marketplace for business growth, automation, and efficiency. Browse industry-specific and function-based categories to quickly access the most relevant AI business tools and AI software for business.                           </p>
               {loadingCategories ? (
                 <div className="mt-12 flex items-center justify-center py-12">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
@@ -194,8 +194,7 @@ export default function HomePage() {
           <section className="py-16 mx-auto container">
             <div className="px-4 md:px-6">
               <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#b3ec25] via-[#b3ec25] to-purple-200 bg-clip-text text-transparent">Featured AI Tools</h2>
-              <p className="mt-2 text-muted-foreground">Hand-picked digital assets from our growing AI ecosystem are selected based on reliability, innovation, and practical business application. Our featured section represents high-value digital solutions that help businesses automate operations, improve decision-making, enhance creative output, and scale efficiently. <br />
-                Each product is reviewed to maintain marketplace quality standards and ensure a secure purchasing experience.
+              <p className="mt-2 text-muted-foreground">Explore featured AI tools and high-value digital assets hand-picked from our growing AI tools marketplace. Each solution is selected based on reliability, innovation, and real-world business value. Our featured section includes the best AI tools, AI apps for business, and AI business tools that help companies automate operations, improve decision-making, enhance creative output, and scale efficiently. Every product is reviewed to meet marketplace quality standards and deliver a secure, trusted experience for users searching for powerful AI software for business and top-performing SaaS tools.
               </p>
               {loadingProducts ? (
                 <div className="mt-12 flex items-center justify-center py-12">
@@ -242,14 +241,14 @@ export default function HomePage() {
                     <Icons.ShoppingCart className="h-10 w-10 text-primary" />
                   </div>
                   <h3 className="mt-6 text-2xl font-bold">For Buyers</h3>
-                  <p className="mt-2 text-muted-foreground">Discover AI tools and digital solutions across multiple industries and use cases. Compare features, evaluate practical applications, and securely purchase products with instant digital access. Integration is seamless, allowing you to implement solutions directly into your business workflow without delays.</p>
+                  <p className="mt-2 text-muted-foreground">Discover the best AI tools, AI apps for business, and digital solutions across multiple industries and use cases. Compare features, evaluate real-world applications, and securely purchase through our trusted AI tools marketplace. From AI business tools and AI productivity tools to advanced AI software for business, our platform makes it easy to find and implement the right solutions directly into your workflow without delays.</p>
                 </div>
                 <div className="flex flex-col items-center text-center">
                   <div className="p-3 rounded-full bg-accent/10 border-2 border-accent/30">
                     <Icons.DollarSign className="h-10 w-10 text-accent" />
                   </div>
                   <h3 className="mt-6 text-2xl font-bold">For Sellers</h3>
-                  <p className="mt-2 text-muted-foreground">List your applications, AI models, APIs, SaaS tools, templates, and digital solutions in a marketplace built for growth. Gain access to a global audience of innovators, manage your sales through an advanced dashboard, and monetize your digital expertise with transparent reporting and structured revenue models.</p>
+                  <p className="mt-2 text-muted-foreground">List your applications, AI models, APIs, SaaS tools, templates, and digital products in a growing AI apps marketplace built for scale. Reach a global audience searching for innovative AI tools for business, manage sales through an advanced dashboard, and monetize your expertise with transparent reporting, structured revenue models, and a marketplace designed to support long-term digital growth.</p>
                 </div>
               </div>
             </div>

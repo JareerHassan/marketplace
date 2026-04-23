@@ -13,22 +13,21 @@ const AgentControlSection: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* -------------------- 1. HEADER SECTION -------------------- */}
-        <header className="text-center mb-20 md:mb-32">
+        <header className="text-start  mb-20 md:mb-32">
           {/* Accent Question */}
           <h2 className="text-lg font-semibold text-primary mb-4">
           Because control matters
           </h2>
 
           {/* Main Statement */}
-          <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 max-w-5xl mx-auto">
+          <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 max-w-5xl ">
             Why Build AI Agents with Modern Automation?
 
           </h2>
 
           {/* Sub-description */}
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-     AI automation should not be unpredictable. Our marketplace promotes tools that combine structured logic with intelligent automation to create stable, production-ready environments. Modern AI systems require guardrails, monitoring capabilities, workflow integration, and human oversight when necessary.
-          </p>
+          <p className="text-lg text-gray-400 max-w-3xl ">
+Modern AI automation tools should be reliable, scalable, and easy to manage. Our AI tools marketplace features powerful solutions that combine structured workflows with intelligent automation to help businesses build stable, production-ready AI agents and AI assistant tools. From workflow integration and monitoring to guardrails and human oversight, these AI business tools are designed to improve efficiency without sacrificing control. Explore trusted AI tools for automation and AI software for business built to support secure, high-performance digital operations.          </p>
         </header>
 
         {/* -------------------- 2. FEATURE DETAIL SECTION -------------------- */}
@@ -43,7 +42,7 @@ const AgentControlSection: React.FC = () => {
  Reliable AI solutions include deterministic automation steps blended with intelligent decision-making, ensuring predictable outcomes even in complex workflows. With fallback logic and structured error handling, digital businesses can implement AI confidently without compromising operational stability.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed">
-When AI supports critical business processes, oversight and structured control become essential. Our ecosystem encourages tools designed for responsible deployment and scalable automation.            </p>
+When AI tools for business support critical workflows, oversight, monitoring, and structured automation become essential. Our AI tools marketplace promotes trusted AI software for business designed for responsible deployment, scalable automation, and long-term reliability.          </p>
           </div>
 
           {/* Right Column: Visual Screenshot/Image */}

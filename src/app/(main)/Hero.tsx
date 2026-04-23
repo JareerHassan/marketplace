@@ -21,7 +21,7 @@ interface HeroSectionProps {
 }
 
 const dynamicWords = ["AI Tools", "Apps", "Digital Products"];
-const quickCategories = ["ChatGPT Bot", "AI Writer", "AI Templates", "Data Models", "Prompt Library"];
+const quickCategories = [ "AI Chatbot", "Fire Wave VPN", "Web Security", "Device Scan", "AI Voice Tool"];
 
 const HeroSection: React.FC<HeroSectionProps> = ({ heroBg }) => {
   const background = heroBg || PlaceHolderImages.find((p) => p.id === "hero-background");

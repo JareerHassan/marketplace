@@ -3,24 +3,59 @@ import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
 
 export const metadata: Metadata = {
-  title: "Disclaimer | AI App Space",
+  metadataBase: new URL("https://aiappspace.com"),
+  title: "Disclaimer | AI Tools Marketplace — AI App Space",
   description:
-    "Important disclaimers regarding AI App Space, our marketplace listings, third-party tools, and general use of this website.",
+    "Read the AI App Space Disclaimer for important notices about third-party AI tools, marketplace listings, content accuracy, and use of this website.",
+  keywords: [
+    "disclaimer",
+    "AI App Space disclaimer",
+    "AI marketplace disclaimer",
+    "AI tools disclaimer",
+    "third-party tools disclaimer",
+    "content accuracy disclaimer",
+    "website disclaimer",
+    "SaaS marketplace disclaimer",
+    "liability disclaimer",
+    "aiappspace.com disclaimer",
+  ],
   alternates: {
-    canonical: "https://aiappspace.com/disclaimer",
+    canonical: "/disclaimer",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   openGraph: {
     title: "Disclaimer | AI App Space",
     description:
-      "Read our general disclaimers for the AI App Space marketplace and website.",
+      "Official Disclaimer for AI App Space covering third-party products, content use, and liability limits.",
     url: "https://aiappspace.com/disclaimer",
     siteName: "AI App Space",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "https://aiappspace.com/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "AI App Space — Disclaimer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Disclaimer | AI App Space",
+    description:
+      "Important disclaimer notices for AI App Space and its AI tools marketplace listings.",
+    images: ["https://aiappspace.com/logo.png"],
   },
 };
 

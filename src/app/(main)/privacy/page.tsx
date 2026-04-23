@@ -4,24 +4,59 @@ import HeroSection from "@/components/HeroSection";
 
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | AI App Space",
+  metadataBase: new URL("https://aiappspace.com"),
+  title: "Privacy Policy | AI Tools Marketplace — AI App Space",
   description:
-    "Learn how AI App Space collects, uses, stores, and protects your information when you use our AI tools marketplace and related services.",
+    "Read the AI App Space Privacy Policy to understand how we collect, use, store, and protect personal information across our AI tools marketplace.",
+  keywords: [
+    "privacy policy",
+    "AI App Space privacy",
+    "AI tools marketplace privacy",
+    "data protection policy",
+    "personal data policy",
+    "AI marketplace privacy policy",
+    "SaaS marketplace privacy",
+    "cookie and data policy",
+    "user data rights",
+    "aiappspace.com privacy",
+  ],
   alternates: {
-    canonical: "https://aiappspace.com/privacy",
+    canonical: "/privacy",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   openGraph: {
     title: "Privacy Policy | AI App Space",
     description:
-      "How we handle your data on AI App Space—our marketplace for AI tools, SaaS products, and digital apps.",
+      "Official Privacy Policy for AI App Space covering data collection, usage, security, and user rights.",
     url: "https://aiappspace.com/privacy",
     siteName: "AI App Space",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "https://aiappspace.com/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "AI App Space — Privacy Policy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | AI App Space",
+    description:
+      "How AI App Space handles personal information and data protection across its marketplace.",
+    images: ["https://aiappspace.com/logo.png"],
   },
 };
 

@@ -175,7 +175,7 @@ export default async function BlogsPage() {
                         </h2>
                       </Link>
 
-                      {blog.tags && blog.tags.length > 0 && (
+                      {/* {blog.tags && blog.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2 mb-6">
                           {blog.tags.slice(0, 3).map((tag: string, idx: number) => (
                             <span
@@ -191,7 +191,7 @@ export default async function BlogsPage() {
                             </span>
                           )}
                         </div>
-                      )}
+                      )} */}
 
                       <div className="mt-auto pt-5 border-t border-gray-50 flex items-center justify-between">
                         <Link

@@ -140,7 +140,7 @@ export default async function BlogDetails({ params }: { params: { slug: string }
 
             {/* Cover Image */}
             {blog.coverImage && (
-              <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-lg mb-8">
+              <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-lg mb-5">
                 <Image
                   src={blog.coverImage}
                   alt={blog.title}
@@ -152,7 +152,7 @@ export default async function BlogDetails({ params }: { params: { slug: string }
             )}
 
             {/* Tags */}
-            {blog.tags && blog.tags.length > 0 && (
+            {/* {blog.tags && blog.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 mt-6">
                 {blog.tags.map((tag: string, idx: number) => (
                   <span
@@ -163,7 +163,7 @@ export default async function BlogDetails({ params }: { params: { slug: string }
                   </span>
                 ))}
               </div>
-            )}
+            )} */}
           </div>
         </header>
 

@@ -29,9 +29,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "AI Tools Categories",
+    title: "AI Tools Categories | Browse by Use Case – AI App Space",
     description:
-      "Explore AI tools by category and use case.",
+      "Browse AI tools by category — writing, marketing, automation, coding, design, and more. Find the best AI tool for your specific use case on AI App Space.",
     url: "https://aiappspace.com/categories",
     siteName: "AI App Space",
     type: "website",
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Tools Categories",
+    title: "AI Tools Categories | Browse by Use Case – AI App Space",
     description:
-      "Explore AI tools by category and use case.",
+      "Browse AI tools by category — writing, marketing, automation, coding, design, and more. Find the best AI tool for your specific use case on AI App Space.",
     images: ["https://aiappspace.com/logo.png"],
   },
 };
@@ -57,7 +57,21 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
+  "@id": "https://aiappspace.com/categories#page",
   name: "AI Tools Categories",
+  description:
+    "Browse AI tools by category. Find AI tools for marketing, writing, automation, coding, productivity, and business use cases.",
+  url: "https://aiappspace.com/categories",
+  isPartOf: { "@id": "https://aiappspace.com/#website" },
+  publisher: { "@id": "https://aiappspace.com/#organization" },
+  inLanguage: "en",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://aiappspace.com" },
+      { "@type": "ListItem", position: 2, name: "Categories", item: "https://aiappspace.com/categories" },
+    ],
+  },
 };
 
 export default function Page() {

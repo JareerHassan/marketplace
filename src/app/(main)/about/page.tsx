@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "About AI App Space",
+    title: "About AI App Space | Leading AI Tools Marketplace",
     description:
-      "Discover our mission to simplify access to AI tools globally.",
+      "Discover how AI App Space is building the world's best AI tools marketplace, helping businesses and individuals find and access the right AI software globally.",
     url: "https://aiappspace.com/about",
     siteName: "AI App Space",
     type: "website",
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About AI App Space",
+    title: "About AI App Space | Leading AI Tools Marketplace",
     description:
-      "Discover our mission to simplify access to AI tools globally.",
+      "Discover how AI App Space is building the world's best AI tools marketplace, helping businesses and individuals find and access the right AI software globally.",
     images: ["https://aiappspace.com/logo.png"],
   },
 };
@@ -58,8 +58,22 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
+  "@id": "https://aiappspace.com/about#page",
   name: "About AI App Space",
+  description:
+    "AI App Space is a leading AI tools marketplace helping businesses and individuals discover the best AI software and SaaS solutions worldwide.",
   url: "https://aiappspace.com/about",
+  isPartOf: { "@id": "https://aiappspace.com/#website" },
+  publisher: { "@id": "https://aiappspace.com/#organization" },
+  about: { "@id": "https://aiappspace.com/#organization" },
+  inLanguage: "en",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://aiappspace.com" },
+      { "@type": "ListItem", position: 2, name: "About", item: "https://aiappspace.com/about" },
+    ],
+  },
 };
 
 export default function AboutPage() {

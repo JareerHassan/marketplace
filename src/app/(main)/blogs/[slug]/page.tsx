@@ -82,12 +82,40 @@ export default async function BlogDetails({ params }: { params: { slug: string }
     <>
 
       {/* JSON-LD Schema Markup */}
-      {seo.schema_markup && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(seo.schema_markup) }}
-        />
-      )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            seo.schema_markup || {
+              '@context': 'https://schema.org',
+              '@type': 'BlogPosting',
+              '@id': `https://aiappspace.com/blogs/${params.slug}`,
+              headline: blog.title,
+              description: seo.meta_description || '',
+              image: blog.coverImage || 'https://aiappspace.com/logo.png',
+              url: `https://aiappspace.com/blogs/${params.slug}`,
+              datePublished: blog.createdAt,
+              dateModified: seo.last_updated || blog.updatedAt || blog.createdAt,
+              author: {
+                '@type': 'Organization',
+                name: 'AI App Space',
+                url: 'https://aiappspace.com',
+              },
+              publisher: { '@id': 'https://aiappspace.com/#organization' },
+              isPartOf: { '@id': 'https://aiappspace.com/#website' },
+              inLanguage: 'en',
+              breadcrumb: {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aiappspace.com' },
+                  { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://aiappspace.com/blogs' },
+                  { '@type': 'ListItem', position: 3, name: blog.title, item: `https://aiappspace.com/blogs/${params.slug}` },
+                ],
+              },
+            }
+          ),
+        }}
+      />
 
 
 

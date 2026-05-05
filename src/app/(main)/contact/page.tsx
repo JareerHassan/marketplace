@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "Contact AI App Space",
+    title: "Contact AI App Space | Support & Business Inquiries",
     description:
-      "Reach out to our team for help, support, or business inquiries.",
+      "Have questions? Get in touch with AI App Space for support, business partnerships, seller inquiries, or general questions about our AI tools marketplace.",
     url: "https://aiappspace.com/contact",
     siteName: "AI App Space",
     type: "website",
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact AI App Space",
+    title: "Contact AI App Space | Support & Business Inquiries",
     description:
-      "Reach out to our team for help, support, or business inquiries.",
+      "Have questions? Get in touch with AI App Space for support, business partnerships, seller inquiries, or general questions about our AI tools marketplace.",
     images: ["https://aiappspace.com/logo.png"],
   },
 };
@@ -59,8 +59,21 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
+  "@id": "https://aiappspace.com/contact#page",
   name: "Contact AI App Space",
+  description:
+    "Get in touch with the AI App Space team for support, business inquiries, or partnership opportunities.",
   url: "https://aiappspace.com/contact",
+  isPartOf: { "@id": "https://aiappspace.com/#website" },
+  publisher: { "@id": "https://aiappspace.com/#organization" },
+  inLanguage: "en",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://aiappspace.com" },
+      { "@type": "ListItem", position: 2, name: "Contact", item: "https://aiappspace.com/contact" },
+    ],
+  },
 };
 
 export default function Page() {

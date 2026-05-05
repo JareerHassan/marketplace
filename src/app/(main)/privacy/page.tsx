@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "aiappspace.com privacy",
   ],
   alternates: {
-    canonical: "/privacy",
+    canonical: "https://aiappspace.com/privacy",
   },
   robots: {
     index: true,
@@ -60,9 +60,33 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://aiappspace.com/privacy#page",
+  name: "Privacy Policy | AI App Space",
+  description:
+    "Read the AI App Space Privacy Policy to understand how we collect, use, store, and protect personal information across our AI tools marketplace.",
+  url: "https://aiappspace.com/privacy",
+  isPartOf: { "@id": "https://aiappspace.com/#website" },
+  publisher: { "@id": "https://aiappspace.com/#organization" },
+  inLanguage: "en",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://aiappspace.com" },
+      { "@type": "ListItem", position: 2, name: "Privacy Policy", item: "https://aiappspace.com/privacy" },
+    ],
+  },
+};
+
 export default function PrivacyPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
                 <HeroSection />
     
     <div className="container mx-auto px-4 py-12 md:py-20">

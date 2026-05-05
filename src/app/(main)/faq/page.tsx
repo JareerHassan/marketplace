@@ -63,13 +63,18 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": "https://aiappspace.com/faq#page",
+  name: "AI Tools FAQ – AI App Space",
+  url: "https://aiappspace.com/faq",
+  isPartOf: { "@id": "https://aiappspace.com/#website" },
+  publisher: { "@id": "https://aiappspace.com/#organization" },
   mainEntity: [
     {
       "@type": "Question",
       name: "What is an AI tools marketplace?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An AI tools marketplace is a platform where users can discover, compare, and access various AI tools for business, productivity, and automation.",
+        text: "An AI tools marketplace is a platform where users can discover, compare, and access various AI tools for business, productivity, and automation. AI App Space curates the best AI software and SaaS tools in one place.",
       },
     },
     {
@@ -77,7 +82,47 @@ const jsonLd = {
       name: "Are AI tools free or paid?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "AI tools can be free, freemium, or paid depending on features and usage.",
+        text: "AI tools can be free, freemium, or paid depending on their features and usage limits. AI App Space lists tools across all pricing models so you can find options that fit your budget.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do I submit my AI tool to AI App Space?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "You can submit your AI tool by registering as a seller on AI App Space and using the Submit Tool form in your seller dashboard. Our team reviews every submission before it goes live.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What types of AI tools are listed on AI App Space?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "AI App Space lists a wide variety of AI tools including AI writing assistants, AI image generators, AI code tools, AI marketing tools, AI automation software, AI productivity apps, VPNs, SaaS platforms, learning apps, and more.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How can I sell my AI tool or software on AI App Space?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Register as a seller on AI App Space, complete your seller profile, then submit your product through the seller dashboard. Once our team approves it, your tool will be listed in the marketplace for buyers worldwide.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is AI App Space free to use for buyers?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, browsing and discovering AI tools on AI App Space is completely free for buyers. You only pay when you purchase or subscribe to a specific tool listed in the marketplace.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do I choose the best AI tool for my business?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Use the AI App Space categories and filters to browse tools by use case, pricing model, and category. You can compare features, read descriptions, and visit tool websites directly from the marketplace.",
       },
     },
   ],

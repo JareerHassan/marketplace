@@ -6,7 +6,7 @@ import ExplorePage from "./ExplorePageClient";
 export const metadata: Metadata = {
   title: "AI Apps for Business | Explore AI Tools & SaaS Products",
   description:
-    "Explore AI apps and tools designed for business, productivity, and automation.",
+    "Explore hundreds of AI apps, tools, and SaaS products designed for business, productivity, and automation. Compare pricing, features, and reviews to find the perfect AI solution.",
   keywords: [
     "AI apps for business",
     "buy AI tools online",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "AI Apps Marketplace",
+    title: "Explore AI Apps & Tools | AI App Space Marketplace",
     description:
-      "Find the best AI tools for your business.",
+      "Browse top AI apps, software, and SaaS products. Compare features, pricing, and reviews to find the perfect AI tool for your business or project.",
     url: "https://aiappspace.com/products",
     siteName: "AI App Space",
     type: "website",
@@ -48,17 +48,31 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Apps Marketplace",
+    title: "Explore AI Apps & Tools | AI App Space Marketplace",
     description:
-      "Find the best AI tools for your business.",
+      "Browse top AI apps, software, and SaaS products. Compare features, pricing, and reviews to find the perfect AI tool for your business or project.",
     images: ["https://aiappspace.com/logo.png"],
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Product",
-  name: "AI Tools",
+  "@type": "CollectionPage",
+  "@id": "https://aiappspace.com/products#page",
+  name: "AI Apps & Tools Marketplace",
+  description:
+    "Browse and discover AI apps, software, and SaaS tools for business, productivity, and automation on AI App Space.",
+  url: "https://aiappspace.com/products",
+  isPartOf: { "@id": "https://aiappspace.com/#website" },
+  publisher: { "@id": "https://aiappspace.com/#organization" },
+  inLanguage: "en",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://aiappspace.com" },
+      { "@type": "ListItem", position: 2, name: "Products", item: "https://aiappspace.com/products" },
+    ],
+  },
 };
 
 export default function Page() {

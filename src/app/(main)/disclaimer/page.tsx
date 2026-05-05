@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "aiappspace.com disclaimer",
   ],
   alternates: {
-    canonical: "/disclaimer",
+    canonical: "https://aiappspace.com/disclaimer",
   },
   robots: {
     index: true,
@@ -59,9 +59,33 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://aiappspace.com/disclaimer#page",
+  name: "Disclaimer | AI App Space",
+  description:
+    "Read the AI App Space Disclaimer for important notices about third-party AI tools, marketplace listings, content accuracy, and use of this website.",
+  url: "https://aiappspace.com/disclaimer",
+  isPartOf: { "@id": "https://aiappspace.com/#website" },
+  publisher: { "@id": "https://aiappspace.com/#organization" },
+  inLanguage: "en",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://aiappspace.com" },
+      { "@type": "ListItem", position: 2, name: "Disclaimer", item: "https://aiappspace.com/disclaimer" },
+    ],
+  },
+};
+
 export default function DisclaimerPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
                     <HeroSection />
     
     <div className="container mx-auto px-4 py-12 md:py-20">

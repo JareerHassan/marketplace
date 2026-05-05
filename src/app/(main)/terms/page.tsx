@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "aiappspace.com terms",
   ],
   alternates: {
-    canonical: "/terms",
+    canonical: "https://aiappspace.com/terms",
   },
   robots: {
     index: true,
@@ -59,9 +59,33 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://aiappspace.com/terms#page",
+  name: "Terms of Service | AI App Space",
+  description:
+    "Read the Terms of Service for AI App Space: rules for using our AI tools marketplace, accounts, purchases, seller listings, acceptable use, and liability.",
+  url: "https://aiappspace.com/terms",
+  isPartOf: { "@id": "https://aiappspace.com/#website" },
+  publisher: { "@id": "https://aiappspace.com/#organization" },
+  inLanguage: "en",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://aiappspace.com" },
+      { "@type": "ListItem", position: 2, name: "Terms of Service", item: "https://aiappspace.com/terms" },
+    ],
+  },
+};
+
 export default function TermsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
             <HeroSection />
 
     <div className="container mx-auto px-4 py-12 md:py-20">

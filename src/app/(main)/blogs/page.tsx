@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "AI Tools Blog",
+    title: "AI Tools Blog | Guides, Reviews & News – AI App Space",
     description:
-      "Learn about AI tools and trends.",
+      "Read expert guides, reviews, comparisons, and the latest news on AI tools and SaaS products to grow your business and boost productivity.",
     url: "https://aiappspace.com/blogs",
     siteName: "AI App Space",
     type: "website",
@@ -62,9 +62,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Tools Blog",
+    title: "AI Tools Blog | Guides, Reviews & News – AI App Space",
     description:
-      "Learn about AI tools and trends.",
+      "Read expert guides, reviews, comparisons, and the latest news on AI tools and SaaS products to grow your business and boost productivity.",
     images: ["https://aiappspace.com/logo.png"],
   },
 };
@@ -72,7 +72,21 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Blog",
+  "@id": "https://aiappspace.com/blogs#blog",
   name: "AI App Space Blog",
+  description:
+    "Read expert guides, reviews, and updates on the best AI tools and SaaS products for business and productivity.",
+  url: "https://aiappspace.com/blogs",
+  isPartOf: { "@id": "https://aiappspace.com/#website" },
+  publisher: { "@id": "https://aiappspace.com/#organization" },
+  inLanguage: "en",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://aiappspace.com" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://aiappspace.com/blogs" },
+    ],
+  },
 };
 
 export default async function BlogsPage() {

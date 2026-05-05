@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "Top AI Tools & Apps",
+    title: "Top Featured AI Tools & Apps | AI App Space",
     description:
-      "Discover the best AI tools curated for business success.",
+      "Browse our handpicked selection of the best AI tools and apps, carefully curated for business productivity, automation, content creation, and growth.",
     url: "https://aiappspace.com/featuredapps",
     siteName: "AI App Space",
     type: "website",
@@ -42,18 +42,31 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Top AI Tools & Apps",
+    title: "Top Featured AI Tools & Apps | AI App Space",
     description:
-      "Discover the best AI tools curated for business success.",
+      "Browse our handpicked selection of the best AI tools and apps, carefully curated for business productivity, automation, content creation, and growth.",
     images: ["https://aiappspace.com/logo.png"],
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Top AI Tools",
-  itemListElement: [],
+  "@type": "CollectionPage",
+  "@id": "https://aiappspace.com/featuredapps#page",
+  name: "Top Featured AI Tools & Apps",
+  description:
+    "Explore the top featured AI tools and apps handpicked for business, productivity, and automation on AI App Space.",
+  url: "https://aiappspace.com/featuredapps",
+  isPartOf: { "@id": "https://aiappspace.com/#website" },
+  publisher: { "@id": "https://aiappspace.com/#organization" },
+  inLanguage: "en",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://aiappspace.com" },
+      { "@type": "ListItem", position: 2, name: "Featured Apps", item: "https://aiappspace.com/featuredapps" },
+    ],
+  },
 };
 
 export default function Page() {

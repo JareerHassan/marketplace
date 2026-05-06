@@ -6,6 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
 
+
+export const dynamic = "force-dynamic";
+
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "https://marketplacebackend.oxmite.com/api";
 

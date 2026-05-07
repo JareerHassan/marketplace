@@ -4,7 +4,9 @@ import { MetadataRoute } from "next";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://aiappspace.com";
 
-  // Static pages
+  // =========================
+  // STATIC PAGES
+  // =========================
   const staticPages = [
     "",
     "/about",
@@ -20,35 +22,77 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/disclaimer",
     "/submit-tool",
     "/ai-search",
+    "/products/ai-prompt-creator",
+    "/products/fire-wave-vpn",
+    "/products/learning-app",
+    "/products/ai-phone-fix",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
   }));
 
-  // Fetch blogs from backend
-  const blogRes = await axios.get(
-    "https://marketplacebackend.oxmite.com/api/blogs"
-  );
+  // =========================
+  // BLOG URLS
+  // =========================
+  let blogUrls: MetadataRoute.Sitemap = [];
 
-  const blogs = blogRes.data;
+  try {
+    const blogRes = await axios.get(
+      "https://marketplacebackend.oxmite.com/api/blogs"
+    );
 
-  const blogUrls = blogs.map((blog: any) => ({
-    url: `${baseUrl}/blogs/${blog.slug}`,
-    lastModified: new Date(blog.updatedAt || blog.createdAt),
-  }));
+    const blogs = blogRes.data;
 
-  // Fetch products if needed
-  const productRes = await axios.get(
-    "https://marketplacebackend.oxmite.com/api/products"
-  );
+    blogUrls = blogs
+      .filter((blog: any) => blog?.seo?.slug)
+      .map((blog: any) => ({
+        url: `${baseUrl}/blogs/${blog.seo.slug}`,
+        lastModified: new Date(
+          blog.updatedAt || blog.createdAt || Date.now()
+        ),
+      }));
+  } catch (error) {
+    console.log("Blog Sitemap Error:", error);
+  }
 
-  const products = productRes.data;
+  // =========================
+  // PRODUCT URLS
+  // =========================
+  let productUrls: MetadataRoute.Sitemap = [];
 
-  const productUrls = products.map((product: any) => ({
-    url: `${baseUrl}/products/${product.slug}`,
-    lastModified: new Date(product.updatedAt || product.createdAt),
-  }));
+  try {
+    const productRes = await axios.get(
+      "https://marketplacebackend.oxmite.com/api/products"
+    );
 
+    const products = productRes.data;
+
+    productUrls = products
+      .filter(
+        (product: any) =>
+          product?.slug || product?.seo?.slug
+      )
+      .map((product: any) => ({
+        // IMPORTANT:
+        // Change /product/ to /products/
+        // if your dynamic folder is:
+        // app/products/[slug]
+
+        url: `${baseUrl}/product/${
+          product.slug || product.seo?.slug
+        }`,
+
+        lastModified: new Date(
+          product.updatedAt || product.createdAt || Date.now()
+        ),
+      }));
+  } catch (error) {
+    console.log("Product Sitemap Error:", error);
+  }
+
+  // =========================
+  // RETURN ALL URLS
+  // =========================
   return [
     ...staticPages,
     ...blogUrls,

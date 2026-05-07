@@ -7,12 +7,9 @@ import { renderEditorJSBlocks, calculateReadingTime } from "@/lib/blog-utils";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com/api';
 
 async function getBlogBySlug(slug: string) {
-  const res = await fetch(
-    `${API_BASE_URL}/blogs/blogdet/${slug}`,
-    {
-      cache: "force-cache", // SEO friendly
-    }
-  );
+  const res = await fetch(`${API_BASE_URL}/blogs/blogdet/${slug}`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) return null;
 
@@ -39,25 +36,31 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   const seo = blog.seo || {};
 
-  return {
-    title: seo.meta_title || blog.title,
-    description: seo.meta_description || '',
-    keywords: seo.focus_keyword || '',
-    openGraph: {
-      title: seo.og_title || seo.meta_title || blog.title,
-      description: seo.og_description || seo.meta_description || '',
-      images: seo.og_image || blog.coverImage ? [seo.og_image || blog.coverImage] : [],
-      type: 'article',
-    },
-    robots: seo.robots || 'index, follow',
-    alternates: {
-      canonical: seo.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL || ''}/blogs/${params.slug}`,
-    },
-    other: {
-      'article:published_time': blog.createdAt,
-      'article:modified_time': seo.last_updated || blog.updatedAt,
-    },
-  };
+const validOgImage =
+  blog.coverImage ||
+  (seo.og_image && !seo.og_image.startsWith("blob:") ? seo.og_image : "");
+
+return {
+  title: seo.meta_title || blog.title,
+  description: seo.meta_description || "",
+  keywords: seo.focus_keyword || "",
+  openGraph: {
+    title: seo.og_title || seo.meta_title || blog.title,
+    description: seo.og_description || seo.meta_description || "",
+    images: validOgImage ? [validOgImage] : [],
+    type: "article",
+  },
+  robots: seo.robots || "index, follow",
+  alternates: {
+    canonical:
+      seo.canonical_url ||
+      `${process.env.NEXT_PUBLIC_SITE_URL || ""}/blogs/${params.slug}`,
+  },
+  other: {
+    "article:published_time": blog.createdAt,
+    "article:modified_time": seo.last_updated || blog.updatedAt,
+  },
+};
 }
 
 export default async function BlogDetails({ params }: { params: { slug: string } }) {

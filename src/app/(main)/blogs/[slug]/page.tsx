@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 import { renderEditorJSBlocks, calculateReadingTime } from "@/lib/blog-utils";
 
-
+  export const dynamic = "force-dynamic";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://marketplacebackend.oxmite.com/api';
 
 async function getBlogBySlug(slug: string) {

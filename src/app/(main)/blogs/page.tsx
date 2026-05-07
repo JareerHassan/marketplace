@@ -8,7 +8,6 @@ import HeroSection from "@/components/HeroSection";
 
 
 export const dynamic = "force-dynamic";
-
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "https://marketplacebackend.oxmite.com/api";
 
@@ -20,7 +19,7 @@ async function getBlogs() {
     console.error("Error fetching blogs:", error);
     return [];
   }
-}
+}    
 
 export const metadata: Metadata = {
   title: "Best AI Tools & SaaS Products Articles | Guides & Reviews",

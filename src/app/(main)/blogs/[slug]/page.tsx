@@ -168,7 +168,7 @@ export default async function BlogDetails({ params }: { params: { slug: string }
 
             {/* Cover Image */}
             {blog.coverImage && (
-              <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-lg mb-5">
+              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-lg mb-5">
                 <Image
                   src={blog.coverImage}
                   alt={blog.title}

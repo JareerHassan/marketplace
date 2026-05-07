@@ -331,9 +331,9 @@ export default function LandingPage() {
                     AI-Powered Learning
                   </Badge>
                 </div>
-                <h2 className="text-4xl lg:text-[72px] font-black leading-[1] tracking-tighter text-white uppercase ">
+                <h1 className="text-4xl lg:text-[72px] font-black leading-[1] tracking-tighter text-white uppercase ">
                   Ethical Hacking Learning App
-                </h2>
+                </h1>
                 <p className="text-[#94A3B8] max-w-md mx-auto lg:mx-0">
                   Learn ethical hacking the smart way. Practice with AI quizzes.
                   Test your skills with intelligent exams. Build real
@@ -1039,12 +1039,12 @@ export default function LandingPage() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <motion.h1
+            <motion.h2
               className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight"
               variants={itemVariants}
             >
               Ready to Start Your Cybersecurity Journey?
-            </motion.h1>
+            </motion.h2>
             <motion.p
               className="text-[#6b6c75] text-lg md:text-xl mb-10 max-w-md"
               variants={itemVariants}

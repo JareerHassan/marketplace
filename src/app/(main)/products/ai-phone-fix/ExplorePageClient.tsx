@@ -332,9 +332,9 @@ export default function LandingPage() {
                     Instant Fixes
                   </Badge>
                 </div>
-                <h2 className="text-4xl lg:text-[72px] font-black leading-[1] tracking-tighter text-white uppercase ">
+                <h1 className="text-4xl lg:text-[72px] font-black leading-[1] tracking-tighter text-white uppercase ">
                   AI Mobile Assistant
-                </h2>
+                </h1>
                 <p className="text-[#94A3B8] max-w-md mx-auto lg:mx-0">
                   Fix performance issues, detect hidden bugs, and optimize your
                   phone automatically using AI-powered diagnostics.{" "}
@@ -1203,12 +1203,12 @@ export default function LandingPage() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <motion.h1
+            <motion.h2
               className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight"
               variants={itemVariants}
             >
               Ready to Boost Your Device Performance?
-            </motion.h1>
+            </motion.h2>
             <motion.p
               className="text-[#6b6c75] text-lg md:text-xl mb-10 max-w-md"
               variants={itemVariants}

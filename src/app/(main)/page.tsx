@@ -2,8 +2,6 @@
 import HomePageClient from './HomePageClient';
 import type { Metadata } from 'next';
 
-export const metadataBase = new URL('https://aiappspace.com');
-
 export const metadata: Metadata = {
   title: {
     default: 'AI Tools Marketplace | Best AI Apps & SaaS Platform',
@@ -83,7 +81,6 @@ export const metadata: Metadata = {
   referrer: 'origin-when-cross-origin',
   creator: 'AI App Space',
   publisher: 'AI App Space',
-  metadataBase: new URL('https://aiappspace.com'),
   alternates: {
     canonical: '/',
   },

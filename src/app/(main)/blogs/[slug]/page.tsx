@@ -54,7 +54,7 @@ return {
   alternates: {
     canonical:
       seo.canonical_url ||
-      `${process.env.NEXT_PUBLIC_SITE_URL || ""}/blogs/${params.slug}`,
+      `https://aiappspace.com/blogs/${params.slug}`,
   },
   other: {
     "article:published_time": blog.createdAt,

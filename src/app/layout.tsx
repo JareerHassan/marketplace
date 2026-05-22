@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://aiappspace.com'),
   title: 'AiAppSpace - AI Digital Products Marketplace',
   description: 'The future of AI digital products. Discover, buy, and sell cutting-edge AI tools, prompts, and more.',
   keywords: ['AI marketplace', 'digital products', 'AI tools', 'chatbots', 'prompts', 'aiappspace'],

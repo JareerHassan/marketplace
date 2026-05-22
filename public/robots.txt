@@ -4,5 +4,6 @@ Allow: /
 Disallow: /admin
 Disallow: /seller/
 Disallow: /buyer/
+Disallow: /auth/
 
 Sitemap: https://aiappspace.com/sitemap.xml

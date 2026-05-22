@@ -1,5 +1,10 @@
+import type { Metadata } from 'next';
 import DashboardSidebar from '@/components/layout/dashboard-sidebar';
 import Header from '@/components/layout/header';
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function SellerLayout({
   children,

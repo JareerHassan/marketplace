@@ -238,16 +238,24 @@ export default function LandingPage() {
                   Turn raw ideas into clear, structured, high-performing AI prompts using a guided AI-powered prompt creation system.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+
                   <Button className="rounded-full bg-[#ADFF2F] text-black px-10 h-14 font-black">
                     CREATE PROMPT
                   </Button>
-                  <Button
-                    variant="outline"
-                    className="rounded-full border-white/10 bg-white/5 text-white px-10 h-14 backdrop-blur-sm"
+
+                  <a
+                    href="https://www.amazon.com/dp/B0GX2V64W3"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    {" "}
-                    TRY DEMO
-                  </Button>
+                    <Button
+                      variant="outline"
+                      className="rounded-full border-white/10 bg-white/5 text-white px-10 h-14 backdrop-blur-sm"
+                    >
+                      TRY DEMO
+                    </Button>
+                  </a>
+
                 </div>
               </div>
             </div>
@@ -314,9 +322,15 @@ export default function LandingPage() {
                 </h2>
               </div>
               <div>
-                <Button className="rounded-full bg-[#ADFF2F] text-black px-8 h-12 font-black">
-                  SEE MORE
-                </Button>
+                <a
+                  href="https://www.amazon.com/dp/B0GX2V64W3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button className="rounded-full bg-[#ADFF2F] text-black px-8 h-12 font-black">
+                    SEE MORE
+                  </Button>
+                </a>
               </div>
             </div>
 
@@ -458,13 +472,19 @@ export default function LandingPage() {
                   <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight">
                     Empowering Everyone <br /> to Use AI Better
                   </h2>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-8 bg-[#B4EB3F] hover:bg-[#a3d635] text-black font-bold py-4 px-8 rounded-xl transition-colors shadow-lg shadow-lime-100"
+                  <a
+                    href="https://www.amazon.com/dp/B0GX2V64W3"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    Learn More
-                  </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="mt-8 bg-[#B4EB3F] hover:bg-[#a3d635] text-black font-bold py-4 px-8 rounded-xl transition-colors shadow-lg shadow-lime-100"
+                    >
+                      Learn More
+                    </motion.button>
+                  </a>
                 </motion.div>
 
                 {/* Video Button with Pulse Animation */}
@@ -590,7 +610,7 @@ export default function LandingPage() {
                 className="rounded-3xl overflow-hidden h-[420px]"
               >
                 <img
-                                     src="/assets/ai-prompt-mockup.png"
+                  src="/assets/ai-prompt-mockup.png"
                   className="w-full h-full object-cover"
                   alt="Tech Analysis"
                 />
@@ -626,9 +646,15 @@ export default function LandingPage() {
                     </h3>
                   </div>
 
-                  <button className="w-fit text-white text-xs border border-gray-700 rounded-full px-4 py-2 hover:bg-white hover:text-black transition">
-                    Start Creating now
-                  </button>
+                  <a
+                    href="https://www.amazon.com/dp/B0GX2V64W3"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <button className="w-fit text-white text-xs border border-gray-700 rounded-full px-4 py-2 hover:bg-white hover:text-black transition">
+                      Start Creating now
+                    </button>
+                  </a>
                 </motion.div>
               </div>
             </div>
@@ -696,9 +722,15 @@ export default function LandingPage() {
                       </span> */}
                 </div>
 
-                <button className="w-fit mt-8 bg-[#B4EB3F] hover:bg-[#a3d635] text-black text-sm font-bold py-3 px-6 rounded-xl transition-all">
-                  Get Started
-                </button>
+                <a
+                  href="https://www.amazon.com/dp/B0GX2V64W3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="w-fit mt-8 bg-[#B4EB3F] hover:bg-[#a3d635] text-black text-sm font-bold py-3 px-6 rounded-xl transition-all">
+                    Get Started
+                  </button>
+                </a>
               </motion.div>
             ))}
 
@@ -711,7 +743,7 @@ export default function LandingPage() {
               {/* Background Image with Overlay */}
               <div className="absolute inset-0">
                 <img
-                                       src="/assets/ai-prompt-mockup.png"
+                  src="/assets/ai-prompt-mockup.png"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   alt="Tutorial Thumbnail"
                 />
@@ -758,13 +790,27 @@ export default function LandingPage() {
               </h2>
 
               <div className="flex flex-wrap gap-4 pt-4">
-                <button className="bg-[#B4EB3F] hover:bg-[#a3d635] text-black font-bold py-4 px-8 rounded-2xl flex items-center gap-2 transition-all shadow-lg shadow-lime-400/20">
-                  Download Apps <Download size={20} />
-                </button>
 
-                <button className="bg-white/5 hover:bg-white/10 text-white font-bold py-4 px-8 rounded-2xl border border-white/20 transition-all backdrop-blur-sm">
-                  Demo Apps
-                </button>
+                <a
+                  href="https://www.amazon.com/dp/B0GX2V64W3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="bg-[#B4EB3F] hover:bg-[#a3d635] text-black font-bold py-4 px-8 rounded-2xl flex items-center gap-2 transition-all shadow-lg shadow-lime-400/20">
+                    Download Apps <Download size={20} />
+                  </button>
+                </a>
+
+                <a
+                  href="https://www.amazon.com/dp/B0GX2V64W3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="bg-white/5 hover:bg-white/10 text-white font-bold py-4 px-8 rounded-2xl border border-white/20 transition-all backdrop-blur-sm">
+                    Demo Apps
+                  </button>
+                </a>
+
               </div>
             </div>
 
@@ -772,7 +818,7 @@ export default function LandingPage() {
             <div className="relative flex justify-center lg:justify-end">
               <div className="relative z-20 w-[90%] md:w-[550px]">
                 <img
-                                       src="/assets/ai-prompt-mockup.png"
+                  src="/assets/ai-prompt-mockup.png"
                   alt="Mobile App Mockup"
                   className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
                 />
@@ -865,25 +911,37 @@ export default function LandingPage() {
             >
               Join thousands of users creating clear, structured, and high-performing AI prompts with AI Prompt Creator.
             </motion.p>
-
             <motion.div
               className="flex flex-wrap gap-4"
               variants={itemVariants}
             >
-              <motion.button
-                className="bg-[#ccff00] hover:bg-[#b4e600] text-black font-bold py-4 px-8 rounded-2xl transition-all"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+              <a
+                href="https://www.amazon.com/dp/B0GX2V64W3"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Create Prompt Now
-              </motion.button>
-              <motion.button
-                className="bg-[#1e2130] hover:bg-[#2a2d3d] text-white font-medium py-4 px-8 rounded-2xl transition-all border border-white/10"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+                <motion.button
+                  className="bg-[#ccff00] hover:bg-[#b4e600] text-black font-bold py-4 px-8 rounded-2xl transition-all"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Create Prompt Now
+                </motion.button>
+              </a>
+
+              <a
+                href="https://www.amazon.com/dp/B0GX2V64W3"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Download the App
-              </motion.button>
+                <motion.button
+                  className="bg-[#1e2130] hover:bg-[#2a2d3d] text-white font-medium py-4 px-8 rounded-2xl transition-all border border-white/10"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Download the App
+                </motion.button>
+              </a>
             </motion.div>
           </motion.div>
         </div>

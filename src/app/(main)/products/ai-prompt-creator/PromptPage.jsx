@@ -918,7 +918,7 @@ export default function LandingPage() {
               <a
                 href="https://www.amazon.com/dp/B0GX2V64W3"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer"   
               >
                 <motion.button
                   className="bg-[#ccff00] hover:bg-[#b4e600] text-black font-bold py-4 px-8 rounded-2xl transition-all"
@@ -926,7 +926,7 @@ export default function LandingPage() {
                   whileTap={{ scale: 0.95 }}
                 >
                   Create Prompt Now
-                </motion.button>
+                </motion.button>   
               </a>
 
               <a
@@ -940,7 +940,7 @@ export default function LandingPage() {
                   whileTap={{ scale: 0.95 }}
                 >
                   Download the App
-                </motion.button>
+                </motion.button>   
               </a>
             </motion.div>
           </motion.div>
@@ -956,4 +956,4 @@ export default function LandingPage() {
       </section>
     </>
   );
-}
+}   
